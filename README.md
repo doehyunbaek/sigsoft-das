@@ -48,3 +48,7 @@ uv run --with playwright python archive_browser.py --verify
 ## Related resource
 
 - [Artifact Evaluation Calls](https://benhermann.eu/artifact-survey/calls/index.html)
+
+## License
+
+[MIT](LICENSE)
