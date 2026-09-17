@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIGSOFT CfPs</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f6fa;--panel:#fff;--ink:#192435;--muted:#526174;--line:#d7dfea;--accent:#155bc0}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,sans-serif}main{max-width:1250px;margin:auto;padding:32px 20px}h1{margin:0}a{color:var(--accent)}.muted{color:var(--muted)}header p{margin:8px 0}.toolbar{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:14px;margin:24px 0 12px}label{display:block;font-weight:600}input,select,button{font:inherit;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:10px;width:100%;margin-top:5px}button{cursor:pointer;width:auto}button:hover{border-color:var(--accent)}button:disabled{opacity:.5;cursor:default}input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.status{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:16px 0}.cards{display:grid;gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:20px}.card h2{font-size:1.15rem;margin:8px 0}.tag{font-size:.85rem;font-weight:600;color:var(--accent)}summary{cursor:pointer;font-weight:600}.call-text{white-space:pre-wrap;overflow-wrap:anywhere;margin:16px 0;max-height:65vh;overflow:auto;font:inherit}.dates{border-left:3px solid var(--accent);padding-left:14px}.dates li{white-space:pre-line;margin-bottom:10px}.preview{color:var(--muted);overflow-wrap:anywhere}.pagination{display:flex;gap:16px;align-items:center;justify-content:center;margin:24px 0}.notice{border-left:4px solid #b77b08;padding:10px 16px;background:var(--panel);margin:20px 0}#error{color:#b12727}footer{margin-top:32px;border-top:1px solid var(--line);padding-top:16px} [hidden]{display:none!important}@media(max-width:650px){.toolbar{grid-template-columns:1fr}main{padding:20px 14px}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
+<script src="theme.js"></script>
+</head>
+<body>
+<main>
+<nav class="theme-bar" aria-label="Site navigation"><a class="theme-brand" href="index.html">SIGSOFT CfPs<span>•</span></a><div class="theme-actions"><a class="nav-button" href="das-checker/">DAS checker ✓</a><button id="theme-toggle" type="button" aria-label="Switch color theme">Dark mode ☾</button></div></nav>
+<p id="error" role="alert" hidden></p>
+<section class="availability" aria-labelledby="availability-title">
+<div class="availability-heading"><h2 id="availability-title">Call for Papers - Data availability mentioned</h2><button id="metric-toggle" type="button">Show DOI mentions</button></div>
+<div class="table-scroll"><table id="availability-table"></table></div>
+<p id="availability-note" class="muted">A check means the research CFP mentions data availability; it does not assess the strength of the policy.</p>
+<div class="observed-das">
+<div class="availability-heading"><h3 id="paper-metric-title">Papers - Data availability contained</h3><button id="paper-metric-toggle" type="button">Show DOI contained</button></div>
+<div class="table-scroll"><table id="das-count-table"><tbody><tr><td class="muted">Loading paper results…</td></tr></tbody></table></div>
+<p id="paper-metric-note" class="muted">Values are papers with a detected statement / PDFs checked. Detection is heuristic.</p>
+</div>
+</section>
+<div class="toolbar">
+<label for="search">Search<input id="search" type="search" placeholder="Search titles, call text, or deadlines…"></label>
+<label for="series">Conference<select id="series"><option value="">All conferences</option></select></label>
+<label for="year">Edition year<select id="year"><option value="">All years</option></select></label>
+<label for="track">Track<select id="track"><option value="">All tracks</option></select></label>
+</div>
+<div class="status"><span id="count" role="status" aria-live="polite">Loading…</span><button id="reset" type="button">Reset filters</button></div>
+<div id="results" class="cards"></div>
+<nav class="pagination" aria-label="Results pages"><button id="previous" type="button" disabled>Previous</button><span id="page"></span><button id="next" type="button" disabled>Next</button></nav>
+<footer class="muted">Each result is an extracted call section, not necessarily a unique submission opportunity. Dates are preserved as published; no open/closed status is inferred.</footer>
+</main>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const names = {icse:'ICSE',fse:'FSE',ase:'ASE'};
+let records = [], filtered = [], currentPage = 1;
+let matrixMetric = 'data', paperMatrixMetric = 'data', dasSummary = null;
+const pageSize = 25;
+const filterStorageKey = 'conference-calls.filters.v1';
+function savedFilters() {
+  try {
+    const value = JSON.parse(localStorage.getItem(filterStorageKey));
+    return value && typeof value === 'object' && !Array.isArray(value) ? value : null;
+  } catch { return null; }
+}
+function saveFilters() {
+  try {
+    localStorage.setItem(filterStorageKey, JSON.stringify(Object.fromEntries(
+      ['search','series','year','track'].map(id => [id, $(id).value])
+    )));
+  } catch { /* Browsing still works when storage is unavailable. */ }
+}
+function restoreFilters() {
+  const saved = savedFilters();
+  $('search').value = saved && typeof saved.search === 'string' ? saved.search : '';
+  for (const id of ['series','year']) {
+    const value = saved ? saved[id] : (id === 'series' ? 'icse' : '');
+    $(id).value = [...$(id).options].some(option => option.value === value) ? value : '';
+  }
+  updateTracks();
+  const track = saved ? saved.track : 'Research Track';
+  $('track').value = [...$('track').options].some(option => option.value === track) ? track : '';
+}
+function element(tag, value, className) {
+  const node = document.createElement(tag);
+  if (value !== undefined) node.textContent = value;
+  if (className) node.className = className;
+  return node;
+}
+function safeURL(value) {
+  try { const u = new URL(value); return ['https:','http:'].includes(u.protocol) ? u.href : null; } catch { return null; }
+}
+function sourceURL(record) {
+  return safeURL(record.call_url || record.url);
+}
+function archiveURL(record) {
+  const snapshot = safeURL(record.snapshot_url);
+  const callURL = String(record.call_url || record.url);
+  const sectionSuffix = callURL.startsWith(String(record.url)) ? callURL.slice(String(record.url).length) : '';
+  return snapshot ? snapshot + sectionSuffix : null;
+}
+function mentionsDataAvailability(record) {
+  const value = record.text.replace(/\s+/g, ' ');
+  return /\bdata[ -]availability\b/i.test(value)
+    || /\b(?:data|datasets?)(?:\s+\S+){0,10}\s+availab\w*/i.test(value);
+}
+function mentionsDOI(record) {
+  return /\bDOIs?\b|digital object identifier/i.test(record.text);
+}
+function renderAvailability() {
+  const isDOI = matrixMetric === 'doi';
+  $('availability-title').textContent = isDOI ? 'Call for Papers - DOI mentioned' : 'Call for Papers - Data availability mentioned';
+  $('metric-toggle').textContent = isDOI ? 'Show data availability' : 'Show DOI mentions';
+  $('availability-note').textContent = isDOI
+    ? 'A check means the research CFP mentions a DOI or digital object identifier.'
+    : 'A check means the research CFP mentions data availability; it does not assess the strength of the policy.';
+  const years = [...new Set(records.map(record => record.year))].filter(Boolean).sort((a,b)=>Number(b)-Number(a));
+  const table = $('availability-table');
+  const head = element('thead');
+  const headerRow = element('tr');
+  headerRow.append(element('th','Conference'));
+  for (const year of years) headerRow.append(element('th',year));
+  head.append(headerRow);
+  const body = element('tbody');
+  for (const series of ['icse','fse','ase']) {
+    const row = element('tr');
+    row.append(element('th',names[series]));
+    for (const year of years) {
+      const cell = element('td');
+      const record = records.find(item => item.series === series && item.year === year);
+      const mentioned = record && (isDOI ? mentionsDOI(record) : mentionsDataAvailability(record));
+      if (mentioned) {
+        const link = element('a','✓','availability-check');
+        link.href = sourceURL(record);
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.title = `${names[series]} ${year} CFP`;
+        link.setAttribute('aria-label',`${names[series]} ${year}: ${isDOI ? 'DOI' : 'data availability'} mentioned`);
+        cell.append(link);
+      } else {
+        cell.textContent = '—';
+        cell.className = 'availability-empty';
+      }
+      row.append(cell);
+    }
+    body.append(row);
+  }
+  table.replaceChildren(head,body);
+}
+function renderDASCounts(data) {
+  if (data) dasSummary = data;
+  const isDOI = paperMatrixMetric === 'doi';
+  $('paper-metric-title').textContent = isDOI ? 'Papers - DOI contained' : 'Papers - Data availability contained';
+  $('paper-metric-toggle').textContent = isDOI ? 'Show data availability' : 'Show DOI contained';
+  $('paper-metric-note').textContent = isDOI
+    ? 'Values are papers with a DOI in the detected statement scope / papers with a detected statement. Detection is heuristic.'
+    : 'Values are papers with a detected statement / PDFs checked. Detection is heuristic.';
+  const years = [...new Set(records.map(record => record.year))].filter(Boolean).sort((a,b)=>Number(b)-Number(a));
+  const table = $('das-count-table');
+  const head = element('thead'), headerRow = element('tr');
+  headerRow.append(element('th','Conference'));
+  for (const year of years) headerRow.append(element('th',year));
+  head.append(headerRow);
+  const body = element('tbody'), row = element('tr');
+  row.append(element('th','FSE'));
+  for (const year of years) {
+    const result = dasSummary?.years?.[year];
+    const cell = element('td',result ? (isDOI ? `${result.with_statement_and_doi ?? 0} / ${result.with_statement}` : `${result.with_statement} / ${result.checked}`) : '—');
+    if (!result) cell.className = 'availability-empty';
+    row.append(cell);
+  }
+  body.append(row); table.replaceChildren(head,body);
+}
+function trackName(record) {
+  if (['icse','fse','ase'].includes(record.series)) return 'Research Track';
+  if (typeof record.track === 'string' && record.track.trim()) return record.track.trim();
+  // Researchr titles usually contain the track between conference/year labels.
+  const conference = /^(?:ASE|FSE|ESEC\s*\/\s*FSE|ICSE)\s*\d{4}$/i;
+  const parts = String(record.title || '').split(/\s+[–—-]\s+/).filter(part => !conference.test(part.trim()));
+  let name = parts.join(' - ').trim() || String(record.heading || 'Other');
+  name = name.replace(/\b(?:19|20)\d{2}\b/g, '').replace(/\s+/g, ' ').trim();
+  return name || 'Other';
+}
+function updateTracks() {
+  const previous = $('track').value;
+  const available = records.filter(r => (!$('series').value || r.series === $('series').value) && (!$('year').value || r.year === $('year').value));
+  const tracks = [...new Set(available.map(r => r._track))].sort((a,b)=>a.localeCompare(b));
+  $('track').replaceChildren(new Option('All tracks',''));
+  for (const track of tracks) $('track').add(new Option(track,track));
+  if (tracks.includes(previous)) $('track').value = previous;
+}
+function showError(message) { $('error').textContent = message; $('error').hidden = false; }
+function load(data) {
+  if (!data || !Array.isArray(data.calls) || !data.calls.every(r => r && typeof r === 'object' && typeof r.text === 'string')) {
+    throw new Error('Expected a dataset containing a calls array with text fields.');
+  }
+  records = data.calls.map((r, i) => ({...r, series:String(r.series || ''), year:r.year == null ? '' : String(r.year), important_dates:Array.isArray(r.important_dates) ? r.important_dates.map(String) : [], _index:i, _track:trackName(r),
+    _search:[r.title,r.heading,r.text,r.edition,r.series,...(Array.isArray(r.important_dates)?r.important_dates:[])].join(' ').toLowerCase()}));
+  records.sort((a,b) => (Number(b.year)||0)-(Number(a.year)||0) || a.series.localeCompare(b.series) || String(a.title||'').localeCompare(String(b.title||'')) || a._index-b._index);
+  $('series').replaceChildren(new Option('All conferences',''));
+  for (const value of [...new Set(records.map(r=>r.series))].filter(Boolean).sort()) $('series').add(new Option(names[value]||value,value));
+  $('year').replaceChildren(new Option('All years',''));
+  for (const value of [...new Set(records.map(r=>r.year))].filter(Boolean).sort((a,b)=>Number(b)-Number(a))) $('year').add(new Option(value,value));
+  $('error').hidden = true;
+  restoreFilters();
+  renderAvailability();
+  applyFilters();
+}
+function applyFilters() {
+  saveFilters();
+  const terms = $('search').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  filtered = records.filter(r => (!$('series').value || r.series === $('series').value) && (!$('year').value || r.year === $('year').value) && (!$('track').value || r._track === $('track').value) && terms.every(t=>r._search.includes(t)));
+  currentPage = 1;
+  render();
+}
+function render() {
+  const totalPages = Math.max(1,Math.ceil(filtered.length/pageSize));
+  $('count').textContent = `${filtered.length.toLocaleString()} matching sections of ${records.length.toLocaleString()}`;
+  $('page').textContent = `Page ${currentPage} of ${totalPages}`;
+  $('previous').disabled = currentPage <= 1;
+  $('next').disabled = currentPage >= totalPages;
+  const fragment = document.createDocumentFragment();
+  if (!filtered.length) fragment.append(element('p','No calls match these filters.','muted'));
+  for (const r of filtered.slice((currentPage-1)*pageSize,currentPage*pageSize)) {
+    const card = element('article',undefined,'card');
+    card.append(element('div',`${names[r.series]||r.series} · ${r.edition||r.year||'Unknown edition'}`,'tag'));
+    card.append(element('h2',r.title||r.heading||'Untitled call'));
+    card.append(element('p',`${r._track} · ${r.heading||'Call section'}`,'muted'));
+    const links = element('div',undefined,'source-links');
+    const source = sourceURL(r);
+    if (source) {
+      const link = element('a','View source ↗');
+      link.href=source; link.target='_blank'; link.rel='noopener noreferrer';
+      links.append(link);
+    }
+    const archive = archiveURL(r);
+    if (archive) {
+      const link = element('a','View archive ↗','archive-button');
+      link.href=archive; link.target='_blank'; link.rel='noopener noreferrer';
+      links.append(link);
+    }
+    card.append(links);
+    card.append(element('p',r.text.slice(0,280)+(r.text.length>280?'…':''),'preview'));
+    const details = element('details');
+    details.append(element('summary','Read full call'));
+    details.append(element('div',r.text,'call-text'));
+    if (r.important_dates.length) {
+      const dates = element('section',undefined,'dates');
+      dates.append(element('h3','Published important dates'));
+      const list = element('ul');
+      for (const date of r.important_dates) list.append(element('li',date));
+      dates.append(list); details.append(dates);
+    }
+    card.append(details); fragment.append(card);
+  }
+  $('results').replaceChildren(fragment);
+}
+for (const id of ['series','year']) $(id).addEventListener('change',()=>{updateTracks();applyFilters();});
+$('track').addEventListener('change',applyFilters);
+$('metric-toggle').addEventListener('click',()=>{ matrixMetric = matrixMetric === 'data' ? 'doi' : 'data'; renderAvailability(); });
+$('paper-metric-toggle').addEventListener('click',()=>{ paperMatrixMetric = paperMatrixMetric === 'data' ? 'doi' : 'data'; renderDASCounts(); });
+$('search').addEventListener('input',applyFilters);
+$('reset').addEventListener('click',()=>{ $('search').value=''; $('series').value=''; $('year').value=''; $('track').value=''; updateTracks(); applyFilters(); });
+for (const [id,delta] of [['previous',-1],['next',1]]) $(id).addEventListener('click',()=>{currentPage+=delta;render();$('count').scrollIntoView({block:'start'});});
+(async()=>{
+  try {
+    const [callsResponse,dasResponse] = await Promise.all([fetch('data/calls.json'),fetch('data/fse-das-summary.json')]);
+    if (!callsResponse.ok) throw new Error(`CFP data returned HTTP ${callsResponse.status}`);
+    const data = await callsResponse.json();
+    load(data);
+    if (dasResponse.ok) renderDASCounts(await dasResponse.json());
+    else renderDASCounts(null);
+  } catch(error) {
+    render();
+    showError('Could not load data/calls.json. Serve this directory over HTTP and try again. ('+error.message+')');
+  }
+})();
+</script>
+</body>
+</html>

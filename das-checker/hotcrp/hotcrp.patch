@@ -1,0 +1,16 @@
+diff --git a/src/papertable.php b/src/papertable.php
+index e60cbee..a08d626 100644
+--- a/src/papertable.php
++++ b/src/papertable.php
+@@ -783,6 +783,11 @@ class PaperTable {
+             }
+             $s = $doc->link_html("<span class=\"pavfn\">{$dhtml}</span>", DocumentInfo::L_REQUIREFORMAT);
+             $fr->value .= "<p class=\"pgsm\">{$s}{$stamps}</p>";
++            // Opt-in client-side DAS checker. PDF permissions were checked above.
++            if ($this->conf->opt("dasChecker")) {
++                $fr->value .= '<div class="das-checker-mount" data-pdf-url="'
++                    . htmlspecialchars($doc->url(), ENT_QUOTES) . '"></div>';
++            }
+             if ($dtype === DTYPE_FINAL
+                 && $this->prow->paperStorageId > 1
+                 && $this->prow->paperStorageId !== $doc->paperStorageId

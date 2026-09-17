@@ -1,0 +1,7 @@
+**
+!das-checker/
+!das-checker/package.json
+!das-checker/package-lock.json
+!das-checker/core.js
+!das-checker/hotcrp/
+!das-checker/hotcrp/**

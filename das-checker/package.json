@@ -1,0 +1,8 @@
+{
+  "name": "paper-das-checker",
+  "private": true,
+  "type": "module",
+  "exports": "./core.js",
+  "engines": {"node": ">=22"},
+  "dependencies": {"pdfjs-dist": "4.10.38"}
+}

@@ -1,0 +1,6 @@
+[project]
+name = "sigsoft-cfx"
+version = "0.1.0"
+description = "Researchr conference call collector"
+requires-python = ">=3.11"
+dependencies = ["httpx>=0.28,<1", "beautifulsoup4>=4.13,<5"]
