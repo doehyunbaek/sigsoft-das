@@ -15,14 +15,14 @@
 </head>
 <body>
 <main>
-<nav class="theme-bar" aria-label="Site navigation"><a class="theme-brand" href="index.html">SIGSOFT CfPs<span>•</span></a><div class="theme-actions"><a class="nav-button" href="das-checker/">DAS checker ✓</a><button id="theme-toggle" type="button" aria-label="Switch color theme">Dark mode ☾</button></div></nav>
+<nav class="theme-bar" aria-label="Site navigation"><a class="theme-brand" href="index.html">SIGSOFT CfPs<span>•</span></a><div class="theme-actions"><a class="nav-button" href="authors.html">Authors</a><a class="nav-button" href="das-checker/">DAS checker ✓</a><button id="theme-toggle" type="button" aria-label="Switch color theme">Dark mode ☾</button></div></nav>
 <p id="error" role="alert" hidden></p>
 <section class="availability" aria-labelledby="availability-title">
 <div class="availability-heading"><h2 id="availability-title">Call for Papers - Data availability mentioned</h2><button id="metric-toggle" type="button">Show DOI mentions</button></div>
 <div class="table-scroll"><table id="availability-table"></table></div>
 <p id="availability-note" class="muted">A check means the research CFP mentions data availability; it does not assess the strength of the policy.</p>
 <div class="observed-das">
-<div class="availability-heading"><h3 id="paper-metric-title">Papers - Data availability contained</h3><button id="paper-metric-toggle" type="button">Show DOI contained</button></div>
+<div class="availability-heading"><h3 id="paper-metric-title">Papers - Data availability contained</h3><div class="paper-metric-actions"><button id="nonstandard-toggle" type="button" aria-pressed="false">Include non-standard listings</button><button id="paper-metric-toggle" type="button">Show DOI contained</button></div></div>
 <div class="table-scroll"><table id="das-count-table"><tbody><tr><td class="muted">Loading paper results…</td></tr></tbody></table></div>
 <p id="paper-metric-note" class="muted">Loading section types…</p>
 <section id="das-paper-details" aria-live="polite" hidden></section>
@@ -44,7 +44,7 @@
 const $ = id => document.getElementById(id);
 const names = {icse:'ICSE',fse:'FSE',ase:'ASE'};
 let records = [], filtered = [], currentPage = 1;
-let matrixMetric = 'data', paperMatrixMetric = 'data', dasSummary = null, selectedDASYear = null;
+let matrixMetric = 'data', paperMatrixMetric = 'data', includeNonstandard = false, dasSummary = null, selectedDASYear = null;
 const pageSize = 25;
 const filterStorageKey = 'conference-calls.filters.v1';
 function savedFilters() {
@@ -149,26 +149,44 @@ function renderAvailability() {
   }
   table.replaceChildren(head,body);
 }
+function availableAnnotations(result) {
+  return (result?.annotations || []).filter(paper => paper.annotation && paper.annotation.type !== 'reviewed-unsupported-heading');
+}
+function displayedPapers(result, isDOI = paperMatrixMetric === 'doi') {
+  const standard = (result?.papers || []).filter(paper => !isDOI || paper.dois?.length);
+  if (isDOI || !includeNonstandard) return standard;
+  const papers = new Map(standard.map(paper => [paper.file, {...paper}]));
+  for (const paper of availableAnnotations(result)) {
+    const existing = papers.get(paper.file);
+    if (existing) existing.annotation = paper.annotation;
+    else papers.set(paper.file, paper);
+  }
+  return [...papers.values()].sort((a,b)=>a.id.localeCompare(b.id, undefined, {numeric:true}));
+}
 function sectionTypeSummary(papers) {
   const counts = new Map();
+  let nonstandard = 0;
   for (const paper of papers) {
     for (const section of paper.sections || []) counts.set(section.label, (counts.get(section.label) || 0) + 1);
+    if (paper.annotation) nonstandard++;
   }
   const sorted = [...counts].sort(([labelA,countA],[labelB,countB]) => countB - countA || labelA.localeCompare(labelB, undefined, {numeric:true}));
-  return `Section types: ${sorted.length ? sorted.map(([label,count]) => `${label}: ${count}`).join(' · ') : 'none'}`;
+  const summary = sorted.length ? sorted.map(([label,count]) => `${label}: ${count}`).join(' · ') : 'none';
+  return `Section types: ${summary}${nonstandard ? ` · Non-standard listings: ${nonstandard}` : ''}`;
 }
 function renderDASPapers(year) {
   selectedDASYear = year;
   const output = $('das-paper-details');
   const result = dasSummary?.years?.[year];
-  const papers = (result?.papers || []).filter(paper => paperMatrixMetric !== 'doi' || paper.dois?.length);
+  const papers = displayedPapers(result);
   const falsePositives = paperMatrixMetric === 'doi' ? [] : (result?.false_positives || []);
   output.replaceChildren();
-  const heading = element('h4',`FSE ${year}: ${papers.length} paper${papers.length === 1 ? '' : 's'} with ${paperMatrixMetric === 'doi' ? 'a DOI in the extracted section' : 'an extracted section'}`);
+  const description = paperMatrixMetric === 'doi' ? 'a DOI in the extracted section' : includeNonstandard ? 'an extracted section or non-standard artifact listing' : 'an extracted section';
+  const heading = element('h4',`FSE ${year}: ${papers.length} paper${papers.length === 1 ? '' : 's'} with ${description}`);
   output.append(heading);
   $('paper-metric-note').textContent = sectionTypeSummary(papers);
   const appendPaper = (paper, falsePositive = false) => {
-    const article = element('article',undefined,`das-paper${falsePositive ? ' false-positive' : ''}`);
+    const article = element('article',undefined,`das-paper${falsePositive ? ' false-positive' : ''}${paper.annotation ? ' nonstandard-paper' : ''}`);
     const title = element('h5');
     if (safeURL(paper.url)) {
       const link = element('a',paper.id);
@@ -179,6 +197,24 @@ function renderDASPapers(year) {
     for (const section of paper.sections || []) {
       article.append(element('p',`${section.label} · page ${section.page}`,'tag'));
       article.append(element('pre',section.body || 'No section text could be extracted.','das-excerpt'));
+    }
+    if (paper.annotation) {
+      const annotation = paper.annotation;
+      const location = annotation.location || {};
+      article.append(element('p',`Non-standard listing · ${location.section || 'Unrecognized section'}${location.page ? ` · page ${location.page}` : ''}`,'tag nonstandard-label'));
+      if (annotation.excerpt || annotation.note) article.append(element('pre',annotation.excerpt || annotation.note,'das-excerpt'));
+      const urls = (annotation.urls || []).map(safeURL).filter(Boolean);
+      if (urls.length) {
+        const links = element('p',undefined,'das-dois');
+        links.append('Artifact: ');
+        urls.forEach((url,index) => {
+          if (index) links.append(', ');
+          const link = element('a',url);
+          link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+          links.append(link);
+        });
+        article.append(links);
+      }
     }
     if (paper.dois?.length) {
       const identifiers = element('p',undefined,'das-dois');
@@ -207,9 +243,10 @@ function renderDASCounts(data) {
   const isDOI = paperMatrixMetric === 'doi';
   $('paper-metric-title').textContent = isDOI ? 'Papers - DOI contained' : 'Papers - Data availability contained';
   $('paper-metric-toggle').textContent = isDOI ? 'Show data availability' : 'Show DOI contained';
+  $('nonstandard-toggle').disabled = isDOI;
+  $('nonstandard-toggle').setAttribute('aria-pressed',String(includeNonstandard));
   if (!selectedDASYear) {
-    const allPapers = Object.values(dasSummary?.years || {}).flatMap(result => result.papers || [])
-      .filter(paper => !isDOI || paper.dois?.length);
+    const allPapers = Object.values(dasSummary?.years || {}).flatMap(result => displayedPapers(result, isDOI));
     $('paper-metric-note').textContent = sectionTypeSummary(allPapers);
   }
   const years = [...new Set(records.map(record => record.year))].filter(Boolean).sort((a,b)=>Number(b)-Number(a));
@@ -224,7 +261,8 @@ function renderDASCounts(data) {
     const result = dasSummary?.years?.[year];
     const cell = element('td');
     if (result) {
-      const value = isDOI ? `${result.with_statement_and_doi ?? 0} / ${result.with_statement}` : `${result.with_statement} / ${result.checked}`;
+      const included = displayedPapers(result, isDOI).length;
+      const value = isDOI ? `${result.with_statement_and_doi ?? 0} / ${result.with_statement}` : `${included} / ${result.checked}`;
       const button = element('button',value,'das-count-button');
       button.type = 'button';
       button.setAttribute('aria-label',`Show FSE ${year} papers: ${value}`);
@@ -326,6 +364,7 @@ function render() {
 for (const id of ['series','year']) $(id).addEventListener('change',()=>{updateTracks();applyFilters();});
 $('track').addEventListener('change',applyFilters);
 $('metric-toggle').addEventListener('click',()=>{ matrixMetric = matrixMetric === 'data' ? 'doi' : 'data'; renderAvailability(); });
+$('nonstandard-toggle').addEventListener('click',()=>{ includeNonstandard = !includeNonstandard; renderDASCounts(); });
 $('paper-metric-toggle').addEventListener('click',()=>{ paperMatrixMetric = paperMatrixMetric === 'data' ? 'doi' : 'data'; renderDASCounts(); });
 $('search').addEventListener('input',applyFilters);
 $('reset').addEventListener('click',()=>{ $('search').value=''; $('series').value=''; $('year').value=''; $('track').value=''; updateTracks(); applyFilters(); });

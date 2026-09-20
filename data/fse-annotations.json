@@ -361,5 +361,660 @@
       "https://github.com/ardier/in_bugs_we_trust/"
     ],
     "note": "The Data Availability and Reproducibility section provides scripts containing the full data analysis and all generated tables and figures; this heading is not in the supported heading set."
+  },
+  "2006/1181775.1181806.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "research-artifact",
+    "location": {
+      "section": "4.3 Artifact",
+      "page": 7
+    },
+    "urls": [
+      "http://cse.unl.edu/galileo/php/sir/index.php"
+    ],
+    "excerpt": "The artifact we will use to perform this experiment study is Siena\n[9]. Siena is an event notification middleware implemented in Java.\nThis artifact is available for download in the Subject Infrastructure\nRepository (SIR) [15, 30]. SIR provides Siena’s source code, a\nsystem level test suite with 567 test cases, multiple versions cor-\nresponding to product releases, and a set of seeded faults in each\nversion (the authors were not involved in this latest activity).\nFor this study we consider Siena’s core components (not on the\napplication included in the package that is built with those com-\nponents). We utilize the five versions of Siena that have seeded\nfaults that did not generate compilation errors (faults that gener-\nated compilation errors cannot be tested) and that were exposed by\nat least one system test case (faults that were not found by system\ntests would not affect our assessment). For brevity, we summarize\nthe most relevant information to our study in Table 1 and point the\nreader to SIR [30] to obtain more details about the process em-\nployed to prepare the Siena artifact for the empirical study. Table",
+    "note": "Artifact or reproducibility evidence appears under Artifact; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2010/1882291.1882311.pdf": {
+    "type": "reviewed-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "7.3 Reproducibility",
+      "page": 8
+    },
+    "urls": [],
+    "excerpt": "We have reproduced the main results reported by Cataldo\nand colleagues [6] on relative contribution of module size,\nlogical coupling, and workflow. We also found that the\ncustomer reported defects were predominantly explained by\nchange-derived measures, though in our case the release de-\npendencies were even more important than logical depen-\ndencies. Another slight difference was that the workflow\nfactors had a slightly lower impact than in the study by\nCataldo.\nThe measures based on the organizational ownership in-\ntroduced by Nagappan and colleagues [17] were not statisti-\ncally significant after code, change, workflow, and organiza-\ntional change derived predictors were added to our model.\nHowever, if we include just the predictors reported in [17], we\nobtain a reasonable model with a reasonable predictive per-\nformance for our project. In addition to the organizational\nstructure, Nagappan and colleagues [17] used the number\nof past modifications and the number of developers making\nmodifications in the same prediction model. As discussed in\nSection 8, just the number of past modifications provides an\nexcellent prediction results on our data (approximately 79%\nsensitivity and specificity) and in other work (see, e.g., [10,\n13]). Therefore it is possible that the reasonable prediction\nperformance in [17] also relied on these two predictors. Be-\ncause the work in [17] provides no information about the\ndirection or the size of the effects, it was not possible to\ninvestigate reproducibility in more depth. It is worth not-\ning that measures defined in [17] are quite involved, assume\nstatic organizational structure, and appear to be somewhat\nMicrosoft-specific making it difficult to apply them in other\ncontexts. For example, Depth of Master Ownership mea-\nsure (described above) was defined based on the reporting\ndistance from the supervisor responsible for the entire de-\nvelopment, not the company’s CEO. In Avaya, some of the\nchanges are made by developers in the services organiza-\ntion, making the CEO the only link between them and the\ndevelopers in the product organization. Also, because our\norganization was quite dynamic, we had to calculate orga-\nnizational ownership measures for each week and aggregate\nthem for the measurement periods .\nHowever, we feel that organizational measures do deserve\na closer look and we used some ideas proposed in [17] to con-\nstruct predictors that were applicable in a more dynamic\norganizational structure studied by us. Instead of looking\nat the level of the supervisor of the owning organization, we\nlooked at the longest reporting chain from that supervisor\nto the leaf developer making changes to the file. The longer\nthat distance, the harder it would be for developers to coor-\ndinate their decisions because they may need to go through\nmore layers of the reporting chain. The number of individu-\nals in the owner organization was highly correlated ( > 0 . 9)\nto its reporting depth, so we did not consider it.\nThe study on prediction of patch failures [16], reported\nthat lower developer experience expressed as the number\nof past changes to project’s code increased the probability\nthat a patch will fail. We observed the opposite result (even\nthough we use the duration of time a developer spent on\nthe project, not the number of past changes, both factors\nwere strongly correlated), perhaps reflecting the observation\nthat senior developers are assigned more critical tasks as\nshown in [22]. However, the primary driver of patch failure\nreported in [16] was the diffusion of code changes comprising\n124\nthe patch. We also found that the change diffusion increased\nfault proneness.\nBird and colleagues [4] found that the quality of binaries\nin Windows Vista was not related to offshore development.\nIn contrast, we do find that the files changed by developers\nwith remote mentors or by developers from multiple sites\nhave increased fault-proneness. It is entirely possible that\nour project was different from Windows Vista considered by\nauthors. However, the basis of the claim in [4] is a fault-\nproneness model which contains the number of developers\nmaking changes to a binary and the indicator of the dis-\ntributed development having a p-value of 0 . 056 (not signifi-\ncant at 0 . 05 level). If we fit an identical model on our data\n(we predicted for a single release to enable a direct compar-\nison to [4], otherwise the p-value was virtually zero, corre-\nsponding to t-statistic of more than 9) we do find that the\nindicator of distributed development has a p-value of 0 . 048\n(significant at 0 . 05 level). There is no reason to assume that\nsuch a small difference in p-values indicates contradicting\nresults just because of the convention that 0 . 05 is a magical\nnumber determining what is significant. A meta-analysis of\nboth studies may conclude that there is a support for the\nhypothesis that distributed development does increase fault\nproneness. Furthermore, the number of developers reflects\nmultiple dimensions of software development and that may\nmake it difficult to identify the individual contribution of\neach dimension as described in the next section.",
+    "note": "The extracted Reproducibility section was manually reviewed and retained only as an annotation; this heading is no longer a recognized section category."
+  },
+  "2016/2950290.2950351.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "Reproducibility.",
+      "page": 10
+    },
+    "urls": [
+      "https://www.sosy-lab.org/research/correctness-witnesses/"
+    ],
+    "excerpt": "We use the state-of-the-art benchmarking\nframework BenchExec [10] for measuring and controlling the\ncomputing resources (CPU time, memory, core and memory\nassignment), in order to make sure that our results are ac-\ncurate and reliable. The data (verification tasks, witnesses,\nverifiers, and their configurations) are available on our sup-\nplementary web site.\n6",
+    "note": "Artifact or reproducibility evidence appears under Reproducibility; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2016/2950290.2950355.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "research-artifact",
+    "location": {
+      "section": "artifact",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/floatfeather/PSO/tree/master/artifact"
+    ],
+    "excerpt": "cd /home/artifact/work/exe-art\n./run_2.sh\nThe second step is implemented as four different script-\ns. The first script analyzes the precision and recall of the\ndetection approach, and can be invoked using the following\ncommands.\ncd /home/artifact/work/exe-art\ng++ ErrorProcess.cpp -o ErrorProcess\n./ErrorProcess\nThe rest three scripts analyze respectively for the three\ntypes of fixing in our experiment, and can be invoked by the\nfollowing commands.\ncd /home/artifact/work/base-art\n./run_auto.sh\n./run_manual.sh\n./run_fixlast.sh\nThe results will be stored in result_auto_E.csv , result_\nmanual.csv and result_fixlast.csv . E stands for the pa-\nrameter E used in our detection approach.",
+    "note": "Artifact or reproducibility evidence appears under Artifact; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2017/3106237.3106280.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "experimental-artifacts",
+    "location": {
+      "section": "7 EXPERIMENTAL ARTIFACTS",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/d-bingham/wildcaughtmutants",
+      "https://github.com/d-bingham/fse2017artifact"
+    ],
+    "excerpt": "Our core mutation tools, consisting of mutgen and mutins , are\navailable at https://github.com/d-bingham/wildcaughtmutants .\nWe also provide tools to demonstrate our experiments at https:\n//github.com/d-bingham/fse2017artifact . However, reproducing\nour complete set of experiments would require months of processor\ntime (and as such was executed on a high-throughput computing\nplatform). Therefore, this experimental artifact recreates scaled-\ndown versions of the experiments described in Section 3.\nThe artifact allows the user to harvest a set of mutation operators\nfrom scraped GitHub repositories (omitting the full Linux kernel\nsource due to space and time concerns). Once a set of mutation\noperators are harvested from this corpus, the artifact then generates\nthirty randomly-chosen mutants (chosen as mutation operators\nand insertion indices into the Space program), attempts to compile\nthem, and evaluates the mutated programs against Space’s test\nsuite. With the pass/fail results from each test case, the artifact then\ngenerates random “virtual” test suites to calculate Am( S ) scores for\nthe generated mutants.\nThe artifact can be executed via a provided shell script or through\nthe use of a Docker[ 19 ] container, allowing demonstration of a small\nportion of our experiment in a highly portable manner.",
+    "note": "Artifact or reproducibility evidence appears under Experimental Artifacts; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2018/3236024.3236027.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "10 REPRODUCIBILITY",
+      "page": 10
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.1294300"
+    ],
+    "excerpt": "An artifact containing our regex datasets and our analysis code is\navailable at https://doi.org/10.5281/zenodo.1294300 .",
+    "note": "Artifact or reproducibility evidence appears under Reproducibility; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2018/3236024.3236031.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "11 REPRODUCIBILITY",
+      "page": 10
+    },
+    "urls": [
+      "https://tinyurl.com/yadfpojd"
+    ],
+    "excerpt": "We have made our raw data, annotations, model, and source code\navailable via an online appendix (https://tinyurl.com/yadfpojd) for\nthe research community to reproduce or use.",
+    "note": "Artifact or reproducibility evidence appears under Reproducibility; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2018/3236024.3236085.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "experimental-artifacts",
+    "location": {
+      "section": "11 EXPERIMENTAL ARTIFACTS",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/jjhenkel/c2ocaml",
+      "https://github.com/jjhenkel/lsee",
+      "https://github.com/jjhenkel/code-vectors-artifact",
+      "https://doi.org/10.5281/zenodo.1297689"
+    ],
+    "excerpt": "Our c2ocaml tool, which performs a source-to-source transfor-\nmation during the compilation of C projects (to generate inputs\nto our lightweight symbolic execution engine) is available at\nhttps://github.com/jjhenkel/c2ocaml .\nOur lightweight symbolic execution engine, lsee , is also avail-\nable at https://github.com/jjhenkel/lsee .\nAdditionally, we provide tools to demonstrate our experiments at\nhttps://github.com/jjhenkel/code-vectors-artifact [ 19 ].\nThis artifact allows the user to run our toolchain end-to-end on a\nsmaller open-source repository (Redis). The artifact uses pre-built\nDocker [ 28 ] images to avoid complex installation requirements.\nOur raw data (two sets of learned vectors and a full collection of\nabstracted symbolic traces) are also included in this artifact.",
+    "note": "Artifact or reproducibility evidence appears under Experimental Artifacts; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2019/3338906.3338909.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "REPRODUCIBILITY",
+      "page": 10
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.3257777"
+    ],
+    "excerpt": "An artifact containing our survey instrument, regex corpus, and\nanalyses is available at https://doi.org/10.5281/zenodo.3257777 .",
+    "note": "Artifact or reproducibility evidence appears under Reproducibility; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2019/3338906.3338916.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "experimental-artifacts",
+    "location": {
+      "section": "6 EXPERIMENTAL ARTIFACTS",
+      "page": 10
+    },
+    "urls": [
+      "https://doi.org/10.6084/m9.figshare.7731629",
+      "https://doi.org/10.6084/m9.figshare.7732268",
+      "https://doi.org/10.6084/m9.figshare.8242877"
+    ],
+    "excerpt": "We release the following artifacts to support future research on\nmitigating the impact of software bugs: (i) the analysis of Open-\nStack bug reports ( https://doi.org/10.6084/m9.figshare.7731629 ), (ii)\nraw logs produced by the experiments ( https://doi.org/10.6084/m9.\nfigshare.7732268 ), and (iii) tools for reproducing our experimen-\ntal environment in a virtual machine ( https://doi.org/10.6084/m9.\nfigshare.8242877 ).",
+    "note": "Artifact or reproducibility evidence appears under Experimental Artifacts; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2019/3338906.3338979.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "REPRODUCIBILITY",
+      "page": 10
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.3261842"
+    ],
+    "excerpt": "An artifact containing our interview questions and survey instru-\nment is available at https://doi.org/10.5281/zenodo.3261842.\n406\nDecomposing the Rationale of Code Commits ESEC/FSE ’19, August 26–30, 2019, Tallinn, Estonia",
+    "note": "Artifact or reproducibility evidence appears under Reproducibility; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2020/3368089.3409670.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "REPRODUCIBILITY",
+      "page": 11
+    },
+    "urls": [
+      "https://zenodo.org/record/4023299"
+    ],
+    "excerpt": "An artifact containing the GraphQL query generator, the query-\nresponse corpuses, library configurations, and corpus measure-\nments can be found here: https://zenodo.org/record/4023299 . Insti-\ntutional policy precludes sharing our analysis prototype.",
+    "note": "Artifact or reproducibility evidence appears under Reproducibility; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2020/3368089.3409705.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "supplementary-material-and-replication-package",
+    "location": {
+      "section": "SUPPLEMENTARY MATERIAL AND\nREPLICATION PACKAGE",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/CMUSTRUDEL/badge_diffusion_supplementary"
+    ],
+    "excerpt": "A replication package for our analysis, also including the results\ndiscussed but not presented here, is available online at https://\ngithub.com/CMUSTRUDEL/badge_diffusion_supplementary.\n515\nESEC/FSE ’20, November 8–13, 2020, Virtual Event, USA H. Lamba, A. Trockman, D. Armanios, C. Kästner, H. Miller, and B. Vasilescu",
+    "note": "Artifact or reproducibility evidence appears under Supplementary Material and Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2020/3368089.3409739.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "research-artifact",
+    "location": {
+      "section": "10 ARTIFACT",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/UL-SnT-Serval/coeva2/tree/fse"
+    ],
+    "excerpt": "Our library is available on Github and can be extended to any\nconstrained adversarial attack task. The two main branches are:\n• fse : this branch tackles the implementation presented in this\npaper and the experiments to reproduce our results. Our\ndataset being proprietary and private, we provide a similar\nopen-source dataset, Lending Club Load Dataset\n8\nto evaluate\nour approach. The tool is built around configuration files\n(located in /configurations folder) where you can define the\nconstraints of your problem, your objective functions, etc...\nThe folder /src contains the actual implementation of our\nalgorithm, while the folder /experiments provides scripts to\neasily run each of the Research Questions’ experiments.\n• master : this branch is the ongoing iteration of the library.\nIt provides an extension of the approach using Grid and\nRandom search to optimize the weights of each objective,\nand MoEva2 an NSGA-2 [ 9 ] extension of our approach that\nuses non-dominated multi-objective evolution. This branch\nwill contain the stable evolutions of the library, in particular\nall elements mentioned as future or ongoing work.",
+    "note": "Artifact or reproducibility evidence appears under Artifact; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2021/3468264.3468600.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "supplementary-material",
+    "location": {
+      "section": "SUPPLEMENTARY MATERIAL",
+      "page": 11
+    },
+    "urls": [
+      "https://chupanw.github.io/varfix-supplement/"
+    ],
+    "excerpt": "Supplementary material of this work is available online at https:\n//chupanw.github.io/varfix-supplement/.\n364\nESEC/FSE ’21, August 23–28, 2021, Athens, Greece Chu-Pan Wong, Priscila Santiesteban, Christian Kästner, and Claire Le Goues",
+    "note": "Artifact or reproducibility evidence appears under Supplementary Material; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2023/3611643.3616267.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "dataset-and-replication-package",
+    "location": {
+      "section": "9 DATA AVAILABILITY AND EXPERIMENT\nREPLICATION",
+      "page": 11
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.3897691",
+      "https://doi.org/10.5281/zenodo.7592371"
+    ],
+    "excerpt": "The dataset used for this paper, NJR-1, is publicly available at\nthe following link: ( https://doi.org/10.5281/zenodo.3897691 ). The\nanonymized artifact for the paper, including the source code, experi-\nmental results, and detailed documentation, are publicly available at\nthe following repository: ( https://doi.org/10.5281/zenodo.7592371 ).\nThe artifact also includes a VM image that comes with pre-installed\ndependencies, and can be used to quickly reproduce the results of\nthe paper by running a few simple scripts.",
+    "note": "Artifact or reproducibility evidence appears under Data Availability and Experiment Replication; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2023/3611643.3616332.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "code-and-data",
+    "location": {
+      "section": "DATA AVAILABLE",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/NWU-NISL-Fuzzing/COMFUZZ"
+    ],
+    "excerpt": "The data and code associated with this paper are openly available\nat https://github.com/NWU-NISL-Fuzzing/COMFUZZ .",
+    "note": "Artifact or reproducibility evidence appears under Data Available; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2024/3660785.pdf": {
+    "type": "reviewed-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "Reproducibility.",
+      "page": 13
+    },
+    "urls": [],
+    "excerpt": "We can reproduce the claimed accuracy results [ 6 , 28 , 39 , 43 ] for all the four\nDLAGs under study. For ATLAS, T5, and IR, the accuracy of the three approaches slightly improves\nwhen tested on our cleaned test set derived from the ATLAS dataset than their claimed accuracy.\nThe little difference is likely to be caused by removing unit test cases with syntax errors in the test\nset of the ATLAS dataset. For TOGA, we find a decrease in accuracy from the claimed accuracy to\nthe accuracy that we reproduce (overall accuracy from 69% to 36%, and in-template accuracy from\n96% to 93%). The decrease in overall accuracy is mainly due to that our calculation as mentioned in\nSection 3.3 is different from the calculation in TOGA’s implementation [ 6 ] given the fairness of\ncomparison with other DLAGs. TOGA’s implementation considers only five assertion types, but\nwe do not have this restriction. The decrease in in-template accuracy is mainly due to a neglected\nProc. ACM Softw. Eng., Vol. 1, No. FSE, Article 78. Publication date: July 2024.\n78:14 Yibo He, Jiaming Huang, Hao Yu, and Tao Xie\nTable 6. Results of Existing Deep-Learning-Based Models for Assertion Generation on Benchmarks with\nLikely Developer-intended Focal Methods (Total=432)\nTest Set\nApproach Accuracy BLEU\nATLAS T5 IR TOGA ATLAS T5 IR\nATLAS 19.91 62.73 40.05 25.93 52.05 84.68 74.72\nNC 16.90 32.17 35.42 22.69 49.88 60.15 70.57\nbug in construction of TOGA’s benchmark (ATLAS\n∗\n). This bug as well as our solution for it has\nbeen confirmed by TOGA’s authors.\nFinding 2: ATLAS, T5, IR, and TOGA all exhibit lower accuracy on our benchmarks with focal\nmethods identified by adapted test-to-code traceability techniques from test prefixes compared\nto the original test set of the ATLAS dataset. IR achieves the highest accuracy (average: 37.21%)\non our benchmarks. TOGA’s behavior is the most stable (decline: 8.16%).",
+    "note": "The extracted Reproducibility section was manually reviewed and retained only as an annotation; this heading is no longer a recognized section category."
+  },
+  "2025/3715734.pdf": {
+    "type": "reviewed-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "reproducibility.",
+      "page": 22
+    },
+    "urls": [],
+    "excerpt": "In ISSTA ’21: 30th ACM SIGSOFT International Symposium on Software Testing and Analysis, Virtual Event,\nDenmark, July 11-17, 2021 , Cristian Cadar and Xiangyu Zhang (Eds.). ACM, 439–451. https://doi.org/10.1145/3460319.\n3464797\nnpm. 2023a. About semantic versioning | npm Docs . Retrieved December 14, 2023 from https://docs.npmjs.com/about-\nsemantic-versioning\nnpm. 2023b. npm . Retrieved December 11, 2023 from https://docs.npmjs.com/about-npm\nnpm. 2023c. package-lock.json | npm Docs . Retrieved December 13, 2023 from https://docs.npmjs.com/cli/v10/configuring-\nnpm/package-lock-json\nnpm. 2024a. How npm3 Works . Retrieved April 28, 2024 from https://npm.github.io/how-npm-works-docs/npm3/how-\nnpm3-works.html\nnpm. 2024b. npm-install | npm Docs . Retrieved April 17, 2023 from https://docs.npmjs.com/cli/v8/commands/npm-install\nMarc Ohm, Henrik Plate, Arnold Sykosch, and Michael Meier. 2020. Backstabber’s Knife Collection: A Review of Open\nSource Software Supply Chain Attacks. In Detection of Intrusions and Malware, and Vulnerability Assessment - 17th\nInternational Conference, DIMVA 2020, Lisbon, Portugal, June 24-26, 2020, Proceedings (Lecture Notes in Computer Science,\nVol. 12223) . Springer, 23–43. https://doi.org/10.1007/978-3-030-52683-2_2\nOpenSSF. 2023. OpenSSF Scorecard . Retrieved December 11, 2023 from https://github.com/ossf/scorecard/blob/main/docs/\nchecks.md#pinned-dependencies\nIvan Pashchenko, Henrik Plate, Serena Elisa Ponta, Antonino Sabetta, and Fabio Massacci. 2018. Vulnerable open source\ndependencies: counting those that matter. In Proceedings of the 12th ACM/IEEE International Symposium on Empirical\nSoftware Engineering and Measurement, ESEM 2018, Oulu, Finland, October 11-12, 2018 . ACM, 42:1–42:10. https://doi.org/\n10.1145/3239235.3268920\nProc. ACM Softw. Eng., Vol. 2, No. FSE, Article FSE013. Publication date: July 2025.\nPinning Is Futile FSE013:23\nIvan Pashchenko, Duc Ly Vu, and Fabio Massacci. 2020. A Qualitative Study of Dependency Management and Its Security\nImplications. In CCS ’20: 2020 ACM SIGSAC Conference on Computer and Communications Security, Virtual Event, USA,\nNovember 9-13, 2020 . ACM, 1513–1531. https://doi.org/10.1145/3372297.3417232\nDonald Pinckney, Federico Cassano, Arjun Guha, and Jonathan Bell. 2023a. A Large Scale Analysis of Semantic Versioning\nin NPM. In 20th IEEE/ACM International Conference on Mining Software Repositories, MSR 2023, Melbourne, Australia, May\n15-16, 2023 . IEEE, 485–497. https://doi.org/10.1109/MSR59073.2023.00073\nDonald Pinckney, Federico Cassano, Arjun Guha, and Jonathan Bell. 2023b. npm-follower: A Complete Dataset Tracking\nthe NPM Ecosystem. In Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on\nthe Foundations of Software Engineering, ESEC/FSE 2023, San Francisco, CA, USA, December 3-9, 2023 . ACM, 2132–2136.\nhttps://doi.org/10.1145/3611643.3613094\nDonald Pinckney, Federico Cassano, Arjun Guha, Jonathan Bell, Massimiliano Culpo, and Todd Gamblin. 2023c. Flexible and\nOptimal Dependency Management via Max-SMT. In 45th IEEE/ACM International Conference on Software Engineering,\nICSE 2023, Melbourne, Australia, May 14-20, 2023 . IEEE, 1418–1429. https://doi.org/10.1109/ICSE48619.2023.00124\nTom Preston-Werner. 2023. Semantic versioning 2.0.0 . Retrieved December 11, 2023 from https://semver.org/\nMaciej Radzikowski. 2021. Pin exact dependency versions . Retrieved December 13, 2023 from https://betterdev.blog/pin-\nexact-dependency-versions/\nSteven Raemaekers, Arie van Deursen, and Joost Visser. 2017. Semantic versioning and impact of breaking changes in the\nMaven repository. J. Syst. Softw. 129 (2017), 140–158. https://doi.org/10.1016/J.JSS.2016.04.008\nMatt Raible. 2019. Semantic Versioning Sucks! Long Live Semantic Versioning . Retrieved May 23, 2024 from https://developer.\nokta.com/blog/2019/12/16/semantic-versioning\nRenovate Bot. 2018. Should you pin your JavaScript dependencies? Retrieved December 11, 2023 from https://docs.renovatebot.\ncom/dependency-pinning\nEdgar H Schein. 2010. Organizational culture and leadership . Vol. 2. John Wiley & Sons.\nWilliam Schueller and Johannes Wachs. 2024. Modeling interconnected social and technical risks in open source software\necosystems. Collective Intelligence 3, 1 (2024), 26339137241231912.\nAdriana Sejfia and Max Schäfer. 2022. Practical Automated Detection of Malicious npm Packages. In 44th IEEE/ACM 44th\nInternational Conference on Software Engineering, ICSE 2022, Pittsburgh, PA, USA, May 25-27, 2022 . ACM, 1681–1692.\nhttps://doi.org/10.1145/3510003.3510104\nArielle S Selya, Jennifer S Rose, Lisa C Dierker, Donald Hedeker, and Robin J Mermelstein. 2012. A practical guide to\ncalculating Cohen’s 𝑓 2 , a measure of local effect size, from PROC MIXED. Frontiers in Psychology 3 (2012), 111.\nHyunmin Seo, Caitlin Sadowski, Sebastian G. Elbaum, Edward Aftandilian, and Robert W. Bowdidge. 2014. Programmers’\nbuild errors: A case study (at Google). In 36th International Conference on Software Engineering, ICSE ’14, Hyderabad,\nIndia - May 31 - June 07, 2014 . ACM, 724–734. https://doi.org/10.1145/2568225.2568255\nPaul Slovic. 1987. Perception of risk. Science 236, 4799 (1987), 280–285.\nSnyk. 2022. Alert: peacenotwar module sabotages npm developers in the node-ipc package to protest the invasion of Ukraine .\nRetrieved Augest 22, 2023 from https://snyk.io/blog/peacenotwar-malicious-npm-node-ipc-package-vulnerability/\nSonatype. 2021. Software supply chains: An introductory guide . Retrieved May 24, 2024 from https://www.sonatype.com/\nblog/software-supply-chain-a-definition-and-introductory-guide\nSonatype. 2024a. 10th Annual State of the Software Supply Chain . Retrieved Jan 16, 2025 from https://www.sonatype.com/state-\nof-the-software-supply-chain/2024\nSonatype. 2024b. CVE-2024-3094 The targeted backdoor supply chain attack against XZ and liblzma . Retrieved April 17, 2024\nfrom https://blog.sonatype.com/cve-2024-3094-the-targeted-backdoor-supply-chain-attack-against-xz-and-liblzma\nDiomidis Spinellis, Zoe Kotti, and Audris Mockus. 2020. A Dataset for GitHub Repository Deduplication. In MSR ’20:\n17th International Conference on Mining Software Repositories, Seoul, Republic of Korea, 29-30 June, 2020 . ACM, 523–527.\nhttps://doi.org/10.1145/3379597.3387496\nStackOverflow. 2017. Should I pin my Python dependencies versions? Retrieved December 13, 2023 from https://stackoverflow.\ncom/questions/28509481/should-i-pin-my-python-dependencies-versions\nAlois Stutzer and Bruno S Frey. 2006. Does marriage make people happy, or do happy people get married? The Journal of\nSocio-Economics 35, 2 (2006), 326–347. https://doi.org/doi.org/10.1016/j.socec.2005.11.043\nTechTarget. 2023. SolarWinds hack explained: Everything you need to know . Retrieved May 22, 2024 from https://www.\ntechtarget.com/whatis/feature/SolarWinds-hack-explained-Everything-you-need-to-know\nThe White House. 2021. Executive Order on Improving the Nation’s Cybersecurity . Retrieved August 27, 2024\nfrom https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-\nnations-cybersecurity/\nDavid A. Tomassi, Naji Dmeiri, Yichen Wang, Antara Bhowmick, Yen-Chuan Liu, Premkumar T. Devanbu, Bogdan Vasilescu,\nand Cindy Rubio-González. 2019. BugSwarm: Mining and continuously growing a dataset of reproducible failures and\nfixes. In Proceedings of the 41st International Conference on Software Engineering, ICSE 2019, Montreal, QC, Canada, May\nProc. ACM Softw. Eng., Vol. 2, No. FSE, Article FSE013. Publication date: July 2025.",
+    "note": "The extracted Reproducibility section was manually reviewed and retained only as an annotation; this heading is no longer a recognized section category."
+  },
+  "2025/3729364.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "implementation-and-experimental-data",
+    "location": {
+      "section": "Artifact Availability Statement",
+      "page": 20
+    },
+    "urls": [
+      "https://github.com/Dirtyboy1029/MALCLEANSE"
+    ],
+    "excerpt": "We have made our implementation and experimental data open-source at [ 55 ] to facilitate future\nresearch.",
+    "note": "Artifact or reproducibility evidence appears under Artifact Availability Statement; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2025/3729377.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "code-and-data",
+    "location": {
+      "section": "7 Conclusions and Data Availability",
+      "page": 20
+    },
+    "urls": [
+      "https://sites.google.com/view/regtrieve/home"
+    ],
+    "excerpt": "We formulate the problem of system-level regression errors, and propose a retrieval-enhanced\nensemble approach, RegTrieve , to reduce both model-level and system-level regression errors.\nExperiments in spoken QA system demonstrate that RegTrieve reduces system-level regression\nerrors by 20.43% more than all baseline approaches, with little or even no loss in system F1 score.\nAll the data and code of RegTrieve have been released at our website [ 7 ] to foster future research.",
+    "note": "Artifact or reproducibility evidence appears under Conclusions and Data Availability; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2025/3729380.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "code-and-data",
+    "location": {
+      "section": "12 Data and Code Availability",
+      "page": 18
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.14288140"
+    ],
+    "excerpt": "HornBro is publicly available on [17], where all experimental results can be reproduced.",
+    "note": "Artifact or reproducibility evidence appears under Data and Code Availability; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2025/3729397.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "research-artifact",
+    "location": {
+      "section": "Data Availability and Ethics",
+      "page": 20
+    },
+    "urls": [
+      "https://github.com/security-pride/DeclarUI"
+    ],
+    "excerpt": "Open Science. The artifact is available at https://github.com/security-pride/DeclarUI.\nEthics Considerations. Our study adhered to ethical research practices. Participants provided\ninformed consent and their data was anonymized. The $50 compensation was deemed fair, and the\n20-minute time limit per app was reasonable. The study design was reviewed and approved by our\ninstitution prior to implementation.",
+    "note": "Artifact or reproducibility evidence appears under Data Availability and Ethics; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2026/3797093.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "supplementary-material",
+    "location": {
+      "section": "supplementary material",
+      "page": 16
+    },
+    "urls": [
+      "https://doi.org/10.6084/m9.figshare.30095356.v5"
+    ],
+    "excerpt": "2\n).\nTable 1. Statistics for number of safe and unsafe\ncontracts\nTestSuite Safe (#P) Unsafe(#N)\nFSC 0 12\nMTC 6 25\nSBS 24 726\nRSD 98 21114\nSBTS 31 112\nTotal 159 21989\nTable 2. Comparison across Polyhedral, Octagon, and In-\nterval domains\nMTC SBS SBTS Avg. Time\nInter- Safe 25 726 109\n141.93\nval Unsafe 6 24 32\nOcta- Safe 23 683 99\n72.38\ngon Unsafe 8 67 42\nPoly- Safe 13 597 75\n2.17\nhedral Unsafe 18 153 66\nWe compared RAVEN with 9 state-of-the-art tools as shown in Table 3. All our experiments were\nperformed on a 64-bit CPU @ 2.30GHz with 64 GB RAM. For comparison with the existing tools,\nwe have used their Docker images whenever available. We focus on four research questions:\nRQ1: Is RAVEN effective in detecting semantically embedded reentrancy avoidance pat-\nterns? We address RQ1 over FSC , which is a collection of 13 synthetic, hand-crafted smart contracts\nthat demonstrate various techniques that are commonly used for protecting against re-entrancy,\nsuch as implicit/explicit mutex, forced rollbacks, write-only post-call segments to make re-entrant\ncalls harmless, etc. Over this synthetic test-suite, we found that Conkas, Oyente, and Osiris have\nrelatively high accuracy ( ≈ 84.62% ) compared to SliSE ( ≈ 61.54% ), Sailfish ( ≈ 53.84% ) and remain-\ning tools ( ≈ 23.08% ), while RAVEN was able to prove all the contracts as safe. This experiment\ndemonstrates that many of the recently proposed state-of-the-art tools are actually not capable of\nreasoning about all semantically embedded re-entrancy avoidance patterns used in practice.\nRQ2: Is RAVEN effective in distinguishing between safe and unsafe real-world smart\ncontracts? We address RQ2, using the datasets MTC , SBS , RSD , and SBTS collected from different\nsources. Table 3 contains the results of applying RAVEN and the 9 other tools on these datasets.\nRAVEN consistently outperforms all state-of-the-art tools in detecting reentrancy vulnerabilities\nacross all datasets, reflected in lower numbers of both false positives and false negatives. In particular,\nRAVEN detects the highest number of true negatives (21533/21977 ≈ 97.98%) and true positives\n(157/159 ≈ 98.74%) with minimal false positives (444/21977 ≈ 2.02%) and 0 false negatives across\nall the datasets. We also highlight the comparison with Sailfish and SliSe, two of the most recent\nstate-of-the-art tools in re-entrancy detection. On the SBS dataset, which was curated by the\nSailfish paper, RAVEN reports 0 false positives as opposed to 21 false positives by Sailfish. On\nthe RSD dataset which was used in the SliSe paper, RAVEN reports a significantly lower number\nof false positives (441 vs. 1867) as compared to SliSe. Some of the older tools such as Mythril,\nOyente, and Osiris further illustrate scalability limitations, with many unsupported contracts and\nfrequent timeouts, in contrast to RAVEN’s stable performance. Overall, RAVEN demonstrates clear\nadvantages in accuracy, scalability, and reliability, marking it as the most effective and practical tool\nfor reentrancy detection in smart contracts. We have also analyzed the false positives of RAVEN\nin the RSD dataset, and found that they mainly occurred due to over-approximations caused by\nthe polyhedral model due to the presense of non-linear arithmetic in the smart contracts, use of\nwidening operator, etc. More details regarding this can be found in Supplementary material section",
+    "note": "Artifact or reproducibility evidence appears under Supplementary Material; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2026/3808191.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "Reproducibility.",
+      "page": 18
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.19503366",
+      "https://github.com/ISE-Research/LinkAnchor"
+    ],
+    "excerpt": "We provide the entire experiment, including the source code for LinkAnchor and\nscripts for data generation and evaluation online [1].",
+    "note": "Artifact or reproducibility evidence appears under Reproducibility; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2026/3808212.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "reproducibility-material",
+    "location": {
+      "section": "Reproducibility.",
+      "page": 19
+    },
+    "urls": [
+      "https://github.com/secSoftware/RAT"
+    ],
+    "excerpt": "LLM non-determinism poses a reproducibility threat. We address this by (1)\nfixing the model version (Gemini 2.0 and 2.5 Flash), and (2) providing exact prompt templates in\nthe artifact. Users can reproduce results.",
+    "note": "Artifact or reproducibility evidence appears under Reproducibility; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2013/2491411.2491428.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "2.4 Replication Package",
+      "page": 4
+    },
+    "urls": [
+      "http://www.cs.wm.edu/semeru/data/fse-android-api/"
+    ],
+    "excerpt": "All the data used in our study are publicly available at\nhttp://www.cs.wm.edu/semeru/data/fse-android-api/ .\nSpecifically, we provide: (i) the list (and URLs) of the stud-\nied 7,097 apps, together with the user ratings distributions;\n(ii) the list of Android APIs used by each app; (iii) complete\ninformation on the bugs fixed and changes that occurred in\nthe Android APIs; (iv) the R scripts and working data sets\nused to run the statistical tests and produce the plots and\ntables shown in this paper.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2014/2635868.2635870.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "Replication package.",
+      "page": 2
+    },
+    "urls": [],
+    "excerpt": "A replication package is available\nonline\n2\n. It includes: (i) complete results of the survey; (ii)\ncode summarization templates used by ARENA; (iii) all the\nHTML generated release notes; and (iv) material and work-\ning data sets of the three evaluation studies.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2014/2635868.2635909.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "9. REPLICATION PACKAGE",
+      "page": 10
+    },
+    "urls": [
+      "http://sailhome.cs.queensu.ca/replication/FSE2014/"
+    ],
+    "excerpt": "To enable replication of our work, we provide the data and the R\ncode that we used for analyzing the data in an online repository un-\nder http://sailhome.cs.queensu.ca/replication/\nFSE2014/",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786807.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "10. REPLICATION PACKAGE",
+      "page": 11
+    },
+    "urls": [
+      "http://act-lab.org/artifacts/flexjava"
+    ],
+    "excerpt": "The FlexJava tool has been successfully evaluated by the\nReplication Packages Evaluation Committee and found to meet\nexpectations. The replication package is available at the follow-\ning link: http://act-lab.org/artifacts/flexjava .",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786811.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "9. REPLICATION PACKAGE",
+      "page": 11
+    },
+    "urls": [
+      "http://groups.csail.mit.edu/pac/spr/"
+    ],
+    "excerpt": "We provide a full replication package for SPR at http:\n//groups.csail.mit.edu/pac/spr/ . The package contains\na public AMI image for reproducing all of the experiments\nexcept fbc and a VMWare image for reproducing the fbc\nexperiments. To reproduce the SPR experiment on a defect,\nstart an EC2 instance or a VM and follow the step-by-step\ninstructions inside the package.\nResults: Table 3 summarizes the results available via\nthe replication package for the 46 defects/changes for which\nSPR generates a plausible repair.\n5\nThe first 42 rows present\nresults for defects, the last 4 rows present results for func-\ntionality changes. Column 1 (Defect/Change) presents the\ndefect/change. Columns 2-5 present results from SPR run-\nning without a specified source file to repair. Columns 6-9\npresent results from SPR running with a specified source file\nto repair.\n5\nThis set is a superset of the set of defects/changes for which\nGenProg/AE generate plausible patches.\nColumns 2 and 6 (Search Space) present the total number\nof candidate repairs in the SPR search space. A number X in\nColumns 3 and 7 (Gen At) indicates that the first generated\nplausible patch is the Xth candidate patch in SPR’s search\nspace. Columns 4 and 8 (Correct At) present the rank of the\nfirst correct repair in the SPR search space (if any). Note\nthat even if the correct repair is within the SPR search space,\nSPR may not generate this correct repair — the SPR search\nmay time out before SPR encounters the correct repair, or\nSPR may encounter a plausible but incorrect repair before\nit encounters the correct repair.\nComparison With GenProg and AE: Columns 5 and\n9 (Result) present for each defect whether the SPR repair\nis correct or not. Columns 10 and 11 present the status\nof the GenProg and AE patches for each defect. “Correct”\nin the columns indicates that the tool generated a correct\npatch. “Gen” indicates that the tool generated a plausible\nbut incorrect patch. “No” indicates that the tool does not\ngenerate a plausible patch for the corresponding defect.\n176",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786820.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "7. REPLICATION PACKAGE",
+      "page": 11
+    },
+    "urls": [],
+    "excerpt": "This paper comes with an replication package designed to\nhelp other researchers working in this area. As part of our\nreplication package, we submit",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786829.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "9. REPLICATION PACKAGE",
+      "page": 10
+    },
+    "urls": [
+      "http://www.st.informatik.tu-darmstadt.de/artifacts/peaks-capmodel/"
+    ],
+    "excerpt": "Our implementation of the capability inference algorithm\nhas been successfully evaluated by the Replication Packages\nEvaluation Committee and found to meet expectations.\nWe provide the replication artifact at the following URL:\nhttp://www.st.informatik.tu-darmstadt.de/artifacts/\npeaks-capmodel/",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786835.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "6. REPLICATION PACKAGE",
+      "page": 11
+    },
+    "urls": [],
+    "excerpt": "The mucert package has been successfully evaluated by the Repli-\ncation Packages Evaluation Committee and found to meet expecta-\ntions. The mucert package is composed of three key components:",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786836.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "8. REPLICATION PACKAGE",
+      "page": 11
+    },
+    "urls": [],
+    "excerpt": "We have made available a package allowing independent replica-\ntion of our results [14]. This package contains DEvA ’s implemen-\ntation, the ground truths used for DEvA ’s evaluation, and all eval-\nuation results presented in this paper. A manual describing how to\nuse DEvA is also included. The DEvA replication package has been\nsuccessfully evaluated by ESEC/FSE 2015’s Replication Packages\nEvaluation Committee and found to meet the Committee’s expec-\ntations.\nDEvA uses configuration files to set the environment to perform\nits analysis. In Figure 5, part of the configuration file for analyzing\nthe MyTracks Android application is shown. In this configuration\nfile, at line 1, the maximun heap size for the JVM is set. Line 2\nindicates the location of the jar file that contains the source code of\nthe system that DEvA wants to analyze. mainComponent at line 4\nindicates the component that is the entry point of DEvA ’s analy-\nsis. fileNameForRaceResults at line 7 indicates the location of the\noutput file for the list of event anomalies, and fileNameForUFRac-\neResults at line 9 represents the location of the file for the list of\nUF anomalies in the case of Android systems. middlewareID at\nline 12 shows the mechanism the system under analysis uses for\nevent-based communications.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786847.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "Replication package.",
+      "page": 11
+    },
+    "urls": [
+      "http://www.cs.wm.edu/semeru/data/GEMMA/"
+    ],
+    "excerpt": "http://www.cs.wm.edu/semeru/data/GEMMA/ .\n[26] M. Linares-V´ asquez, G. Bavota, C. Bernal-C´ ardenas,\nR. Oliveto, M. D. Penta, and D. Poshyvanyk. Mining\nenergy-greedy API usage patterns in android apps: an\nempirical study. In 11th IEEE Working Conference on\nMining Software Repositories (MSR’14) , pages 2–11,\n2014.\n[27] Y. Liu, C. Xu, S. Cheung, and J. Lu. Greendroid:\nAutomated diagnosis of energy inefficiency for\nsmartphone applications. IEEE Transactions on\nSoftware Engineering , Preprint, 2014.\n[28] Y. Liu, C. Xu, and S. C. Cheung. Where has my\nbattery gone? finding sensor related energy black holes\nin smartphone applications. In PerCom’13 , pages 2–10,\n2013.\n[29] I. L. Manotas-Guti´ errez, L. L. Pollock, and J. Clause.\nSeeds: a software engineer’s energy-optimization\ndecision support framework. In ICSE’14 , pages\n503–514, 2014.\n[30] Monsoon-Solutions. Power monitor. http:\n//www.msoon.com/LabEquipment/PowerMonitor/ .\n[31] M. Moshagen and M. T. Thielsch. Facets of visual\naesthetics. Human-Computer Studues , 68:689–709,\n2010.\n[32] A. Pathak, Y. Hu, and M. Zhang. Bootstrapping\nenergy debugging on smartphones: A first look at\nenergy bugs in mobile devices. In Hotnets’11 , page\nArticle No 5, 2011.\n[33] A. Pathak, Y. Hu, and M. Zhang. Where is the energy\nspent inside my app? fine grained energy accounting on\nsmartphones with eprof. In EuroSys’12 , pages 29–42,\n2012.\n[34] A. Pathak, A. Jindal, Y. Hu, and S. P. Midkiff. What\nis keeping my phone awake? characterizing and\ndetecting no-sleep energy bugs in smartphone apps. In\nMobiSys’12 , pages 267–280, 2012.\n[35] K. Rasmussen, A. Wilson, and A. Hindle. Green\nmining: energy consumption of advertisement blocking\nmethods. In GREENS’14 , pages 38–45, 2014.\n[36] G. Sharma. Digital Color Imaging Handbook . CRC\nPress, Inc., Boca Raton, FL, USA, 2002.\n[37] J. W. Tukey. Exploratory Data Analysis .\nAddison-Wesley, 1977.\n[38] W3C. Contrast ratio definition. http:\n153\n//www.w3.org/WAI/ER/WD-AERT/#color-contrast .\n[39] M. Wan, Y. Jin, D. Li, and W. G. J. Halfond.\nDetecting display energy hotspots in android apps. In\n8th IEEE International Conference on Software\nTesting, Verification and Validation (ICST’15) , page to\nappear, 2015.\n[40] J. Wang, X. Lin, and C. North. Greenvis:\nEnergy-saving color schemes for sequential data\nvisualization on oled displays. Technical Report\nTR-12-09, Department of Computer Science, Virginia\nTech, 2012.\n[41] Y. Xiao, R. Bhaumik, Z. Yang, M. Siekkinen,\nP. Savolainen, and A. Yla-Jasski. A system-level model\nfor runtime power estimation on mobile devices. In\nInternational Conference on Green Computing and\nCommunications , pages 27–34, 2010.\n[42] J. Zang, A. Musa, and W. Le. A comparison of energy\nbugs for smartphone platforms. In MOBS’13 , 2013.\n154",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786852.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "9. REPLICATION PACKAGE",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/tianyin/configuration_datasets",
+      "https://github.com/tianyin/cox"
+    ],
+    "excerpt": "The datasets of the open-source software projects (including both\nthe configuration files and the configuration issues), as well as the\nnavigation implementation based on Cox have been successfully\nevaluated by the Replication Packages Evaluation Committee and\nfound to meet expectations. They are publicly available at:\nhttps://github.com/tianyin/configuration_datasets\nhttps://github.com/tianyin/cox",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786859.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "Replication package.",
+      "page": 2
+    },
+    "urls": [],
+    "excerpt": "A replication package is available\nonline\n1\n. This package includes (i) data sets used in our stud-\nies; (ii) complete results of the exploratory study; (iii) the\ndefinition of the query property measures currently imple-\nmented by quest ; and (iv) complete results and analysis of\nthe empirical study.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786863.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "7. REPLICATION PACKAGE",
+      "page": 11
+    },
+    "urls": [
+      "http://www.cs.ucsb.edu/~vlab/PAC/"
+    ],
+    "excerpt": "The source code for PAC as well as a web interface are\navailable from the University of California Santa Barbra Ver-\nification Lab (UCSB VLab) website:\nhttp://www.cs.ucsb.edu/~vlab/PAC/ .\nSource Code and Data. Our tool, PAC, and experimental\nresults have been successfully evaluated by the Replication\nPackages Evaluation Committee and found to meet expecta-\ntions. The replication package for PAC can be downloaded\nas a compressed archive. Detailed instructions and scripts\nare provided for running our tools. Please note that our path\ncomplexity routines require a current installation of Math-\nematica . The package consists of five major components.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786870.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "10. REPLICATION PACKAGE",
+      "page": 10
+    },
+    "urls": [
+      "http://se.labri.fr/a/FSE15-foucault"
+    ],
+    "excerpt": "The dataset built using the methodology presented in Sec-\ntion 5, the code necessary to extract the metrics, as well as\nadditional results are available online, in a replication pack-\nage that has been successfully evaluated by the Replication\nPackages Evaluation Committee and found to meet expec-\ntations [2]. We describe here the technical aspects of this\npackage, the data produced by the executed software and\nthe installation process of the replication package.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2015/2786805.2786874.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "7. REPLICATION PACKAGE",
+      "page": 11
+    },
+    "urls": [],
+    "excerpt": "The implementation and experimental results of I ntruder\n6\nhas\nbeen successfully evaluated by the Replication Packages Evalua-\ntion Committee and found to meet expectations. The tool is pack-\naged as a bootable VM image and is structured as follows:\nbenchs\nclasses\nlib\nsaved_output\nC1\n...\nsaved_output_vm\nC1\n...\nscripts\ntest\ntest1\n...\nREADME.txt\n• benchs contains the benchmarks used for the evaluation of\nI ntruder along with the sequential seed tests written by us.\n• lib contains the supporting jar files used by the tool and the\nbenchmarks.\n• tests contains simple test cases which correspond to various\naspects of Java multithreading.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2017/3106237.3106253.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "9 REPLICATION PACKAGE",
+      "page": 11
+    },
+    "urls": [
+      "http://groups.csail.mit.edu/pac/patchgen/"
+    ],
+    "excerpt": "All experimental data (including the Genesis source code, inferred\ntemplates, and generated patches) are available at http://groups.\ncsail.mit.edu/pac/patchgen/. Table 3 shows the results from the\nreplication package using the inferred combined search space. There\nis a row in the table for each defect. The “Type”, “Repository”,\nand “Revision” columns present the defect type, the Github reposi-\ntory name, and the revision, respectively. The “Init. Time” column\npresents the amount of time required to initialize the search for\nthat defect. The “Search Space Size” column presents the size of\nthe search space for that defect, the “Explored Space Size” column\npresents the size of the search space that the algorithm explores\nwithin the five hour timeout, the “Search Time” column presents the\namount of time spent exploring the space, and “Validated Patches”\npresents the number of candidate patches that validate (produce\ncorrect outputs for all test cases). The next three columns present\nstatistics for the first generated correct patch, specifically how long\nit takes to generate the patch (“Generation Time”), the rank of\nthe first correct patch in the sequence of validated patches (“Vali-\ndated Rank”), and the rank of the correct patch in the sequence of\ncandidate patches (“Space Rank”). The last column (“PAR Result”)\npresents whether PAR can generate correct patches for the defect\nor not.\n737\nESEC/FSE’17, September 4-8, 2017, Paderborn, Germany Fan Long, Peter Amidon, and Martin Rinard",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2017/3106237.3106288.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "5.2 Replication Package",
+      "page": 9
+    },
+    "urls": [],
+    "excerpt": "The data underlying this paper represent an oracle consisting of\ncode changes and test failures that arose in practice. This dataset\nis valuable because it augments past studies on industrial code for\nwhich the full data could not be released (e.g., [2, 4, 5]). It also\nprovides crucial information into the dynamic outcomes of test\nexecutions that cannot be recovered from mining studies alone\n(e.g., [1, 9, 11]).\nThe data includes a database image of the build results of 225,860\nTravis builds run by 493 projects (some projects not studied in this\npaper are included). Build results include the build state, times-\ntamps, and, for builds whose logs we could parse, the test iden-\ntifiers of failed tests.\nThese data represent the largest open collection of practical test\nfailures and will prove valuable for many future studies that want\nto evaluate their approaches on real data by, for instance, measur-\ning how many actual failures would be missed by a test selection\napproach, or how effective a test selection approach is relative to\na known ‘best case’. The full replication package for this study can\nbe found and contributed to online.\n6",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2018/3236024.3236065.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "Replication Package:",
+      "page": 5
+    },
+    "urls": [
+      "https://goo.gl/NTUqcK"
+    ],
+    "excerpt": "Our working prototype and experimen-\ntal data are publicly available [ 3 ] for replication and reuse.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2019/3338906.3338922.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "replication package.",
+      "page": 2
+    },
+    "urls": [],
+    "excerpt": "3\nInformation Overload . CI output logs can become verbose,\nmaking it hard to pinpoint bugs and their causes (O1.a) [ 27 , 28 ,\n39 ]. Also, information about a project may be spread out across\nmany CI services or many sub-projects in an organization [ 52 ],\nmaking it difficult to answer overarching questions (O1.b). There\nis also a reported need for better notifications from CI (O1.c) [ 27 ],\nfor customizing the outputs [ 8 ], and for pinpointing which build\nconfiguration caused a problem [ 69 ]. One industrial case study\nsuggested risking performance creep, as smaller, frequent builds\nmake performance changes harder to notice (O1.d) [63].\nOrganizational Pain Points . Organizational pain points have\nbeen reported, ranging from a general resistance to change (O2.a) [ 13 ,\n40 , 59 ], to the perception that CI practices may be incompatible\nwith the team or company’s existing culture (O2.b) [ 12 , 52 , 63 ].\nIndustrial case studies show that management buy-in is crucial for\nCI success (O2.c) [ 13 , 63 ]. Some suggest that CI can have negative\neffects on organizational culture, making them seem chaotic or\ndisorganized [ 63 ], and force meetings to happen too frequently\nor prematurely (O2.d) [ 39 ]. Infrequent changes or a preexisting\nrigorous testing regime can create the perception that CI does not\nadd additional value (O2.e,f) [28].\nA lack of shared understanding of CI can cause conflicts be-\ntween sites or between companies and their clients (O2.g) [ 52 ],\n648\nA Conceptual Replication of Continuous Integration Pain Points in the Context of Travis CI ESEC/FSE ’19, August 26–30, 2019, Tallinn, Estonia\nTable 1: Literature review summary. Papers classified by\nstudied population ( OSS, industry) and pain points\nidentified ( information overload, organizational,\nsetup/config, slow feedback, testing deficiencies).\nRef Yr Research Method(s) Pop. Pain Points\n[77] ’18 Quant. analysis of quality metrics, 1,772 proj.\n[12] ’18 Case study, 1 company\n[57] ’18 Survey of 158 CI users\n[27] ’17 2 surveys of 51 and 523, 16 interviews\n[60] ’17 Bivariate correlations, 14 Java projects\n[83] ’17 Bivariate correlations, 20 Java projects\n[4] ’17 Bivariate correlations, 2.6m builds\n[37] ’17 Comparison of averages, 61 projects\n[87] ’17 Time series of 77 projects, survey of 55\n[31] ’17 Bivariate cor., 3.6m builds, 1090 proj.\n[24] ’17 Bivariate correlations, 1283 projects\n[43] ’17 Descriptive statistics, 1279 projects\n[58] ’17 Survey of 158\n[53] ’17 Bivariate cor., topic modeling, 1283 proj.\n[28] ’16 Bivariate cor., 1.5m builds, surveys of 442\n[69] ’16 Case studies, 3 companies\n[63] ’16 Case studies, 2 companies\n[21] ’16 Survey of 645, bivariate cor. on proj.\n[8] ’15 Contrib. clustering on 20 proj., manual\n[82] ’15 Regression modeling on 103k PRs\n[35] ’15 Bivar. cor. of failures, 2 case studies\n[39] ’15 27 interviews\n[40] ’15 15 interviews\n[22] ’15 Survey of 749, analysis of projects\n[76] ’15 Quant. modeling 246 proj. + PRs, issues\n[75] ’14 Bivariate cor. on 223 repos\n[13] ’14 Case study on 1 company, 13 interviews\n[56] ’13 33 interviews, 569 surveys\n[52] ’12 Case st. of 4 companies, 18 interviews\n[41] ’18 Test suite prioritization technique\n[18] ’18 Analysis of 9312 proj. + tool evaluation\n[2] ’17 Essay, constructed case study NA\n[64] ’16 Appl. of model to past case studies -\n[59] ’16 Comparison of features -\n[7] ’14 Built tool, user study with 9 tasks 16 Stud.\n[10] ’14 Built tool, evaluation on 23 projects\n[16] ’14 Tool building + eval. cost effectivness -\nand a lack of clarity about the goals of CI can lead to friction be-\ntween teams [ 13 ]. Reports indicate interpersonal strain among\nteams when CI knowledge is distributed unevenly [ 39 ] or CI is\nadopted inconsistently [ 63 ], possibly because collaboration and\ninformation exchange is poorly supported (O2.h) [ 52 , 58 ]. CI can\nbe seen as taking a long time to perfect in an evolving organiza-\ntion [ 63 ], or as an unclear, unreachable, and unrealistic standard\n(O2.i) [39], perhaps leading to only intermittent usage [77].\nDevelopers also experience negative effects of CI , including the\nperceived risk of reputation damage from breaking the build [ 40 ],\ncausing reluctance to expose early versions of their work (O2.j) [ 13 ].\nThey disagree about whether it is acceptable to break the build, and\nwhat should constitute a broken build [58].\nSome believe that CI can make it harder to onboard and retain\ndevelopers (O2.k) [ 24 , 58 ], though others argue that automated\nnegative feedback is preferable to human negative feedback [ 71 ].\nOne industry study suggests that it can be hard to hire developers\nwith CI expertise (O2.l) [ 63 ]; in open source, there is evidence that\nnot all project members need to use or understand CI [43].\nBroader organizational pain points can also exist: regulatory re-\nquirements or a conservative business model can prohibit frequent\nreleases in some domains ( e.g. , medical devices) and thus can be\nseen to prohibit CI usage [ 40 ], because they demand that require-\nments are defined upfront (O2.m) [ 52 ]. Some company supported\nprojects are reluctant to use a public CI service, e.g. , for privacy or\nsecurity reasons (O2.n) [27].\nSetup and Configuration Pain Points . CI can be hard to con-\nfigure (O3.a) [ 18 , 21 , 27 , 58 , 60 ], especially when switching from\nan old build environment [ 27 ], testing components developed by a\nthird party [ 39 ], or configuring a self-hosted CI server [ 2 , 27 ]. The\nprevalence of anti-patterns in CI configuration files also suggests\nthat users find configuring CI challenging [ 18 ]. Some would prefer",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2020/3368089.3409695.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "Replication Package .",
+      "page": 11
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.4018691"
+    ],
+    "excerpt": "https://doi.org/10.5281/zenodo.4018691\n[22] Olive Jean Dunn. 1961. Multiple Comparisons among Means. J. Amer. Statist.\nAssoc. 56, 293 (1961), 52–64.\n[23] Andre Eposhi, Willian Oizumi, Alessandro Garcia, Leonardo Sousa, Roberto\nOliveira, and Anderson Oliveira. 2019. Removal of design problems through\nrefactorings: are we looking at the right symptoms?. In 2019 IEEE/ACM 27th\nInternational Conference on Program Comprehension (ICPC) . IEEE, 148–153.\n[24] Isabella Ferreira, Eduardo Fernandes, Diego Cedrim, Anderson Uchôa, Ana Carla\nBibiano, Alessandro Garcia, João Lucas Correia, Filipe Santos, Gabriel Nunes,\nCaio Barbosa, and et al. 2018. The Buggy Side of Code Refactoring: Understand-\ning the Relationship between Refactorings and Bugs. In Proceedings of the 40th\nInternational Conference on Software Engineering: Companion Proceeedings (ICSE\n?18) . 406?407.\n[25] Michael Fischer, Martin Pinzger, and Harald Gall. 2003. Populating a Release\nHistory Database from Version Control and Bug Tracking Systems. In 19th\nInternational Conference on Software Maintenance (ICSM 2003) . 23–.\n[26] R. A. Fisher. 1922. On the Interpretation of Χ -square from Contingency Tables,\nand the Calculation of P. Journal of the Royal Statistical Society 85, 1 (1922),\n87–94.\n[27] Xi Ge, Saurabh Sarkar, Jim Witschey, and Emerson R. Murphy-Hill. 2017.\nRefactoring-aware code review. In 2017 IEEE Symposium on Visual Languages\nand Human-Centric Computing, VL/HCC 2017, Raleigh, NC, USA, October 11-14,\n2017 . 71–79.\n[28] Robert J. Grissom and John J. Kim. 2005. Effect sizes for research: A broad practical\napproach (2nd edition ed.). Lawrence Earlbaum Associates.\n[29] Mary Jean Harrold, John D. McGregor, and Kevin J. Fitzpatrick. 1992. Incremental\nTesting of Object-Oriented Class Structures. In Proceedings of the 14th Interna-\ntional Conference on Software Engineering, Melbourne, Australia, May 11-15, 1992 .\n68–80.\n[30] Kim Herzig, Sascha Just, and Andreas Zeller. 2015. It’s Not a Bug, It’s a Fea-\nture: How Misclassification Impacts Bug Prediction. In Software Engineering &\nManagement 2015, Multikonferenz der GI-Fachbereiche Softwaretechnik (SWT)\nund Wirtschaftsinformatik (WI), FA WI-MAW, 17. März - 20. März 2015, Dresden,\nGermany . 103–104.\n[31] Eirini Kalliamvakou, Georgios Gousios, Kelly Blincoe, Leif Singer, Daniel M.\nGermán, and Daniela E. Damian. 2016. An in-depth study of the promises and\nperils of mining GitHub. Empirical Software Engineering 21, 5 (2016), 2035–2071.\n[32] Miryung Kim, Thomas Zimmermann, and Nachiappan Nagappan. 2012. A Field\nStudy of Refactoring Challenges and Benefits. In Proceedings of the 20th Inter-\nnational Symposium on Foundations of Software Engineering (Research Triangle\nPark, NC, USA).\n[33] Sunghun Kim, E. James Whitehead Jr., and Yi Zhang. 2008. Classifying Software\nChanges: Clean or Buggy? IEEE Trans. Software Eng. 34, 2 (2008), 181–196.\n[34] William H. Kruskal and W. Allen Wallis. 1952. Use of Ranks in One-Criterion\nVariance Analysis. J. Amer. Statist. Assoc. 47, 260 (1952), 583–621.\n[35] Mehran Mahmoudi, Sarah Nadi, and Nikolaos Tsantalis. 2019. Are Refactorings\nto Blame? An Empirical Study of Refactorings in Merge Conflicts. In 26th IEEE\nInternational Conference on Software Analysis, Evolution and Reengineering, SANER\n2019 . 151–162.\n[36] Raimund Moser, Pekka Abrahamsson, Witold Pedrycz, Alberto Sillitti, and Gi-\nancarlo Succi. 2008. Balancing Agility and Formalism in Software Engineering.\nChapter A Case Study on the Impact of Refactoring on Quality and Productivity\nin an Agile Team, 252–266.\n[37] Emerson Murphy-Hill, Chris Parnin, and Andreaw P. Black. 2011. How We\nRefactor, and How We Know It. Transactions on Software Engineering 38, 1 (2011),\n5–18.\n[38] Meiyappan Nagappan, Thomas Zimmermann, and Christian Bird. 2013. Diversity\nin software engineering research. In Joint Meeting of the European Software\nEngineering Conference and the ACM SIGSOFT Symposium on the Foundations of\nSoftware Engineering, ESEC/FSE’13, Saint Petersburg, Russian Federation, August\n18-26, 2013 . 466–476.\n[39] Anthony Peruma, Mohamed Wiem Mkaouer, Michael J. Decker, and Christian D.\nNewman. 2018. An Empirical Investigation of How and Why Developers Rename\nIdentifiers. In Proceedings of the 2Nd International Workshop on Refactoring (IWoR\n2018) . 26–33.\n566\nESEC/FSE ’20, November 8–13, 2020, Virtual Event, USA Massimiliano Di Penta, Gabriele Bavota, and Fiorella Zampetti\n[40] Kyle Prete, Napol Rachatasumrit, Nikita Sudan, and Miryung Kim. 2010. Template-\nbased reconstruction of complex refactorings. In 26th IEEE International Con-\nference on Software Maintenance (ICSM 2010), September 12-18, 2010, Timisoara,\nRomania . 1–10.\n[41] R Core Team. 2012. R: A Language and Environment for Statistical Computing .\nhttp://www.R-project.org ISBN 3-900051-07-0.\n[42] Junji Shimagaki, Yasutaka Kamei, Shane McIntosh, David Pursehouse, and Naoy-\nasu Ubayashi. 2016. Why are Commits Being Reverted?: A Comparative Study\nof Industrial and Open Source Projects. In 2016 IEEE International Conference on\nSoftware Maintenance and Evolution, ICSME 2016, Raleigh, NC, USA, October 2-7,\n2016 . 301–311.\n[43] Danilo Silva, Nikolaos Tsantalis, and Marco Tulio Valente. 2016. Why we refactor?\nconfessions of GitHub contributors. In Proceedings of the 24th ACM SIGSOFT\nInternational Symposium on Foundations of Software Engineering, FSE 2016 . 858–\n870.\n[44] Jacek Sliwerski, Thomas Zimmermann, and Andreas Zeller. 2005. When do\nchanges induce fixes?. In Proceedings of the 2005 International Workshop on Mining\nSoftware Repositories, MSR 2005, Saint Louis, Missouri, USA, May 17, 2005 .\n[45] Konstantinos Stroggylos and Diomidis Spinellis. 2007. Refactoring–Does It\nImprove Software Quality?. In Proceedings of the 5th International Workshop on\nSoftware Quality (WoSQ ’07) . IEEE Computer Society, Washington, DC, USA,\n10–.\n[46] Gábor Szoke, Gábor Antal, Csaba Nagy, Rudolf Ferenc, and Tibor Gyimóthy.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2022/3540250.3549174.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "replication package",
+      "page": 10
+    },
+    "urls": [],
+    "excerpt": "1\n. We found a substantial inter-rater agreement\n(kappa=0.87) between the annotators. It is important to know that\nthe reviews are sharing the same context (same app, same version)\nto assume that they are discussing the same requirement, which is\nwhy we only used the Panichella dataset for this evaluation as it\nprovides the app information in addition to the review, whereas,\nthis information is missing in the Maalej dataset.\nWe use two metrics to evaluate each approach. First, how in-\nformative are the selected reviews for requirement extraction, i.e.,\nwere the selected reviews mostly of level two and three of informa-\ntiveness (medium and high), or were they mostly level one (noise).\nSecond, as part of the labeling process we compiled a list of re-\nquirements that are discussed in the reviews, and using this ground\ntruth, we want to evaluate the coverage of each approach, i.e., how\nmany of the existing discussed requirements were mentioned in\nthe selected set. However, we argue that not all requirements are\nequal. The more mentioned/discussed a requirement is, the more\nvaluable, and vice versa. As such, we measured coverage only for\nrequirements mentioned in three or more reviews. As most ma-\nchine learning models require a certain level of statistical presence\nto learn patterns, two may not be suicient to show the statistical\nsigniicance. Meanwhile, setting a higher threshold ( e.g., four or\nmore) may miss some meaningful requirements.\nExperimental Results: We show the evaluation results in Fig-\nure 5 . We can observe that the proposed HMK-RVM signiicantly\noutperforms all the baselines. First, looking at coverage where the\nhigher the score the better the model at capturing all the discussed\nrequirements, we can see that it is 11% better than LDA (the second\nbest model) and roughly 50% better than all other baselines. This\nmeans it is able to select at least one review for each discussed\nrequirement with a much higher success rate than the state of\nthe art. Second, looking at informativeness, which is a key aspect\nof requirement extraction, we can see that the reviews selected\nby HMK-RVM have the highest level of informativeness, and the\nleast level of noise. HMK-RVM had 74% more informative reviews\nthan the second-best baseline. Additionally, it picked 50% less noisy\nreviews than the second-best baseline. This means that it is far\nsuperior at picking the most informative reviews and avoiding the\nleast informative (noisy) reviews for requirements extraction than\nthe state of the art.\nTable 7: Analyzing the model’s insight: What and the\nlearned weights tell us about the underlying data?\nMaalej Dataset ϕ we ( x ) ϕ met a ( x ) ϕ t f id f ( x ) ϕ lda ( x )\nInformative 0.496 0.533 0.474 0.511\nFeature Request 0.489 0.504 0.522 0.521\nBug Report 0.512 0.475 0.513 0.512\nUser Experience 0.505 0.383 0.001 0.892\nRQ 4 : Beyond accuracy, what insights can we gain\nfrom using the proposed HMK-RVM approach?\nExperimental Setup: To address this question, we evaluated the\nweights assigned to each of the kernels.\nExperimental Results: For the irst aspect, we report the as-\nsigned weights per kernel in Table 7 for the Maleej dataset. We can\nobserve that the learned weights per kernel vary between roughly\n12% on average, which indicates a diferent priority based on the\nlearned task. For example, for the informative classiier, kernels with\nhigher representation ( i.e., Meta and LDA) were assigned higher\nweights, which can be due to the fact that the majority of reviews\nat the irst level of classiication are non-informative reviews (70%),\nmostly rating reviews ( i.e., a strong positive or negative rating with\na short sentimental text). As such, they can be easily identiied\nwith a more broad view of the reviews. Also, for the feature request\nand bug report classiiers, we can observe a higher assigned weight\nto the TF-IDF kernel, which may be due to the fact that such re-\nviews can be identiied through a few frequently used words that\nare captured by TF-IDF ( e.g., add, feature, bug, crash, etc. ). Finally,\nthe user experience classiier shows a signiicant weight diference\n567\nBayesian Learning for Integrated Classification and Summarization of App Revs. ESEC/FSE ’22, November 14–18, 2022, Singapore, Singapore\nbetween kernels. The LDA kernel and word embedding kernel are\nhighly utilized, whereas the TF-IDF kernel is essentially ignored.\nWe believe that this is due to the rich and lengthy nature of such\nreviews (reviews with user experience are very descriptive). Having\nthat nature in mind with the fact that app reviews are usually full\nof typos and alternatively spelled words would put a representation\nthat relies on exact terms such as TF-IDF at a disadvantage, whereas\na semantic capturing representation such as word embedding or\na topic capturing representation such as LDA is at a clear advan-\ntage. As such, we can conclude that the user experience classiier’s\npredictions rely heavily on the LDA and word embedding represen-\ntation, i.e., in order to maintain a healthy user experience classiier,\nwe need to maintain those representations. Such insight into the\nclassiier’s learning patterns is valuable to the understanding and\ninterpretation of the classiier’s behavior.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2023/3611643.3616265.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "replication package.",
+      "page": 5
+    },
+    "urls": [],
+    "excerpt": "",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2024/3643780.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "10 REPLICATION PACKAGE",
+      "page": 19
+    },
+    "urls": [
+      "https://github.com/SeekingDream/PPM"
+    ],
+    "excerpt": "Our code and data are available at https://github.com/SeekingDream/PPM",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2025/3715747.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "Replication package :",
+      "page": 3
+    },
+    "urls": [],
+    "excerpt": "Our replication package including source code and data is available on-\nline [45].",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2026/3808130.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "Replication Package .",
+      "page": 21
+    },
+    "urls": [
+      "https://github.com/WSU-SEAL/ToxiShield"
+    ],
+    "excerpt": "https://github.com/WSU-SEAL/ToxiShield\n[2] Sarthak Bharadwaj, Fabio Santos, and Bianca Trinkenreich. 2025. The Shifting Sands of Toxicity: The Evolving\nNature of Interpersonal Challenges in Open Source. In 2025 ACM/IEEE International Symposium on Empirical Software\nEngineering and Measurement (ESEM) . 1–11. doi:10.1109/ESEM64174.2025.00016\n[3] Virginia Braun and Victoria Clarke. 2006. Using thematic analysis in psychology. Qualitative research in psychology 3,\n2 (2006), 77–101.\n[4] Kevin Daniel André Carillo, Josianne Marsan, and Bogdan Negoita. 2016. Towards developing a theory of toxicity in\nthe context of free/open source software & peer production communities. SIGOPEN 2016 (2016).\n[5] Ofer Dekel and Ohad Shamir. 2010. Multiclass-multilabel classification with more classes than examples. In Proceedings\nof the Thirteenth International Conference on Artificial Intelligence and Statistics . JMLR Workshop and Conference\nProceedings, 137–144.\n[6] Tanni Dev, Sayma Sultana, and Amiangshu Bosu. 2025. Beyond Binary Moderation: Identifying Fine-Grained Sexist and\nMisogynistic Behavior on GitHub with Large Language Models. In 2025 ACM/IEEE International Symposium on Empirical\nSoftware Engineering and Measurement (ESEM) (Honolulu, Hawai, USA, USA). 1–12. doi:10.1109/ESEM64174.2025.00059\n[7] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. Bert: Pre-training of deep bidirectional\ntransformers for language understanding. In Proceedings of the 2019 conference of the North American chapter of the\nassociation for computational linguistics: human language technologies, volume 1 (long and short papers) . 4171–4186.\ndoi:10.18653/v1/N19-1423\n[8] Carolyn D Egelman, Emerson Murphy-Hill, Elizabeth Kammer, Margaret Morrow Hodges, Collin Green, Ciera Jaspan,\nand James Lin. 2020. Predicting developers’ negative feelings about code review. In Proceedings of the ACM/IEEE 42nd\nInternational Conference on Software Engineering . 174–185. doi:10.1145/3377811.3380414\n[9] Ramtin Ehsani, Mia Mohammad Imran, Robert Zita, Kostadin Damevski, and Preetha Chatterjee. 2024. Incivility in\nopen source projects: A comprehensive annotated dataset of locked github issue threads. In Proceedings of the 21st\nInternational Conference on Mining Software Repositories . 515–519. doi:10.1145/3643991.3644887\n[10] Ramtin Ehsani, Rezvaneh Rezapour, and Preetha Chatterjee. 2023. Exploring moral principles exhibited in oss: A case\nstudy on github heated issues. In Proceedings of the 31st ACM Joint European Software Engineering Conference and\nSymposium on the Foundations of Software Engineering . 2092–2096.\n[11] Ramtin Ehsani, Rezvaneh Rezapour, and Preetha Chatterjee. 2025. Analyzing Toxicity in Open Source Software\nCommunications Using Psycholinguistics and Moral Foundations Theory. (2025), 1–8. doi:10.1109/NLBSE66842.2025.\n00006\n[12] Laura Faulkner. 2003. Beyond the five-user assumption: Benefits of increased sample sizes in usability testing. Behavior\nResearch Methods, Instruments, & Computers 35, 3 (2003), 379–383. doi:10.3758/BF03195514\n[13] Isabella Ferreira, Jinghui Cheng, and Bram Adams. 2021. The\" shut the f** k up\" phenomenon: Characterizing incivility\nin open source code review discussions. Proceedings of the ACM on Human-Computer Interaction 5, CSCW2 (2021),\n1–35. doi:10.1145/3479497\n[14] Isabella Ferreira, Ahlaam Rafiq, and Jinghui Cheng. 2024. Incivility detection in open source code review and issue\ndiscussions. Journal of Systems and Software 209 (2024), 111935. doi:10.1016/j.jss.2023.111935\n[15] Zhenxin Fu, Xiaoye Tan, Nanyun Peng, Dongyan Zhao, and Rui Yan. 2018. Style transfer in text: Exploration and\nevaluation. In Proceedings of the AAAI conference on artificial intelligence , Vol. 32. doi:10.1609/aaai.v32i1.11330\n[16] Shai Gretz, Alon Halfon, Ilya Shnayderman, Orith Toledo-Ronen, Artem Spector, Lena Dankin, Yannis Katsis, Ofir Arviv,\nYoav Katz, Noam Slonim, and Liat Ein-Dor. 2023. Zero-shot Topical Text Classification with LLMs - an Experimental\nStudy. In Findings of the Association for Computational Linguistics: EMNLP 2023 . Association for Computational\nLinguistics, 9647–9676. doi:10.18653/v1/2023.findings-emnlp.647\n[17] Sanuri Dananja Gunawardena, Peter Devine, Isabelle Beaumont, Lola Piper Garden, Emerson Murphy-Hill, and\nKelly Blincoe. 2022. Destructive criticism in software code review impacts inclusion. Proceedings of the ACM on\nHuman-Computer Interaction 6, CSCW2 (2022), 1–29. doi:10.1145/3555183\n[18] Keyan Guo, Alexander Hu, Jaden Mu, Ziheng Shi, Ziming Zhao, Nishant Vishwamitra, and Hongxin Hu. 2023. An\nInvestigation of Large Language Models for Real-World Hate Speech Detection. In 2023 International Conference on\nMachine Learning and Applications (ICMLA) . 1568–1573. doi:10.1109/ICMLA58977.2023.00237\n[19] Geoffrey Hinton, Oriol Vinyals, and Jeff Dean. 2015. Distilling the knowledge in a neural network. arXiv preprint\narXiv:1503.02531 (2015).\n[20] Edward J Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
+  },
+  "2026/3808137.pdf": {
+    "type": "artifact-evidence-under-unsupported-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "replication package.",
+      "page": 18
+    },
+    "urls": [],
+    "excerpt": "Fig. 6. Sensitivity analysis of TORAI performance under varying blind spot percentages (i.e., proportion of\nservices without trace data) on (a) Online Boutique and (b) Train Ticket systems. TORAI mostly maintains\nrobust diagnostic accuracy (AC@1, AC@3, and Avg@5) across different blind spot levels.",
+    "note": "Artifact or reproducibility evidence appears under Replication Package; this heading is no longer a recognized section category and is retained as a manual annotation only."
   }
 }

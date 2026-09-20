@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Authors · SIGSOFT</title>
+<link rel="stylesheet" href="theme.css">
+<script src="theme.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:32px 20px}a{color:var(--accent)}.controls{display:flex;gap:20px;flex-wrap:wrap;margin:24px 0}label{display:flex;flex-direction:column;gap:6px}input,select{font:inherit;padding:10px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px}table{width:100%;border-collapse:collapse}th,td{padding:10px 16px;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left}.muted{color:var(--muted)}.table-scroll{overflow:auto}#error{color:#b12727}
+th button{font:inherit;font-weight:inherit;color:inherit;background:none;border:0;padding:4px;cursor:pointer}th button::after{content:' ↕'}th[aria-sort="ascending"] button::after{content:' ↑'}th[aria-sort="descending"] button::after{content:' ↓'}th button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<nav class="theme-bar" aria-label="Site navigation"><a class="theme-brand" href="index.html">SIGSOFT CfPs<span>•</span></a><div class="theme-actions"><a class="nav-button" href="das-checker/">DAS checker ✓</a><button id="theme-toggle" type="button" aria-label="Switch color theme">Dark mode ☾</button></div></nav>
+<h1>Authors</h1>
+<p class="muted">FSE papers per author, and papers with an extracted data/artifact-availability or reproducibility section or manually annotated artifact evidence under non-standard headings or inline listings. Review-only annotations do not add availability counts. Reviewed false positives are excluded; artifact accessibility is not verified. Authors are grouped by exact name, not disambiguated identities.</p>
+<div class="controls">
+<label>Search authors<input id="search" type="search" placeholder="Author name…"></label>
+<label>Edition year<select id="year"><option value="">All years</option></select></label>
+
+</div>
+<p id="status" role="status" aria-live="polite">Loading…</p>
+<p id="error" role="alert" hidden></p>
+<p id="coverage" class="muted"></p>
+<div class="table-scroll"><table><thead><tr><th scope="col" aria-sort="none"><button type="button" data-sort="name">Author</button></th><th scope="col" aria-sort="descending"><button type="button" data-sort="papers">Papers</button></th><th scope="col" aria-sort="none"><button type="button" data-sort="available">Papers with availability</button></th></tr></thead><tbody id="authors"></tbody></table></div>
+<p class="muted">Totals include all papers in the author metadata. Missing availability results are not positive findings. Each paper counts once per author.</p>
+</main>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+let papers = [], available = new Set();
+let sortKey = 'papers', sortDirection = 'descending';
+function render() {
+  const counts = new Map(), seen = new Set();
+  for (const paper of papers) {
+    if ($('year').value && String(paper.year) !== $('year').value) continue;
+    const key = `${paper.year}/${paper.id}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    for (const name of new Set(paper.authors)) {
+      const row = counts.get(name) || {name, papers:0, available:0};
+      row.papers++;
+      if (available.has(key)) row.available++;
+      counts.set(name,row);
+    }
+  }
+  const query = $('search').value.trim().toLocaleLowerCase();
+  const direction = sortDirection === 'ascending' ? 1 : -1;
+  const rows = [...counts.values()].filter(row => row.name.toLocaleLowerCase().includes(query));
+  rows.sort((a,b) => direction * (sortKey === 'name' ? a.name.localeCompare(b.name) : a[sortKey]-b[sortKey]) || a.name.localeCompare(b.name));
+  const fragment = document.createDocumentFragment();
+  for (const row of rows) {
+    const tr = document.createElement('tr');
+    for (const value of [row.name,row.papers,row.available]) {
+      const td = document.createElement('td'); td.textContent = value; tr.append(td);
+    }
+    fragment.append(tr);
+  }
+  $('authors').replaceChildren(fragment);
+  $('status').textContent = `${rows.length.toLocaleString()} authors shown · ${seen.size.toLocaleString()} unique papers in selected years`;
+}
+async function loadJSON(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+  return response.json();
+}
+Promise.all([loadJSON('data/fse-authors.json'),loadJSON('data/fse.json'),loadJSON('data/fse-annotations.json')]).then(([metadata,results,annotations]) => {
+  papers = metadata.papers;
+  for (const [year,result] of Object.entries(results.years)) {
+    for (const paper of result.papers || []) available.add(`${year}/${paper.id}`);
+  }
+  for (const year of [...new Set(papers.map(p => p.year))].sort((a,b)=>b-a)) {
+    const option = document.createElement('option'); option.value = year; option.textContent = year; $('year').append(option);
+  }
+  const evidenceTypes = new Set([
+    'artifact-url-outside-allowed-heading',
+    'artifact-url-under-unsupported-heading',
+    'artifact-evidence-under-unsupported-heading'
+  ]);
+  for (const [file,annotation] of Object.entries(annotations)) {
+    if (evidenceTypes.has(annotation.type)) available.add(file.replace(/\.pdf$/i, ''));
+  }
+  const metadataKeys = new Set(papers.map(p => `${p.year}/${p.id}`));
+  const unmatched = [...available].filter(key => !metadataKeys.has(key)).length;
+  $('coverage').textContent = unmatched ? `${unmatched} availability-positive paper(s) lack author metadata and are excluded from author counts.` : '';
+  render();
+}).catch(error => {
+  $('status').textContent = 'Author counts unavailable.';
+  $('error').hidden = false;
+  $('error').textContent = `Could not load author data: ${error.message}. Serve this directory over HTTP and try again.`;
+});
+$('search').addEventListener('input',render);
+$('year').addEventListener('change',render);
+for (const button of document.querySelectorAll('[data-sort]')) {
+  button.addEventListener('click', () => {
+    const key = button.dataset.sort;
+    sortDirection = key === sortKey
+      ? (sortDirection === 'ascending' ? 'descending' : 'ascending')
+      : (key === 'name' ? 'ascending' : 'descending');
+    sortKey = key;
+    for (const header of document.querySelectorAll('[data-sort]')) {
+      header.parentElement.setAttribute('aria-sort', header.dataset.sort === sortKey ? sortDirection : 'none');
+    }
+    render();
+  });
+}
+</script>
+</body>
+</html>

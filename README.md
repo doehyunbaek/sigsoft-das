@@ -30,6 +30,10 @@ Open [http://localhost:8000](http://localhost:8000) to browse `index.html`. Filt
 
 Serve the page over HTTP; the viewer loads `data/calls.json` automatically. Selected filters are saved in local storage. “View source” uses each record's Wayback snapshot and preserves the CFP section anchor.
 
+### Author counts
+
+Open `authors.html` for searchable, sortable per-author FSE paper and availability-section counts, with a year filter. `data/fse-authors.json` is a compact snapshot of the local FSE accepted-paper metadata (year, DOI suffix, and author names). Availability combines `data/fse.json` with artifact-URL and artifact-evidence entries in `data/fse-annotations.json`, matched by year and DOI suffix and deduplicated per paper. This includes inline listings and unsupported headings; review-only annotations do not add positive counts. Refreshing either source updates the counts automatically. Update the author snapshot when adding papers. Names are grouped exactly; section detection does not verify artifact accessibility, and papers without results still contribute to total papers.
+
 ## Wayback snapshots
 
 All 28 current CFP records have `snapshot_url` values reported by Internet Archive's Save Page Now service. To request captures for newly scraped records in a visible browser:

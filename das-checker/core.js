@@ -10,23 +10,9 @@ export function doiIDs(text) {
   });
 }
 export const SECTION_TYPES = Object.freeze([
-  Object.freeze({id:'data-availability-and-experiment-replication', label:'Data Availability and Experiment Replication', pattern:'data\\s+availability\\s+and\\s+experiment\\s+replication'}),
-  Object.freeze({id:'conclusions-and-data-availability', label:'Conclusions and Data Availability', pattern:'conclusions\\s+and\\s+data\\s+availability'}),
-  Object.freeze({id:'data-and-code-availability', label:'Data and Code Availability', pattern:'data\\s+and\\s+code\\s+availability'}),
-  Object.freeze({id:'data-availability-and-ethics', label:'Data Availability and Ethics', pattern:'data\\s+availability\\s+and\\s+ethics'}),
   Object.freeze({id:'data-availability', label:'Data Availability', pattern:'data\\s+availability'}),
-  Object.freeze({id:'data-available', label:'Data Available', pattern:'data\\s+available'}),
   Object.freeze({id:'data-availability-statement', label:'Data-Availability Statement', pattern:'data\\s*-\\s*availability\\s+statement'}),
-  Object.freeze({id:'data-availability-statement-unhyphenated', label:'Data Availability Statement', pattern:'data\\s+availability\\s+statement'}),
-  Object.freeze({id:'availability-of-data', label:'Availability of Data', pattern:'availability\\s+of\\s+data'}),
-  Object.freeze({id:'reproducibility', label:'Reproducibility', pattern:'reproducibility'}),
-  Object.freeze({id:'reproducibility-statement', label:'Reproducibility Statement', pattern:'reproducibility\\s+statement'}),
-  Object.freeze({id:'replication-package', label:'Replication Package', pattern:'replication\\s+package'}),
-  Object.freeze({id:'experimental-artifacts', label:'Experimental Artifacts', pattern:'experimental\\s+artifacts'}),
-  Object.freeze({id:'artifact-availability-statement', label:'Artifact Availability Statement', pattern:'artifact\\s+availability\\s+statement'}),
-  Object.freeze({id:'artifact', label:'Artifact', pattern:'artifact'}),
-  Object.freeze({id:'supplementary-material', label:'Supplementary Material', pattern:'supplementary\\s+material'}),
-  Object.freeze({id:'supplementary-material-and-replication-package', label:'Supplementary Material and Replication Package', pattern:'supplementary\\s+material\\s+and\\s+replication\\s+package'})
+  Object.freeze({id:'data-availability-statement-unhyphenated', label:'Data Availability Statement', pattern:'data\\s+availability\\s+statement'})
 ]);
 export const DEFAULT_SECTION_IDS = Object.freeze(SECTION_TYPES.map(section => section.id));
 
