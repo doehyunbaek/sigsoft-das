@@ -40,7 +40,7 @@ import {analyzePDF, doiURL, checkDOI, fetchDOIMetadata} from './core.js';
 const result = await analyzePDF(pdfBytes, {
   pdfjs,
   // Omit sectionIDs to allow all displayed heading forms.
-  sectionIDs: ['data-availability-statement', 'reproducibility-statement'],
+  sectionIDs: ['data-availability-statement', 'data-availability-statement-unhyphenated'],
   onProgress: ({page, total}) => console.error(`${page}/${total}`)
 });
 for (const record of result.dois) {
@@ -54,6 +54,6 @@ In a browser, import a PDF.js browser build and configure its `GlobalWorkerOptio
 
 `checkDOI` returns `{status, ok, url, redirected, error?}`; network failures have `status: null`. Both HTTP helpers accept `{fetchImpl, timeout}` for testing/custom runtimes. Extraction-only helpers (`normalize`, `doiIDs`, `findStatements`, `collectDOIs`) are also exported; `collectDOIs` internally returns provenance Sets.
 
-`batch.js` stores gzip-compressed PDF.js text and annotation extraction under `.cache/pdf-extraction-v2/`, keyed by source path, size, and modification time. Detector changes can therefore rescan cached extraction without reopening unchanged PDFs. Manually reviewed artifact evidence outside supported headings is maintained in `data/fse-annotations.json` and merged into generated `data/fse.json`.
+`batch.js` stores gzip-compressed PDF.js text and annotation extraction under `.cache/pdf-extraction-v2/`, keyed by conference, source path, size, and modification time. Detector changes can therefore rescan cached extraction without reopening unchanged PDFs. The corpus directory name selects the conference and generated dataset (`fse` → `data/fse.json`, `ase` → `data/ase.json`); an optional fifth argument limits the minimum year, for example `node batch.js ~/private/papers/ase ../.cache/ase-das-counts-current.json 8 2018`. Manually reviewed FSE artifact evidence outside supported headings is maintained in `data/fse-annotations.json` and merged into generated `data/fse.json`.
 
 Extraction is heuristic, not compliance certification. OCR and author–year citation resolution are not included. Successful HTTP responses and registry metadata do not verify artifact contents or archival availability. Browser request failures can be CORS rather than broken links.

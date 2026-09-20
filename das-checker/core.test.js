@@ -42,6 +42,16 @@ test('visual heading styles reject body fragments and figure labels', () => {
   ]).length, 1);
 });
 
+test('IEEE spaced-small-cap headings are matched but preserved exactly', () => {
+  const found = findStatements(lines([
+    'VIII. D ATA A VAILABILITY', 'Artifact text.', 'A CKNOWLEDGMENTS'
+  ]));
+  assert.equal(found.length, 1);
+  assert.equal(found[0].sectionId, 'data-availability');
+  assert.equal(found[0].heading, 'VIII. D ATA A VAILABILITY');
+  assert.equal(found[0].body, 'Artifact text.');
+});
+
 test('an inline heading and body are separated', () => {
   const found = findStatements(lines([
     'Data Availability Statement. All benchmark tasks are available in our package.',

@@ -11,24 +11,34 @@ const gzipAsync = promisify(gzip), gunzipAsync = promisify(gunzip);
 
 const root = path.resolve(process.argv[2] || '');
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const output = path.resolve(process.argv[3] || path.join(projectRoot, '.cache/fse-das-counts.json'));
-const extractionCache = path.join(projectRoot, '.cache/pdf-extraction-v2');
+const conference = path.basename(root).toLowerCase();
+if (!['fse', 'ase'].includes(conference)) throw new Error(`Unsupported conference corpus: ${conference}`);
+const conferenceName = conference.toUpperCase();
+const output = path.resolve(process.argv[3] || path.join(projectRoot, `.cache/${conference}-das-counts.json`));
+// Retain the existing FSE cache layout; isolate other corpora to prevent path collisions.
+const extractionCache = path.join(projectRoot, '.cache/pdf-extraction-v2', conference === 'fse' ? '' : conference);
 const concurrency = Math.max(1, Math.min(8, Number(process.argv[4]) || 4));
+const minimumYear = Number(process.argv[5]) || 0;
 // Manually reviewed detector hits. Keep these visible for audit, but do not count them.
-const falsePositivePapers = new Set([
+const falsePositivePapers = new Set(conference === 'fse' ? [
   '2018/3236024.3236081.pdf',
   '2024/3643764.pdf',
   '2024/3660815.pdf'
-]);
+] : []);
 // Individually reviewed false-positive sections in papers that also contain valid sections.
-const falsePositiveSections = new Map([
+const falsePositiveSections = new Map(conference === 'fse' ? [
   ['2024/3660788.pdf', [{id:'artifact', heading:'artifact.', page:12}]]
-]);
+] : []);
 // Artifact evidence outside allowed headings. These annotations never affect counts.
-const annotationsFile = path.join(projectRoot, 'data/fse-annotations.json');
-const manualAnnotations = new Map(Object.entries(JSON.parse(await readFile(annotationsFile, 'utf8'))));
+const annotationsFile = path.join(projectRoot, `data/${conference}-annotations.json`);
+let manualAnnotations = new Map();
+try {
+  manualAnnotations = new Map(Object.entries(JSON.parse(await readFile(annotationsFile, 'utf8'))));
+} catch (error) {
+  if (error.code !== 'ENOENT') throw error;
+}
 if (!process.argv[2]) {
-  console.error('Usage: node batch.js <PDF directory> [output.json] [concurrency]');
+  console.error('Usage: node batch.js <PDF directory> [output.json] [concurrency] [minimum-year]');
   process.exit(1);
 }
 async function walk(directory) {
@@ -40,7 +50,11 @@ async function walk(directory) {
   }
   return files;
 }
-const files = await walk(root);
+const files = (await walk(root)).filter(file => {
+  const relative = path.relative(root, file);
+  const year = relative.split(path.sep).find(part => /^(?:19|20)\d{2}$/.test(part));
+  return !minimumYear || Number(year) >= minimumYear;
+});
 await mkdir(extractionCache, {recursive:true});
 const results = {};
 let cursor = 0, completed = 0, cacheHits = 0, cacheMisses = 0, lastSave = Date.now();
@@ -58,7 +72,7 @@ async function save() {
       const paper = {
         id:paperId,
         file,
-        url:/^\d+(?:\.\d+)?$/.test(paperId) ? `https://doi.org/10.1145/${paperId}` : null,
+        url:/^\d+(?:\.\d+)?$/.test(paperId) && (conference === 'fse' || paperId.includes('.')) ? `https://doi.org/10.1145/${paperId}` : null,
         sections:record.sections,
         dois:record.doiIDs || []
       };
@@ -80,13 +94,13 @@ async function save() {
   }
   const generatedAt = new Date().toISOString();
   await writeFile(output, JSON.stringify({generated_at:generatedAt, source:root, detector:'das-checker/core.js findStatements', files:results, years}, null, 2));
-  const dataOutput = path.join(projectRoot, 'data/fse.json');
+  const dataOutput = path.join(projectRoot, `data/${conference}.json`);
   for (const summary of Object.values(years)) {
     summary.papers.sort((a, b) => a.id.localeCompare(b.id, undefined, {numeric:true}));
     summary.false_positives.sort((a, b) => a.id.localeCompare(b.id, undefined, {numeric:true}));
     summary.annotations.sort((a, b) => a.id.localeCompare(b.id, undefined, {numeric:true}));
   }
-  const metadata = {generated_at:generatedAt, conference:'FSE', detector:'das-checker/core.js findStatements'};
+  const metadata = {generated_at:generatedAt, conference:conferenceName, detector:'das-checker/core.js findStatements'};
   await writeFile(dataOutput, JSON.stringify({...metadata, years}, null, 2));
   lastSave = Date.now();
 }

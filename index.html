@@ -44,7 +44,8 @@
 const $ = id => document.getElementById(id);
 const names = {icse:'ICSE',fse:'FSE',ase:'ASE'};
 let records = [], filtered = [], currentPage = 1;
-let matrixMetric = 'data', paperMatrixMetric = 'data', includeNonstandard = false, dasSummary = null, selectedDASYear = null;
+let matrixMetric = 'data', paperMatrixMetric = 'data', includeNonstandard = false;
+let dasSummaries = {}, selectedDASYear = null, selectedDASConference = null;
 const pageSize = 25;
 const filterStorageKey = 'conference-calls.filters.v1';
 function savedFilters() {
@@ -174,15 +175,16 @@ function sectionTypeSummary(papers) {
   const summary = sorted.length ? sorted.map(([label,count]) => `${label}: ${count}`).join(' · ') : 'none';
   return `Section types: ${summary}${nonstandard ? ` · Non-standard listings: ${nonstandard}` : ''}`;
 }
-function renderDASPapers(year) {
+function renderDASPapers(conference, year) {
+  selectedDASConference = conference;
   selectedDASYear = year;
   const output = $('das-paper-details');
-  const result = dasSummary?.years?.[year];
+  const result = dasSummaries[conference]?.years?.[year];
   const papers = displayedPapers(result);
   const falsePositives = paperMatrixMetric === 'doi' ? [] : (result?.false_positives || []);
   output.replaceChildren();
   const description = paperMatrixMetric === 'doi' ? 'a DOI in the extracted section' : includeNonstandard ? 'an extracted section or non-standard artifact listing' : 'an extracted section';
-  const heading = element('h4',`FSE ${year}: ${papers.length} paper${papers.length === 1 ? '' : 's'} with ${description}`);
+  const heading = element('h4',`${conference.toUpperCase()} ${year}: ${papers.length} paper${papers.length === 1 ? '' : 's'} with ${description}`);
   output.append(heading);
   $('paper-metric-note').textContent = sectionTypeSummary(papers);
   const appendPaper = (paper, falsePositive = false) => {
@@ -239,14 +241,16 @@ function renderDASPapers(year) {
   output.hidden = false;
 }
 function renderDASCounts(data) {
-  if (data) dasSummary = data;
+  if (data) dasSummaries = data;
   const isDOI = paperMatrixMetric === 'doi';
   $('paper-metric-title').textContent = isDOI ? 'Papers - DOI contained' : 'Papers - Data availability contained';
   $('paper-metric-toggle').textContent = isDOI ? 'Show data availability' : 'Show DOI contained';
   $('nonstandard-toggle').disabled = isDOI;
   $('nonstandard-toggle').setAttribute('aria-pressed',String(includeNonstandard));
   if (!selectedDASYear) {
-    const allPapers = Object.values(dasSummary?.years || {}).flatMap(result => displayedPapers(result, isDOI));
+    const allPapers = Object.values(dasSummaries).flatMap(summary =>
+      Object.values(summary?.years || {}).flatMap(result => displayedPapers(result, isDOI))
+    );
     $('paper-metric-note').textContent = sectionTypeSummary(allPapers);
   }
   const years = [...new Set(records.map(record => record.year))].filter(Boolean).sort((a,b)=>Number(b)-Number(a));
@@ -255,27 +259,31 @@ function renderDASCounts(data) {
   headerRow.append(element('th','Conference'));
   for (const year of years) headerRow.append(element('th',year));
   head.append(headerRow);
-  const body = element('tbody'), row = element('tr');
-  row.append(element('th','FSE'));
-  for (const year of years) {
-    const result = dasSummary?.years?.[year];
-    const cell = element('td');
-    if (result) {
-      const included = displayedPapers(result, isDOI).length;
-      const value = isDOI ? `${result.with_statement_and_doi ?? 0} / ${result.with_statement}` : `${included} / ${result.checked}`;
-      const button = element('button',value,'das-count-button');
-      button.type = 'button';
-      button.setAttribute('aria-label',`Show FSE ${year} papers: ${value}`);
-      button.addEventListener('click',()=>renderDASPapers(year));
-      cell.append(button);
-    } else {
-      cell.textContent = '—';
-      cell.className = 'availability-empty';
+  const body = element('tbody');
+  for (const conference of ['fse','ase']) {
+    const row = element('tr');
+    row.append(element('th',conference.toUpperCase()));
+    for (const year of years) {
+      const result = dasSummaries[conference]?.years?.[year];
+      const cell = element('td');
+      if (result) {
+        const included = displayedPapers(result, isDOI).length;
+        const value = isDOI ? `${result.with_statement_and_doi ?? 0} / ${result.with_statement}` : `${included} / ${result.checked}`;
+        const button = element('button',value,'das-count-button');
+        button.type = 'button';
+        button.setAttribute('aria-label',`Show ${conference.toUpperCase()} ${year} papers: ${value}`);
+        button.addEventListener('click',()=>renderDASPapers(conference, year));
+        cell.append(button);
+      } else {
+        cell.textContent = '—';
+        cell.className = 'availability-empty';
+      }
+      row.append(cell);
     }
-    row.append(cell);
+    body.append(row);
   }
-  body.append(row); table.replaceChildren(head,body);
-  if (selectedDASYear) renderDASPapers(selectedDASYear);
+  table.replaceChildren(head,body);
+  if (selectedDASYear && selectedDASConference) renderDASPapers(selectedDASConference, selectedDASYear);
 }
 function trackName(record) {
   if (['icse','fse','ase'].includes(record.series)) return 'Research Track';
@@ -371,14 +379,16 @@ $('reset').addEventListener('click',()=>{ $('search').value=''; $('series').valu
 for (const [id,delta] of [['previous',-1],['next',1]]) $(id).addEventListener('click',()=>{currentPage+=delta;render();$('count').scrollIntoView({block:'start'});});
 (async()=>{
   try {
-    const [callsResponse,dasResponse] = await Promise.all([
-      fetch('data/calls.json'), fetch('data/fse.json')
+    const [callsResponse,fseResponse,aseResponse] = await Promise.all([
+      fetch('data/calls.json'), fetch('data/fse.json'), fetch('data/ase.json')
     ]);
     if (!callsResponse.ok) throw new Error(`CFP data returned HTTP ${callsResponse.status}`);
     const data = await callsResponse.json();
     load(data);
-    if (dasResponse.ok) renderDASCounts(await dasResponse.json());
-    else renderDASCounts(null);
+    const summaries = {};
+    if (fseResponse.ok) summaries.fse = await fseResponse.json();
+    if (aseResponse.ok) summaries.ase = await aseResponse.json();
+    renderDASCounts(summaries);
   } catch(error) {
     render();
     showError('Could not load data/calls.json. Serve this directory over HTTP and try again. ('+error.message+')');

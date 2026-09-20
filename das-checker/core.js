@@ -16,6 +16,13 @@ export const SECTION_TYPES = Object.freeze([
 ]);
 export const DEFAULT_SECTION_IDS = Object.freeze(SECTION_TYPES.map(section => section.id));
 
+// IEEE PDFs often encode small-cap words as "D ATA A VAILABILITY". Collapse
+// those visual-word fragments only while matching headings; output retains the
+// exact text extracted from the PDF.
+function headingText(text) {
+  return normalize(text).replace(/\b([A-Z])\s+([A-Z]{2,})\b/g, '$1$2');
+}
+
 function dominantStyle(runs, start = 0, end = Infinity) {
   if (!Array.isArray(runs) || !runs.length) return null;
   const weights = new Map();
@@ -75,9 +82,11 @@ export function findStatements(lines, {sectionIDs = DEFAULT_SECTION_IDS} = {}) {
       // Try the longest candidate first so a split "… / Statement" heading
       // is attributed to its independently selectable Statement form.
       for (let n = Math.min(3, lines.length - i); n >= 1; n--) {
-        const title = normalize(lines.slice(i, i + n).map(line => line.text).join(' ')).trim();
+        const extractedTitle = normalize(lines.slice(i, i + n).map(line => line.text).join(' ')).trim();
+        const title = headingText(extractedTitle);
         const match = title.match(heading);
-        if (match && visuallyDistinctHeading(lines, i, n)) {
+        const smallCaps = title !== extractedTitle;
+        if (match && (smallCaps || visuallyDistinctHeading(lines, i, n))) {
           count = n;
           section = sections.find(candidate => new RegExp(`^(?:${candidate.pattern})$`, 'i').test(match[1]));
           extractedHeading = lines.slice(i, i + count).map(line => line.text).join('\n');
@@ -88,7 +97,7 @@ export function findStatements(lines, {sectionIDs = DEFAULT_SECTION_IDS} = {}) {
     if (!count) continue;
     let end = i + count;
     // Bound the excerpt if no next heading can be recognized.
-    while (end < lines.length && end < i + count + 100 && lines[end].page <= lines[i].page + 1 && !boundary.test(normalize(lines[end].text).trim())) end++;
+    while (end < lines.length && end < i + count + 100 && lines[end].page <= lines[i].page + 1 && !boundary.test(headingText(lines[end].text).trim())) end++;
     const bodyLines = lines.slice(i + count, end).map(line => line.text);
     if (inlineBody) bodyLines.unshift(inlineBody);
     statements.push({sectionId:section.id, sectionLabel:section.label, heading:extractedHeading, start:i, end, page:lines[i].page, text:lines.slice(i, end).map(line => line.text).join('\n'), body:bodyLines.join('\n')});
