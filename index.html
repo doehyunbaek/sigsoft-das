@@ -24,7 +24,8 @@
 <div class="observed-das">
 <div class="availability-heading"><h3 id="paper-metric-title">Papers - Data availability contained</h3><button id="paper-metric-toggle" type="button">Show DOI contained</button></div>
 <div class="table-scroll"><table id="das-count-table"><tbody><tr><td class="muted">Loading paper results…</td></tr></tbody></table></div>
-<p id="paper-metric-note" class="muted">Values are papers with a detected statement / PDFs checked. Detection is heuristic.</p>
+<p id="paper-metric-note" class="muted">Loading section types…</p>
+<section id="das-paper-details" aria-live="polite" hidden></section>
 </div>
 </section>
 <div class="toolbar">
@@ -43,7 +44,7 @@
 const $ = id => document.getElementById(id);
 const names = {icse:'ICSE',fse:'FSE',ase:'ASE'};
 let records = [], filtered = [], currentPage = 1;
-let matrixMetric = 'data', paperMatrixMetric = 'data', dasSummary = null;
+let matrixMetric = 'data', paperMatrixMetric = 'data', dasSummary = null, selectedDASYear = null;
 const pageSize = 25;
 const filterStorageKey = 'conference-calls.filters.v1';
 function savedFilters() {
@@ -89,6 +90,9 @@ function archiveURL(record) {
   return snapshot ? snapshot + sectionSuffix : null;
 }
 function mentionsDataAvailability(record) {
+  // FSE first prescribed a named Data Availability section in 2023.
+  // Earlier CFPs encouraged open artifacts but are not classified as DAS CFPs.
+  if (record.series === 'fse' && Number(record.year) < 2023) return false;
   const value = record.text.replace(/\s+/g, ' ');
   return /\bdata[ -]availability\b/i.test(value)
     || /\b(?:data|datasets?)(?:\s+\S+){0,10}\s+availab\w*/i.test(value);
@@ -127,8 +131,17 @@ function renderAvailability() {
         link.setAttribute('aria-label',`${names[series]} ${year}: ${isDOI ? 'DOI' : 'data availability'} mentioned`);
         cell.append(link);
       } else {
-        cell.textContent = '—';
         cell.className = 'availability-empty';
+        const cfpURL = record && sourceURL(record);
+        if (cfpURL) {
+          const link = element('a','-','availability-empty-link');
+          link.href = cfpURL;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.title = `${names[series]} ${year} CFP`;
+          link.setAttribute('aria-label',`${names[series]} ${year}: open CFP; ${isDOI ? 'DOI' : 'data availability'} not classified as mentioned`);
+          cell.append(link);
+        } else cell.textContent = '—';
       }
       row.append(cell);
     }
@@ -136,14 +149,69 @@ function renderAvailability() {
   }
   table.replaceChildren(head,body);
 }
+function sectionTypeSummary(papers) {
+  const counts = new Map();
+  for (const paper of papers) {
+    for (const section of paper.sections || []) counts.set(section.label, (counts.get(section.label) || 0) + 1);
+  }
+  const sorted = [...counts].sort(([labelA,countA],[labelB,countB]) => countB - countA || labelA.localeCompare(labelB, undefined, {numeric:true}));
+  return `Section types: ${sorted.length ? sorted.map(([label,count]) => `${label}: ${count}`).join(' · ') : 'none'}`;
+}
+function renderDASPapers(year) {
+  selectedDASYear = year;
+  const output = $('das-paper-details');
+  const result = dasSummary?.years?.[year];
+  const papers = (result?.papers || []).filter(paper => paperMatrixMetric !== 'doi' || paper.dois?.length);
+  const falsePositives = paperMatrixMetric === 'doi' ? [] : (result?.false_positives || []);
+  output.replaceChildren();
+  const heading = element('h4',`FSE ${year}: ${papers.length} paper${papers.length === 1 ? '' : 's'} with ${paperMatrixMetric === 'doi' ? 'a DOI in the extracted section' : 'an extracted section'}`);
+  output.append(heading);
+  $('paper-metric-note').textContent = sectionTypeSummary(papers);
+  const appendPaper = (paper, falsePositive = false) => {
+    const article = element('article',undefined,`das-paper${falsePositive ? ' false-positive' : ''}`);
+    const title = element('h5');
+    if (safeURL(paper.url)) {
+      const link = element('a',paper.id);
+      link.href = paper.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+      title.append(link);
+    } else title.textContent = paper.id;
+    article.append(title);
+    for (const section of paper.sections || []) {
+      article.append(element('p',`${section.label} · page ${section.page}`,'tag'));
+      article.append(element('pre',section.body || 'No section text could be extracted.','das-excerpt'));
+    }
+    if (paper.dois?.length) {
+      const identifiers = element('p',undefined,'das-dois');
+      identifiers.append('DOI: ');
+      paper.dois.forEach((id,index) => {
+        if (index) identifiers.append(', ');
+        const link = element('a',id);
+        link.href = `https://doi.org/${id.split('/').map(encodeURIComponent).join('/')}`;
+        link.target = '_blank'; link.rel = 'noopener noreferrer';
+        identifiers.append(link);
+      });
+      article.append(identifiers);
+    }
+    if (falsePositive) article.prepend(element('p','False positive — excluded from count','false-positive-label'));
+    output.append(article);
+  };
+  for (const paper of papers) appendPaper(paper);
+  if (falsePositives.length) {
+    output.append(element('h4',`Manually reviewed false positive${falsePositives.length === 1 ? '' : 's'}`));
+    for (const paper of falsePositives) appendPaper(paper, true);
+  }
+  output.hidden = false;
+}
 function renderDASCounts(data) {
   if (data) dasSummary = data;
   const isDOI = paperMatrixMetric === 'doi';
   $('paper-metric-title').textContent = isDOI ? 'Papers - DOI contained' : 'Papers - Data availability contained';
   $('paper-metric-toggle').textContent = isDOI ? 'Show data availability' : 'Show DOI contained';
-  $('paper-metric-note').textContent = isDOI
-    ? 'Values are papers with a DOI in the detected statement scope / papers with a detected statement. Detection is heuristic.'
-    : 'Values are papers with a detected statement / PDFs checked. Detection is heuristic.';
+  if (!selectedDASYear) {
+    const allPapers = Object.values(dasSummary?.years || {}).flatMap(result => result.papers || [])
+      .filter(paper => !isDOI || paper.dois?.length);
+    $('paper-metric-note').textContent = sectionTypeSummary(allPapers);
+  }
   const years = [...new Set(records.map(record => record.year))].filter(Boolean).sort((a,b)=>Number(b)-Number(a));
   const table = $('das-count-table');
   const head = element('thead'), headerRow = element('tr');
@@ -154,11 +222,22 @@ function renderDASCounts(data) {
   row.append(element('th','FSE'));
   for (const year of years) {
     const result = dasSummary?.years?.[year];
-    const cell = element('td',result ? (isDOI ? `${result.with_statement_and_doi ?? 0} / ${result.with_statement}` : `${result.with_statement} / ${result.checked}`) : '—');
-    if (!result) cell.className = 'availability-empty';
+    const cell = element('td');
+    if (result) {
+      const value = isDOI ? `${result.with_statement_and_doi ?? 0} / ${result.with_statement}` : `${result.with_statement} / ${result.checked}`;
+      const button = element('button',value,'das-count-button');
+      button.type = 'button';
+      button.setAttribute('aria-label',`Show FSE ${year} papers: ${value}`);
+      button.addEventListener('click',()=>renderDASPapers(year));
+      cell.append(button);
+    } else {
+      cell.textContent = '—';
+      cell.className = 'availability-empty';
+    }
     row.append(cell);
   }
   body.append(row); table.replaceChildren(head,body);
+  if (selectedDASYear) renderDASPapers(selectedDASYear);
 }
 function trackName(record) {
   if (['icse','fse','ase'].includes(record.series)) return 'Research Track';
@@ -253,7 +332,9 @@ $('reset').addEventListener('click',()=>{ $('search').value=''; $('series').valu
 for (const [id,delta] of [['previous',-1],['next',1]]) $(id).addEventListener('click',()=>{currentPage+=delta;render();$('count').scrollIntoView({block:'start'});});
 (async()=>{
   try {
-    const [callsResponse,dasResponse] = await Promise.all([fetch('data/calls.json'),fetch('data/fse-das-summary.json')]);
+    const [callsResponse,dasResponse] = await Promise.all([
+      fetch('data/calls.json'), fetch('data/fse.json')
+    ]);
     if (!callsResponse.ok) throw new Error(`CFP data returned HTTP ${callsResponse.status}`);
     const data = await callsResponse.json();
     load(data);

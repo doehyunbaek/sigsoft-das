@@ -4,7 +4,7 @@ Client-side PDF inspection, with a shared DOM-free module for browsers and Node.
 
 - `index.html`: browser page; shared site styles/theme live one directory above.
 - `web.js`: file/URL input, progress, and result rendering.
-- `core.js`: DAS detection, cited-reference DOI extraction, PDF.js extraction, HTTP checks, DataCite metadata.
+- `core.js`: Data Availability/Reproducibility section detection, cited-reference DOI extraction, PDF.js extraction, HTTP checks, DataCite metadata.
 - `cli.js`: optional Node CLI; outputs JSON.
 
 ## HotCRP integration PoC
@@ -23,6 +23,7 @@ URLs such as `das-checker/?pdf=https%3A%2F%2Farxiv.org%2Fpdf%2F2602.10046` reloa
 cd das-checker
 npm install
 node cli.js paper.pdf
+node cli.js paper.pdf --sections=data-availability-statement,reproducibility-statement
 node cli.js https://arxiv.org/pdf/2602.10046 --check-links
 ```
 
@@ -38,6 +39,8 @@ import {analyzePDF, doiURL, checkDOI, fetchDOIMetadata} from './core.js';
 
 const result = await analyzePDF(pdfBytes, {
   pdfjs,
+  // Omit sectionIDs to allow all displayed heading forms.
+  sectionIDs: ['data-availability-statement', 'reproducibility-statement'],
   onProgress: ({page, total}) => console.error(`${page}/${total}`)
 });
 for (const record of result.dois) {
@@ -50,5 +53,7 @@ for (const record of result.dois) {
 In a browser, import a PDF.js browser build and configure its `GlobalWorkerOptions.workerSrc` before passing it to `analyzePDF`. The shared module imports no Node or DOM APIs. `analyzePDF` accepts a Uint8Array/ArrayBuffer, copies bytes for PDF.js, cleans up the document, and returns `{pages, hasText, statements, dois}` with JSON-serializable provenance.
 
 `checkDOI` returns `{status, ok, url, redirected, error?}`; network failures have `status: null`. Both HTTP helpers accept `{fetchImpl, timeout}` for testing/custom runtimes. Extraction-only helpers (`normalize`, `doiIDs`, `findStatements`, `collectDOIs`) are also exported; `collectDOIs` internally returns provenance Sets.
+
+`batch.js` stores gzip-compressed PDF.js text and annotation extraction under `.cache/pdf-extraction-v2/`, keyed by source path, size, and modification time. Detector changes can therefore rescan cached extraction without reopening unchanged PDFs. Manually reviewed artifact evidence outside supported headings is maintained in `data/fse-annotations.json` and merged into generated `data/fse.json`.
 
 Extraction is heuristic, not compliance certification. OCR and author–year citation resolution are not included. Successful HTTP responses and registry metadata do not verify artifact contents or archival availability. Browser request failures can be CORS rather than broken links.

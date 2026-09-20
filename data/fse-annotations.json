@@ -1,0 +1,365 @@
+{
+  "2020/3368089.3409679.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "framework",
+    "location": {
+      "section": "Conclusion and Future Work",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/vrthra/mimid"
+    ],
+    "note": "The GitHub URL for the Mimid framework appears in the conclusion; no allowed section heading is present."
+  },
+  "2020/3368089.3409721.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "code-and-data",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/niuye8911/rapid_m"
+    ],
+    "note": "The GitHub URL for the RAPID-M code and raw datasets appears in the conclusion; no allowed section heading is present."
+  },
+  "2020/3368089.3409727.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "code-and-data",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/xlab-uiuc/cdep-fse"
+    ],
+    "note": "The GitHub URL for the cDep tool and data appears in the conclusion; no allowed section heading is present."
+  },
+  "2020/3368089.3409746.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "data-and-scripts",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/SunflowerPKU/FSE20Dataset"
+    ],
+    "note": "The GitHub URL for the study data, scripts, and coding guidelines appears in the conclusion; no allowed section heading is present."
+  },
+  "2020/3368089.3409748.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "reproduction-instructions",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/researchart/fse20/tree/master/submissions/available/entropic"
+    ],
+    "note": "The GitHub URL for instructions to reproduce the Entropic results appears in the conclusion; no allowed section heading is present."
+  },
+  "2020/3368089.3409754.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "code-and-data",
+    "location": {
+      "section": "Conclusion",
+      "page": 10
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.4021473"
+    ],
+    "note": "The persistent URL for the paper’s code and data appears in the conclusion under its open-science statement; no allowed section heading is present."
+  },
+  "2021/3468264.3468567.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "data",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/ShangwenWang/Cognac"
+    ],
+    "note": "The GitHub URL for the Cognac study data appears in the conclusion after an “Artifacts:” label; no allowed section heading is present."
+  },
+  "2021/3468264.3468574.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "source-code",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/andromeda/lya"
+    ],
+    "note": "The GitHub URL for the open-source Lya implementation appears in the conclusion; no allowed section heading is present."
+  },
+  "2021/3468264.3468606.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "artifacts",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/JetBrains-Research/authorship-detection"
+    ],
+    "note": "The conclusion states that all related artifacts are publicly available on GitHub via reference [5]; no allowed section heading is present."
+  },
+  "2021/3468264.3468604.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "research-artifacts",
+    "location": {
+      "section": "Conclusion and Future Work",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/fmehralian/COALA"
+    ],
+    "note": "The conclusion states that the COALA research artifacts are publicly available via reference [6]; no allowed section heading is present."
+  },
+  "2021/3468264.3468622.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "implementation-data-and-results",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/chuanluocs/LS-Sampling"
+    ],
+    "note": "The conclusion provides the LS-Sampling implementation, benchmarks, and detailed experimental results at this GitHub URL; no allowed section heading is present."
+  },
+  "2021/3468264.3468625.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "tool-benchmarks-and-proofs",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/Amocy-Wang/ProbDD"
+    ],
+    "note": "The conclusion provides the ProbDD tool, benchmarks, and appendix proofs at this GitHub URL; no allowed section heading is present."
+  },
+  "2022/3540250.3549094.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "source-code-and-experimental-data",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/zhangzwwww/DietCode"
+    ],
+    "note": "The conclusion states that the DietCode source code and experimental data are publicly available at this GitHub URL; no allowed section heading is present."
+  },
+  "2022/3540250.3549113.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "source-code-and-experimental-data",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/adf1178/PT4Code"
+    ],
+    "note": "The conclusion states that the PT4Code source code and experimental data are publicly available at this GitHub URL; no allowed section heading is present."
+  },
+  "2022/3540250.3549118.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "research-artifacts",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://sites.google.com/view/accessitext/home"
+    ],
+    "note": "The conclusion states that the AccessiText research artifacts are publicly available at the companion website cited as reference [3]; no allowed section heading is present."
+  },
+  "2022/3540250.3549123.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "study-data-and-source-code",
+    "location": {
+      "section": "7 DATA-AVAILABLITY STATEMENT",
+      "page": 11
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.7060209"
+    ],
+    "note": "The statement makes all study data and the DeepPerf source code available through reference [33], but its heading misspells “AVAILABILITY” as “AVAILABLITY” and is therefore not a recognized heading."
+  },
+  "2022/3540250.3549126.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "software-and-evaluation-artifacts",
+    "location": {
+      "section": "Conclusion — Artifact Availability",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/sola-st/DynaPyt",
+      "https://pypi.org/project/dynapyt/",
+      "https://doi.org/10.5281/zenodo.7037946"
+    ],
+    "note": "An inline Artifact Availability statement in the conclusion provides the DynaPyt repository and Python package and cites the archived evaluation artifact; no allowed standalone section heading is present."
+  },
+  "2022/3540250.3549153.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "experimental-data-and-source-code",
+    "location": {
+      "section": "Conclusion and Future Work — Artifacts",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/CGCL-codes/naturalcc"
+    ],
+    "note": "An inline Artifacts statement says that the experimental data and source code will be integrated into the open-source NaturalCC toolkit at this GitHub URL; no allowed standalone section heading is present."
+  },
+  "2022/3540250.3549166.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "reproduction-virtual-machine",
+    "location": {
+      "section": "Conclusion — Artifact Available",
+      "page": 11
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.7047061"
+    ],
+    "note": "An inline Artifact Available statement in the conclusion provides a virtual machine for reproducing the reported results through reference [55]; no allowed standalone section heading is present."
+  },
+  "2022/3540250.3549167.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "research-artifacts",
+    "location": {
+      "section": "Conclusion",
+      "page": 11
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.6367126"
+    ],
+    "note": "The conclusion states that the study’s research artifacts are publicly available at the companion website cited as reference [84]; no allowed section heading is present."
+  },
+  "2023/3611643.3616289.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "data-model-checkpoints-and-source-code",
+    "location": {
+      "section": "9 DATA AVAILABLITY",
+      "page": 11
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.7600371"
+    ],
+    "note": "The statement makes all data, model checkpoints, source code, and reproduction instructions publicly available, but its heading misspells “AVAILABILITY” as “AVAILABLITY” and is therefore not a recognized heading."
+  },
+  "2023/3611643.3616339.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "study-data",
+    "location": {
+      "section": "Summary",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/Ringbo/CCT5"
+    ],
+    "note": "The summary states that all data in the CCT5 study are publicly available at this GitHub URL; no allowed section heading is present."
+  },
+  "2024/3643732.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "data-and-scripts",
+    "location": {
+      "section": "Declarations — Data-Availability Statement",
+      "page": 19
+    },
+    "urls": [
+      "https://doi.org/10.5281/zenodo.10684985"
+    ],
+    "note": "An inline Data-Availability Statement under Declarations says that all EyeTrans data and scripts are available on Zenodo with documentation for replication; the heading and body share a line without supported punctuation."
+  },
+  "2024/3643748.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "implementation",
+    "location": {
+      "section": "Conclusion — Artifact Availability",
+      "page": 19
+    },
+    "urls": [
+      "https://github.com/IntelligentDDS/TraStrainer"
+    ],
+    "note": "An inline Artifact Availability statement in the conclusion says that the basic TraStrainer implementation is publicly available through reference [40]; no allowed standalone section heading is present."
+  },
+  "2024/3660800.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "source-code-and-experimental-data",
+    "location": {
+      "section": "Conclusion",
+      "page": 20
+    },
+    "urls": [
+      "https://github.com/ilwoof/logsd/"
+    ],
+    "note": "The conclusion states that the LogSD source code and experimental data are available at this GitHub URL; no allowed section heading is present."
+  },
+  "2024/3660808.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "research-artifacts-and-appendix",
+    "location": {
+      "section": "Conclusion",
+      "page": 20
+    },
+    "urls": [
+      "https://github.com/COLA-Laboratory/MOAA",
+      "https://zenodo.org/records/11071846"
+    ],
+    "note": "The conclusion provides the MOAA research artifacts on GitHub and the paper appendix on Zenodo; no allowed section heading is present."
+  },
+  "2024/3660822.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "Conclusion",
+      "page": 20
+    },
+    "urls": [
+      "https://github.com/gaokai320/PyRadar"
+    ],
+    "note": "The conclusion provides the PyRadar replication package at this GitHub URL; no allowed section heading is present."
+  },
+  "2025/3729369.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "code-and-data",
+    "location": {
+      "section": "Data Avalability",
+      "page": 20
+    },
+    "urls": [
+      "https://github.com/Jun-jie-Huang/LUNAR"
+    ],
+    "note": "The statement makes the LUNAR code and data available on GitHub, but its heading misspells ‘Availability’ as ‘Avalability’ and is therefore not a recognized heading."
+  },
+  "2025/3729399.pdf": {
+    "type": "artifact-url-outside-allowed-heading",
+    "artifact_type": "research-artifacts",
+    "location": {
+      "section": "Conclusion",
+      "page": 20
+    },
+    "urls": [
+      "https://github.com/seal-hub/GenA11y.git"
+    ],
+    "note": "The conclusion states that the GenA11y research artifacts are publicly available through the companion website citation; no allowed section heading is present."
+  },
+  "2026/3797112.pdf": {
+    "type": "artifact-url-under-unsupported-heading",
+    "artifact_type": "analysis-scripts-data-tables-and-figures",
+    "location": {
+      "section": "9 Data Availability and Reproducibility",
+      "page": 19
+    },
+    "urls": [
+      "https://github.com/ardier/in_bugs_we_trust/"
+    ],
+    "note": "The Data Availability and Reproducibility section provides scripts containing the full data analysis and all generated tables and figures; this heading is not in the supported heading set."
+  }
+}

@@ -1,7 +1,18 @@
-import {analyzePDF, checkDOI, fetchDOIMetadata} from './core.js';
+import {analyzePDF, checkDOI, fetchDOIMetadata, SECTION_TYPES} from './core.js';
 
 const $ = id => document.getElementById(id);
 const PDFJS = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38';
+for (const section of SECTION_TYPES) {
+  const label = document.createElement('label');
+  const input = document.createElement('input');
+  input.type = 'checkbox';
+  input.name = 'section-id';
+  input.value = section.id;
+  input.checked = true;
+  label.append(input, ` ${section.label}`);
+  $('section-options').append(label);
+}
+
 let pdfjsPromise;
 function loadPDFJS() {
   return pdfjsPromise ||= import(`${PDFJS}/pdf.min.mjs`).then(pdfjs => {
@@ -90,6 +101,12 @@ $('check-form').addEventListener('submit', async event => {
     return;
   }
   const sendRequests = $('request-links').checked;
+  const sectionIDs = [...document.querySelectorAll('input[name="section-id"]:checked')].map(input => input.value);
+  if (!sectionIDs.length) {
+    $('error').textContent = 'Allow at least one section heading.';
+    $('error').hidden = false;
+    return;
+  }
   $('check').disabled = true;
   $('pdf').disabled = true;
   $('pdf-url').disabled = true;
@@ -113,6 +130,7 @@ $('check-form').addEventListener('submit', async event => {
     if (sourceURL) address.searchParams.set('pdf', sourceURL.href);
     else address.searchParams.delete('pdf');
     address.searchParams.set('checkLinks', $('request-links').checked ? '1' : '0');
+    address.searchParams.set('sections', sectionIDs.join(','));
     history.replaceState(null, '', address);
     const maxSize = 100 * 1024 * 1024;
     let data;
@@ -144,19 +162,21 @@ $('check-form').addEventListener('submit', async event => {
       } finally { clearTimeout(timer); }
     }
     const pdfjs = await loadPDFJS();
-    const analysis = await analyzePDF(data, {pdfjs, onProgress:({page, total}) => {
+    const analysis = await analyzePDF(data, {pdfjs, sectionIDs, onProgress:({page, total}) => {
       $('status').textContent = `Reading page ${page} of ${total}…`;
     }});
     const {statements, dois:records} = analysis;
     $('das-progress').textContent = statements.length ? '✅' : '⚠️';
-    $('das-result').textContent = !analysis.hasText ? 'No extractable text found. This may be a scanned PDF; run OCR and try again. DAS presence cannot be determined.' : statements.length ? `${statements.length} candidate DAS heading(s) detected. Confirm the excerpts and section boundaries below.` : 'No recognizable DAS heading found in extracted text. This is not proof that the statement is absent; inspect the PDF manually.';
+    $('das-result').textContent = !analysis.hasText ? 'No extractable text found. This may be a scanned PDF; run OCR and try again. Section presence cannot be determined.' : statements.length ? `${statements.length} candidate artifact section heading(s) detected. Confirm the excerpts and section boundaries below.` : 'No allowed section heading found in extracted text. This is not proof that a statement is absent; inspect the PDF manually.';
     $('das-result').hidden = statements.length > 0;
     for (const statement of statements) {
-      $('statements').append(node('pre', statement.body || 'No statement text could be extracted.'));
+      const section = document.createElement('section');
+      section.append(node('h3', `${statement.sectionLabel} (page ${statement.page})`), node('pre', statement.body || 'No statement text could be extracted.'));
+      $('statements').append(section);
     }
     $('doi-progress').textContent = records.length ? '✅' : '⚠️';
     $('doi-summary').hidden = records.length > 0;
-    $('doi-summary').textContent = `${records.length} unique DAS-linked DOI(s) extracted. ${!records.length ? 'No DOI found in a candidate DAS or its numbered references. Review manually; author–year citations, other identifiers, or a no-artifacts statement may apply.' : 'Includes only the DAS and its cited numbered references. Confirm these identify specific artifact versions.'}`;
+    $('doi-summary').textContent = `${records.length} unique artifact-section-linked DOI(s) extracted. ${!records.length ? 'No DOI found in a candidate section or its numbered references. Review manually; author–year citations, other identifiers, or a no-artifacts statement may apply.' : 'Includes only selected sections and their cited numbered references. Confirm these identify specific artifact versions.'}`;
     const jobs = [];
     for (const [index, record] of records.entries()) {
       const item = document.createElement('li');
@@ -212,6 +232,10 @@ $('pdf').addEventListener('change', () => {
 $('pdf-url').addEventListener('input', () => { $('pdf').value = ''; });
 const params = new URLSearchParams(location.search);
 if (params.has('checkLinks')) $('request-links').checked = params.get('checkLinks') !== '0';
+if (params.has('sections')) {
+  const selected = new Set(params.get('sections').split(','));
+  for (const input of document.querySelectorAll('input[name="section-id"]')) input.checked = selected.has(input.value);
+}
 if (params.get('pdf')) {
   $('pdf-url').value = params.get('pdf');
   $('check-form').requestSubmit();

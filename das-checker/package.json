@@ -4,5 +4,6 @@
   "type": "module",
   "exports": "./core.js",
   "engines": {"node": ">=22"},
+  "scripts": {"test": "node --test"},
   "dependencies": {"pdfjs-dist": "4.10.38"}
 }
