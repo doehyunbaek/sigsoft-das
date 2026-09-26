@@ -1,0 +1,66 @@
+{
+  "2024/3691620.3695550.pdf": {
+    "type": "artifact-link-outside-whitelist",
+    "count_as_artifact": true,
+    "artifact_type": "docker-image-and-data",
+    "location": {"section": "Data Availability, footnote 5", "page": 10},
+    "urls": ["https://hub.docker.com/r/calicosynth/calico"],
+    "note": "Footnote 5 supplies this Docker Hub image URL for the implementation, data, and scripts. Outside the automatic whitelist; reviewed as a manual With Artifact signal."
+  },
+  "2025/11334676.pdf": {
+    "type": "artifact-link-outside-whitelist",
+    "count_as_artifact": true,
+    "artifact_type": "code-and-data",
+    "location": {"section": "Data Availability", "page": 2},
+    "urls": ["https://ucsrl.de/research/tephra"],
+    "note": "The DAS gives this institutional project URL for code and data. Outside the automatic whitelist; reviewed as a manual With Artifact signal."
+  },
+  "2020/9286132.pdf": {
+    "type": "artifact-link-unreadable-pdf",
+    "count_as_artifact": true,
+    "artifact_type": "study-data",
+    "location": {
+      "section": "Data availability",
+      "page": 4
+    },
+    "urls": [
+      "https://github.com/sola-st/string-bugs"
+    ],
+    "note": "Manually inferred from the DAS footnote 2 text, extracted as 'https://github.com!sola-st!string-bugs (no usable PDF hyperlink annotation). The inferred GitHub URL responds successfully. This reviewed manual link counts toward With Artifact, but is not an automatically detected link."
+  },
+  "2023/10298538.pdf": {
+    "type": "artifact-link-unreadable-pdf",
+    "count_as_artifact": true,
+    "artifact_type": "replication-package",
+    "location": {
+      "section": "Data Availability",
+      "page": 11
+    },
+    "urls": [
+      "https://differential-prompting.github.io/"
+    ],
+    "note": "Manually normalized from the DAS text 'https://differential-' followed by 'prompting . github . io/'. The inferred GitHub Pages URL responds successfully. This reviewed link counts toward With Artifact, but is not an automatically detected link."
+  },
+  "2025/11334459.pdf": {
+    "type": "artifact-link-without-scheme",
+    "count_as_artifact": true,
+    "artifact_type": "study-data",
+    "location": {
+      "section": "Data-Availability Statement",
+      "page": 11
+    },
+    "urls": [
+      "https://github.com/nicovank/Energy-Languages"
+    ],
+    "note": "The DAS prints github.com/nicovank/Energy-Languages without a URL scheme. The HTTPS URL is manually normalized for display and counts toward With Artifact as reviewed evidence, not an automatically detected link."
+  },
+  "2025/11334384.pdf": {
+    "type": "false-positive-das-heading",
+    "location": {
+      "section": "Body text on data availability for trajectory prediction",
+      "page": 11
+    },
+    "urls": [],
+    "note": "The checker mistakes the sentence-ending phrase 'data availability.' for a standalone Data Availability heading. The following text begins 'C. System demonstration: applying ADPerf to test ADSs in simulated environments', not a DAS. Reviewed as a false positive; exclude from DAS counts."
+  }
+}

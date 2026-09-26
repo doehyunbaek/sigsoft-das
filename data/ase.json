@@ -1,13 +1,287 @@
 {
-  "generated_at": "2026-09-20T09:44:49.488Z",
+  "generated_at": "2026-09-26T08:53:19.928Z",
   "conference": "ASE",
   "detector": "das-checker/core.js findStatements",
   "years": {
+    "1997": {
+      "total": 32,
+      "checked": 32,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 32,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "1998": {
+      "total": 24,
+      "checked": 24,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 24,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "1999": {
+      "total": 26,
+      "checked": 26,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 26,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2000": {
+      "total": 23,
+      "checked": 23,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 23,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2001": {
+      "total": 32,
+      "checked": 32,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 32,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2002": {
+      "total": 19,
+      "checked": 19,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 19,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2003": {
+      "total": 22,
+      "checked": 22,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 22,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2004": {
+      "total": 25,
+      "checked": 25,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 25,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2005": {
+      "total": 28,
+      "checked": 28,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 28,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2006": {
+      "total": 22,
+      "checked": 22,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 22,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2007": {
+      "total": 37,
+      "checked": 37,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 37,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2008": {
+      "total": 34,
+      "checked": 34,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 34,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2009": {
+      "total": 38,
+      "checked": 38,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 38,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2010": {
+      "total": 34,
+      "checked": 34,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 34,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2011": {
+      "total": 37,
+      "checked": 37,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 37,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2012": {
+      "total": 21,
+      "checked": 21,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 21,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2013": {
+      "total": 51,
+      "checked": 51,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 51,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2014": {
+      "total": 55,
+      "checked": 55,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 55,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2015": {
+      "total": 60,
+      "checked": 60,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 60,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2016": {
+      "total": 57,
+      "checked": 57,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 57,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
+    "2017": {
+      "total": 67,
+      "checked": 67,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 67,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
+      "false_positives": [],
+      "annotations": []
+    },
     "2018": {
       "total": 69,
       "checked": 69,
       "with_statement": 0,
       "with_statement_and_doi": 0,
+      "with_replication_package": 0,
       "without_statement": 69,
       "no_text": 0,
       "errors": 0,
@@ -20,6 +294,7 @@
       "checked": 84,
       "with_statement": 0,
       "with_statement_and_doi": 0,
+      "with_replication_package": 0,
       "without_statement": 84,
       "no_text": 0,
       "errors": 0,
@@ -32,6 +307,7 @@
       "checked": 93,
       "with_statement": 2,
       "with_statement_and_doi": 0,
+      "with_replication_package": 2,
       "without_statement": 91,
       "no_text": 0,
       "errors": 0,
@@ -49,7 +325,15 @@
               "body": "The supplementary material accompanying\nthis work is available at https://github.com/SNTSVV/SB-TemPsy."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/SNTSVV/SB-TemPsy",
+              "sources": [
+                "Data Availability excerpt, p. 10"
+              ]
+            }
+          ]
         },
         {
           "id": "9286132",
@@ -64,17 +348,39 @@
               "body": "The full list of all studied bugs, along with the\nresults of our manual inspection, is publicly available.\n2"
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": []
         }
       ],
       "false_positives": [],
-      "annotations": []
+      "annotations": [
+        {
+          "id": "9286132",
+          "file": "2020/9286132.pdf",
+          "url": null,
+          "repositoryLinks": [],
+          "annotation": {
+            "type": "artifact-link-unreadable-pdf",
+            "count_as_artifact": true,
+            "artifact_type": "study-data",
+            "location": {
+              "section": "Data availability",
+              "page": 4
+            },
+            "urls": [
+              "https://github.com/sola-st/string-bugs"
+            ],
+            "note": "Manually inferred from the DAS footnote 2 text, extracted as 'https://github.com!sola-st!string-bugs (no usable PDF hyperlink annotation). The inferred GitHub URL responds successfully. This reviewed manual link counts toward With Artifact, but is not an automatically detected link."
+          }
+        }
+      ]
     },
     "2021": {
       "total": 82,
       "checked": 82,
       "with_statement": 0,
       "with_statement_and_doi": 0,
+      "with_replication_package": 0,
       "without_statement": 82,
       "no_text": 0,
       "errors": 0,
@@ -87,6 +393,7 @@
       "checked": 116,
       "with_statement": 3,
       "with_statement_and_doi": 2,
+      "with_replication_package": 3,
       "without_statement": 113,
       "no_text": 0,
       "errors": 0,
@@ -106,7 +413,8 @@
           ],
           "dois": [
             "10.5281/zenodo.7032076"
-          ]
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "3551349.3556903",
@@ -121,7 +429,16 @@
               "body": "The implementation of CrystalBLEU and scripts used for exper-\niments presented in this paper are publicly available at https://\ngithub.com/sola-st/crystalbleu."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/sola-st/crystalbleu",
+              "sources": [
+                "Data Availability excerpt, wrapped URL p. 11",
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3551349.3561156",
@@ -138,7 +455,8 @@
           ],
           "dois": [
             "10.5281/zenodo.6504032"
-          ]
+          ],
+          "repositoryLinks": []
         }
       ],
       "false_positives": [],
@@ -148,7 +466,8 @@
       "total": 134,
       "checked": 134,
       "with_statement": 19,
-      "with_statement_and_doi": 3,
+      "with_statement_and_doi": 7,
+      "with_replication_package": 18,
       "without_statement": 115,
       "no_text": 0,
       "errors": 0,
@@ -166,7 +485,15 @@
               "body": "The experiment data and the source code of AMCDroid can\nbe found at: [57]."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://zenodo.org/record/7886463#.ZFEPjHZByUk",
+              "sources": [
+                "Reference [57] cited by selected section, wrapped URL p. 13"
+              ]
+            }
+          ]
         },
         {
           "id": "10298308",
@@ -183,7 +510,8 @@
           ],
           "dois": [
             "10.6084/m9.figshare.23702271"
-          ]
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "10298353",
@@ -198,7 +526,17 @@
               "body": "The replication package, including the tools and the data,\nis publicly available [55], [56]."
             }
           ],
-          "dois": []
+          "dois": [
+            "10.5281/zenodo.8249717"
+          ],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/lyoubo/ReMapper",
+              "sources": [
+                "Reference [56] cited by selected section, p. 13"
+              ]
+            }
+          ]
         },
         {
           "id": "10298354",
@@ -213,7 +551,8 @@
               "body": "The subjects of our study, including data\nconstraints and FinTech applications, cannot be shared because\nof confidentiality agreements in Ant Group.\nA. Experimental Setup\nWe conduct the experiments using 75 data constraint\nchanges, which are not investigated for RQ3 in the empirical\nstudy. Specifically, 89.33% (67/75) of data constraint changes\ninvolve clause additions and deletions, which is consistent\nwith our second finding of the empirical study. Similar to\nthe method of studying RQ3, we utilize the git history to\ndetermine the developers committing the updated code, and\nask them to label the target methods for each data constraint\n921\nAuthorized licensed use limited to: UNIVERSITAETSBIBL STUTTGART. Downloaded on September 19,2026 at 07:30:22 UTC from IEEE Xplore. Restrictions apply.\n10 0 10 1 10 2 10 3\nDCLink\nDCLink-C\nNC\nLCS-B\nLCS-U\nLevenshtein\nFig. 9: Size distribution of method lists of each approach\n3\nchange, which serves as the ground truth for our evaluation.\nWhen evaluating DCL INK , we feed each data constraint pair\nand the old-version application code to it.\nBaselines . To show the superiority of our traceability link\nrecovery, we compare DCL INK with five conventional base-\nline approaches. First, we do an ablation study by comparing\nDCL INK to a baseline approach DCL INK -C that is set not to\nhave method prioritization, similar to existing impact analysis-\nbased approaches [24], [25]. Second, we adopt all possible\nbaselines from the state-of-the-art test-to-code traceability\nrecovery [7] set with the same thresholds t , namely similarity-\nbased approaches , including the naming convention (NC) [5]\n2\n,\ntwo longest common sequence variants (LCS-B and LCS-U,\nt = 0 . 8 ), and Levenshtein distance ( t = 0 . 35 ) [6]. Other\nexecution-based (e.g., LCBA [5]) and textual approaches [26]\nare discarded since data constraints are not test cases that\ninvoke application code directly and cannot be applied on the\nmethod level [7].\nMetrics . We use the following commonly-adopted met-\nrics [3], [8], [27] to measure the quality of the method lists\ncomputed by DCL INK :\n• Hit@K : The percentage of the target methods that can\nbe discovered by inspecting the top K of the returned\nlist. An effective traceability link analysis should enable\ndevelopers to find the target methods by examining as few\nmethods as possible. The higher metric values indicate\nbetter quality of the solution.\n• MAP (Mean Average Precision) [27]: The mean value of\nthe average precision of predicting the target methods.\nWhen the ascending ranks of the target methods are h\ni\n1 ,\nh\ni\n2 , · · · , h\ni\nk i\nin the i -th traceability analysis, we have\nMAP =\n1\nN\nN ∑\ni =1\n(\n1\nk i\nk i ∑\nj =1\nj\nh\ni\nj\n)\nHere N is the total number of analysis rounds. The higher\nthe MAP value, the more precise the analysis is.\nAll experiments are conducted on a Macbook Pro with an\neight-core M1 processor and 16 GB of physical memory."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": []
         },
         {
           "id": "10298372",
@@ -230,7 +569,8 @@
           ],
           "dois": [
             "10.5281/zenodo.7901830"
-          ]
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "10298377",
@@ -245,7 +585,21 @@
               "body": "We have made the code for our FLUX prototype available\nat https://github.com/ericliuu/flux. Our repository does not\ninclude the input unit tests used in our experiments. Those are\ntaken directly from the LLVM repository at https://github.com/\nllvm/llvm-project/tree/main/llvm/test/Transforms, at commit\n0303eafcb34647f7d5a4015aad266b5766f5dc5e. Because we\nhave only tested on the x86 backend, we exclude any unit\ntests that target other architectures. Further, we trivially filter\nout incompatible unit tests by running each test through opt\nwith the -O3 optimization level and excluding test cases that\ncrash. We store each unit test in a flat directory that is passed\nin as seed input into libFuzzer. In total, this results in nearly\n50,000 LLVM IR functions in our corpus."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/ericliuu/flux",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            },
+            {
+              "url": "https://github.com/",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "10298391",
@@ -260,7 +614,10 @@
               "body": "The implementation of all evaluated neural bug localization\nand repair models are open source and available. To improve\nthe replication of our work and facilitate future work, we are\nreleasing all trained models together with the pre-training and\nfine-tuning code on Zenodo [31]. In addition, our replication\npackage also includes novel datasets produced in this work."
             }
           ],
-          "dois": []
+          "dois": [
+            "10.5281/zenodo.7900059"
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "10298394",
@@ -275,7 +632,15 @@
               "body": "The source code of deepmufl and the data\nassociated with our experiments are publicly available [36].\nII. B ACKGROUND\nA. Mutation Analysis\nMutation analysis [18], is a program analysis method for\nassessing the quality of the test suite. It involves generating a\npool of program variants, i.e. , mutants , by systematically mu-\ntating program elements, e.g. , replacing an arithmetic operator\nwith another, and running the test suite against the mutants to\ncheck if the output of the mutated program is different from\nthat of the original one; if different, the mutant is marked as\nkilled , otherwise as survived . A mutant might survive because\nit is semantically equivalent to the original program, hence\nthe name equivalent mutant. Test suite quality is assessed by\ncomputing a mutation score for the test suite, which is the ratio\nof killed mutants over the non-equivalent survived mutants.\nMutation score indicates how good a test suite is in detecting\nreal bugs [37]. In addition to its original use, mutation analysis\nhas been used for many other purposes [38], such as fault\nlocalization [16], [17], automated program repair [39], [40],\ntest generation [41], [42] and prioritization [43], program\nverification [44], [45], etc .\nB. Mutation-based Fault Localization\nMutation-based fault localization (MBFL) uses mutation\nanalysis to find bugs. In this section, we review two major\napproaches to MBFL, namely Metallaxis [30] and MUSE [17].\nBoth of these approaches are implemented in deepmufl . The\nreader is referred to the original papers [30], [17] for examples\nexplicating the rationale behind each approach."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/ali-ghanbari/deepmufl-ase-2023",
+              "sources": [
+                "Reference [36] cited by selected section, wrapped URL p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "10298413",
@@ -290,7 +655,15 @@
               "body": "We release the code and data of this work at GitHub [1]\nto help researchers reproduce and extend our study. In the\nrepository, we also provide instructions on how to run our\nproposed iASTMapper and the baselines used in our study."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/anonym00001/iASTMapper",
+              "sources": [
+                "Reference [1] cited by selected section, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "10298431",
@@ -305,7 +678,10 @@
               "body": "Our dataset is publicly open\n1\n.\nII. R ELATED W ORK\nWe present the related work from two aspects: studies\nrelated to issue labels and issue prioritization on GitHub."
             }
           ],
-          "dois": []
+          "dois": [
+            "10.5281/zenodo.7890936"
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "10298475",
@@ -320,7 +696,15 @@
               "body": "We provide a replication package at:\nhttps://github.com/osslab-pku/SILENCE"
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/osslab-pku/SILENCE",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "10298483",
@@ -332,12 +716,13 @@
               "label": "Data Availability",
               "heading": "XI. D ATA A VAILABILITY",
               "page": 11,
-              "body": "Our artifact is available at https://doi.org/10.5281/zenodo."
+              "body": "Our artifact is available at https://doi.org/10.5281/zenodo.\n8247917. In it, we provide:"
             }
           ],
           "dois": [
             "10.5281/zenodo"
-          ]
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "10298488",
@@ -352,7 +737,16 @@
               "body": "We make the replication package publicly available, which\nincludes all the code and datasets to reproduce our experiments\nat https://figshare.com/s/5991a6f89800906176a2 [40]."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://figshare.com/s/5991a6f89800906176a2",
+              "sources": [
+                "Data Availability excerpt, p. 11",
+                "Reference [40] cited by selected section, p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "10298512",
@@ -367,7 +761,15 @@
               "body": "You can find the code and data related to this paper at\nhttps://github.com/JohnnyPeng18/TypeGen."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/JohnnyPeng18/TypeGen",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "10298538",
@@ -382,7 +784,8 @@
               "body": "We provide a reproduction package at https://differential-\nprompting . github . io/ to facilitate future research. The pack-\nage includes (1) a dataset containing 470 intentions inferred by\nDifferential Prompting , 940 reference versions, and all failure-\ninducing test cases found by Differential Prompting and the\nbaselines (2) an available tool Differential Prompting , and (3)\nseven Codeforces programs."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": []
         },
         {
           "id": "10298547",
@@ -397,7 +800,15 @@
               "body": "Our replication package [33] includes all code and data\nemployed in our research. This comprises the datasets needed\nfor training and testing the models, the code to reproduce the\nexperiments ( i.e., models’ training and inference), the predic-\ntions generated in each setting, and the R scripts employed for\nperforming statistical analysis."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/antonio-mastropaolo/",
+              "sources": [
+                "Reference [33] cited by selected section, p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "10298562",
@@ -412,7 +823,15 @@
               "body": "We released our tool MLIRSmith and\nexperimental data at our project homepage for experiment\nreplication and practical use [28]. We hope that the artifact\ncan be helpful to promote future research in this field.\nEnvironment : Our study was conducted on a machine with\nIntel(R) Xeon(R) Gold 6240C CPU @ 2.60GHz and 128G\nMemory, Ubuntu 18.04.6 LTS.\nB. RQ1: Previously Unknown Bugs Detected by MLIRSmith\nDuring two-month fuzzing, MLIRSmith detected 53 previ-\nously unknown bugs in total. The details of these bugs are pre-\nsented in Table II, where each column represents the bug ID,\nthe root cause of the fixed bug, the type of the bug-occurring\npass, and the bug status labeled by developers. Among the 53\nbugs, 49 have been confirmed and 38 have already been fixed\nby MLIR compiler infrastructure developers. The remaining\nfour are awaiting feedback from the developers.\nThe bugs detected by MLIRSmith are diverse. They in-\nvolved a wide range of (1) passes in MLIR compiler infras-\ntructure and (2) root causes. Then, we analyzed these bugs\nfrom the two aspects.\nPass Analysis : According to the document of MLIR com-\npiler infrastructure, the passes are categorized as bufferiza-\ntion passes, conversion passes, general transformation passes,\ndialect-specific passes, and others.\n• Bufferization passes are responsible to convert opera-\ntions with tensor semantics to operations with memref\nsemantics by replacing the tensor operands with memref\nvalues. Among the 53 reported bugs, only 2 occur in the\nbufferization passes.\n• Conversion passes perform transformations between di-\nalects to lower the abstraction level. For example, the pass\n“convert-scf-to-cf” transforms structured control flow\n(which can be organized in nested structure) to flat-\ntened control flow (that only has branches or conditional\nbranches). There are a total of 19 bugs that have been\nidentified to occur in the conversion passes.\n• General transformation passes can be applied to all\ndialects and are responsible to perform common opti-\nmizations/transformations, such as common subexpres-\nsion elimination. Specifically, 9 bugs occur in general\ntransformation passes, including 5 bugs in canonicaliza-\ntion , 1 bug in common subexpression elimination , and 3\nbugs in inline .\n• Dialect-specific passes are responsible to perform op-\ntimizations/transformations within each specific dialect.\nFor example, the pass “affine-loop-unroll” is specific\nto optimizing the operations within the “affine” dialect.\nThere are 19 bugs occur in dialect-specific passes, includ-\ning 5 in passes for the “affine” dialect, 2 in passes for\nthe “arith” dialect, 6 in passes for the “linalg” dialect, 2\nin passes for the “llvm” dialect, 2 in passes for the “scf”\ndialect, and 2 in passes for the “sparse tensor” dialect.\n• There are also 4 bugs that do not belong to any of the four\ncategories of passes, and we denoted them as “others”.\nRoot Cause Analysis By analyzing the 38 fixed bugs ac-\ncording to developers’ discussion and corresponding patches,\nwe further summarized the root causes of these bugs. More-\nover, for each root cause, we selected one bug as the illustrative\nexample.\nIncomplete Verifier (IV): Each pass has a verifier to check\nthe compatibility between the pass and some operations. This\nroot cause is that a necessary verifier of a pass is missing\nor incomplete, which causes the pass works on incompatible\noperations, leading to a crash. 7 (out of 38) fixed bugs are\ndue to this root cause. For example, as shown in Fig. 3,\nBug #59496 was caused by the “convert-tensor-to-spirv” pass\nworking on the arith.extsi operation with an incompat-\nible type (i.e., i64 ). Hence, a crash occurred. Subsequently,\nit is fixed by adding a verifier to check such cases in order to\nensure compatibility between the pass and the operation.\nIncorrect Pattern (IP): Each pass uses a set of patterns to\n1561\nAuthorized licensed use limited to: UNIVERSITAETSBIBL STUTTGART. Downloaded on September 19,2026 at 07:49:02 UTC from IEEE Xplore. Restrictions apply.\nTABLE II: Details of Submitted/Confirmed/Fixed bugs detected by MLIRSmith\nBug Id Root Cause Pass Category Status Bug Id Root Cause Pass Category Status\n#58258 - Dialect-Specific (affine) confirmed #59714 - Conversion confirmed\n#58411 IRL Dialect-Specific (linalg) fixed #59970 Others Dialect-Specific (sparse tensor) fixed\n#58745 IRL General Transformation fixed #59972 - Others confirmed\n#58746 IRL General Transformation fixed #59986 IV Conversion fixed\n#58747 IP Dialect-Specific (linalg) fixed #59987 IA Conversion fixed\n#58748 - Dialect-Specific (linalg) confirmed #59989 IRL Conversion fixed\n#58749 IP Conversion fixed #59991 - Dialect-Specific (linalg) confirmed\n#58803 - Conversion confirmed #59993 IA Conversion fixed\n#58805 UD Conversion fixed #59994 IRL Dialect-Specific (affine) fixed\n#58807 IP Dialect-Specific (arith) fixed #60018 - Conversion confirmed\n#58869 - Dialect-Specific (linalg) confirmed #60070 UD Conversion fixed\n#59135 IRL General Transformation fixed #60093 IP General Transformation fixed\n#59136 IP Conversion fixed #60094 IRL Dialect-Specific (scf) fixed\n#59182 IV Conversion fixed #60186 Others Others fixed\n#59234 IRL Dialect-Specific (affine) fixed #60193 IRL General Transformation fixed\n#59442 - Bufferization confirmed #60195 IV Dialect-Specific (sparse tensor) fixed\n#59443 IRL Dialect-Specific (scf) fixed #60197 UD Conversion fixed\n#59444 IA Dialect-Specific (affine) fixed #60199 IV Conversion fixed\n#59445 - Bufferization submitted #60214 IP Others fixed\n#59454 - Conversion confirmed #60216 - Others confirmed\n#59455 IRL General Transformation fixed #59725 - Dialect-Specific (linalg) submitted\n#59460 IRL Dialect-Specific (llvm) fixed #59726 - General Transformation submitted\n#59461 IRL Dialect-Specific (affine) fixed #61054 IA Conversion fixed\n#59462 UD Dialect-Specific (llvm) fixed #61056 IV General Transformation fixed\n#59496 IV Conversion fixed #61094 IP Conversion fixed\n#59617 IP Dialect-Specific (arith) fixed #61380 IRL Conversion fixed"
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/Colloportus0/MLIRSmith",
+              "sources": [
+                "Reference [28] cited by selected section, p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "10298580",
@@ -427,7 +846,17 @@
               "body": "The artifact associated with this submission, which includes\ncode, datasets, and other relevant materials, is available in\nour GitHub repository [21]. The artifact has been designed to\nreproduce the experiments presented in the paper and support\nfurther research in this domain. While we have archived\nthe submission version of our artifact on Zenodo [54], we\nrecommend visiting our GitHub repository to access the most\nrecent version of our tool.\n456\nAuthorized licensed use limited to: UNIVERSITAETSBIBL STUTTGART. Downloaded on September 19,2026 at 06:09:47 UTC from IEEE Xplore. Restrictions apply."
             }
           ],
-          "dois": []
+          "dois": [
+            "10.5281/zenodo.8237454"
+          ],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/codingsoo/ARAT-RL",
+              "sources": [
+                "Reference [21] cited by selected section, p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "10298590",
@@ -442,17 +871,46 @@
               "body": "In addition, our tool is publicly available\non GitHub (https://github.com/skzhangPKU/GUIMind).\nII. B ACKGROUND A ND P ROBLEM S TATEMENT\nA. Data Minimization Principle\nThe Data Minimization Principle is a fundamental princi-\nple of data protection. It requires that organizations collect,\nprocess, and store only the minimum amount of personal data\nnecessary to achieve specific and legitimate purposes. This\nprinciple is enshrined in various data protection frameworks.\nIn the European Union, the GDPR [1] enshrines the Data\nMinimization Principle as one of its core principles, stating\nthat personal data shall be “adequate, relevant, and limited to\nwhat is necessary in relation to the purposes for which they\nare processed.” Similarly, Brazil’s LGPD [2] also requires data\ncontrollers to limit the collection and processing of personal\ndata to what is strictly necessary for a specific purpose. In\nthe United States, the recently enacted CPRA [3] includes\nprovisions on data minimization, requiring businesses to limit\ntheir collection, use, and disclosure of personal information to\nwhat is reasonably necessary to achieve their stated purpose.\nThe UK’s Data Protection Act [4] also requires that data\ncontrollers observe the Data Minimization Principle while\nprocessing personal data to ensure the gathering of only\nnecessary and relevant data. In China, the PIPL [5] emphasizes\nthe Data Minimization Principle by requiring organizations\nto minimize the collection of personal information and to\nanonymize or pseudonymize personal information wherever\npossible. Overall, the Data Minimization Principle is a critical\ncomponent of data protection frameworks worldwide, ensuring\nthat personal data is collected, processed, and stored only to\nthe extent necessary for legitimate purposes.\nB. Limitations of the Android Permission System\nThe Android permission system is designed to control app\naccess to device resources and data. While it is intended to\nprotect user privacy and ensure data security, it cannot fully\nguarantee the Data Minimization Principle. There are two\ntypes of Android permissions: static permissions and runtime\npermissions. For static permissions, users are required to grant\npermissions during installation. This indicates that the app can\naccess specified resources without further user actions. While\nthis level of access may be necessary to function properly for\napps, it also poses a risk to user privacy. For example, some\napps may request more permissions than necessary, leading to\nunnecessary data collection and potentially violating the Data\nMinimization Principle.\nRuntime permissions are introduced in Android 6.0 to\naddress some of these privacy concerns [11]. With runtime\npermissions, the user is prompted to grant or deny access\nto specific resources when the app requests it rather than\nduring installation. Ideally, if users can deny unnecessary\npermission requests, it ensures only the minimum amount of\ndata necessary is collected. However, recent studies show [6]–\n[9] that Android runtime permissions are not sufficient to fully\nprevent apps from abusing users’ sensitive data due to three\nreasons: (1) apps may group different permissions and mislead\nusers into granting unnecessary permissions; (2) the majority\nof users (54.7%) cannot understand the descriptions in the\nmessage box for permissions, allowing apps to access sensitive\ndata without true consent from users; (3) many sensitive\npermissions, such as device location or unique phone IDs (e.g.,\nIMEI number), are not protected.\nIn summary, while the Android Permission System provides\nsome control over app access to user data and resources, it\ncannot guarantee adherence to the Data Minimization Princi-\nple. Further efforts are needed to ensure that apps only collect\n1239\nAuthorized licensed use limited to: UNIVERSITAETSBIBL STUTTGART. Downloaded on September 19,2026 at 07:32:49 UTC from IEEE Xplore. Restrictions apply.\nand retain the minimum user data necessary for legitimate\npurposes.\nC. Android GUI Programming\nIn Android development, activities are the building blocks\nof apps. An activity represents a single screen with a user\ninterface. It typically fills the entire screen, although smaller\nactivities can be used in multi-window mode or as floating\nwindows. Widgets are small GUI components that allow users\nto interact with an app, such as buttons, text fields, checkboxes,\nand radio buttons. Activities are responsible for managing the\npresentation and behavior of their widgets.\nA frame GUI window is a container that holds one or more\nactivities. It provides a framework for the activities to be\ndisplayed and allows them to communicate with each other. An\nactivity can be launched from another activity using an Intent\nobject, and the system handles the transition between the two\nactivities. A GUI transition graph is a diagram that represents\nthe behavior and functionality of an app. Formally, we define\na GUI transition graph as a directed graph G = ( V, E ) where\nV is the set of nodes in the graph, representing individual\nactivities or screens within the app, and E is the set of edges\nin the graph, representing the possible transitions or actions\nbetween those activities. It provides a high-level overview of\nthe flow and structure of the app, showing how users can\nnavigate between different screens and what actions or events\ntrigger these transitions. This graph is useful when designing\nand testing the flow of an app’s user interface.\nD. Assumptions\nIn this paper, we hold a “sloppy user” assumption, which\nassumes that users do not have sufficient knowledge or pa-\ntience to carefully examine the permissions required by apps.\nThus, there is a high probability for users to mistakenly grant\nsensitive permissions to apps, sometimes even unconsciously.\nThis assumption is supported by recent studies [6]–[8]."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/skzhangPKU/GUIMind)",
+              "sources": [
+                "Data Availability excerpt, p. 2"
+              ]
+            }
+          ]
         }
       ],
       "false_positives": [],
-      "annotations": []
+      "annotations": [
+        {
+          "id": "10298538",
+          "file": "2023/10298538.pdf",
+          "url": null,
+          "repositoryLinks": [],
+          "annotation": {
+            "type": "artifact-link-unreadable-pdf",
+            "count_as_artifact": true,
+            "artifact_type": "replication-package",
+            "location": {
+              "section": "Data Availability",
+              "page": 11
+            },
+            "urls": [
+              "https://differential-prompting.github.io/"
+            ],
+            "note": "Manually normalized from the DAS text 'https://differential-' followed by 'prompting . github . io/'. The inferred GitHub Pages URL responds successfully. This reviewed link counts toward With Artifact, but is not an automatically detected link."
+          }
+        }
+      ]
     },
     "2024": {
       "total": 155,
       "checked": 155,
       "with_statement": 21,
-      "with_statement_and_doi": 4,
+      "with_statement_and_doi": 5,
+      "with_replication_package": 21,
       "without_statement": 134,
       "no_text": 0,
       "errors": 0,
@@ -470,7 +928,16 @@
               "body": "Our source code and experimental data are pub-\nlicly available at https://github.com/LogIntelligence/LogBatcher."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/LogIntelligence/LogBatcher",
+              "sources": [
+                "Data Availability excerpt, p. 11",
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3694995",
@@ -488,7 +955,8 @@
           "dois": [
             "10.5281/zenodo.13767954",
             "10.5281/zenodo.7935821"
-          ]
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "3691620.3695000",
@@ -503,7 +971,15 @@
               "body": "All the experimental dataset and source code\nare available at: https://github.com/sssszh/RankEF."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/sssszh/RankEF",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695005",
@@ -518,7 +994,16 @@
               "body": "The artifact of this paper is publicly available at [36]."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/NariyoshiChida/ASE2024/",
+              "sources": [
+                "Reference [36] cited by selected section, p. 12",
+                "Reference [36] cited by selected section, PDF link p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695022",
@@ -535,6 +1020,15 @@
           ],
           "dois": [
             "10.5281/zenodo.13761264"
+          ],
+          "repositoryLinks": [
+            {
+              "url": "https://zenodo.org/doi/10.5281/zenodo.13761264",
+              "sources": [
+                "Data Availability excerpt, p. 11",
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            }
           ]
         },
         {
@@ -550,7 +1044,15 @@
               "body": "We provide our tool and documentation at:\nhttps://github.com/Rigorous-Software-Engineering/sherlock\nOutline. In Sect. 2, we present interrogation testing, and in\nSect. 3, we instantiate it in a technique for testing program analyzers\nthat reason about reachability. Sect. 4 describes implementation\naspects of Sherlock . We present our experimental evaluation in\nSect. 5, discuss related work in Sect. 6, and conclude in Sect. 7."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/Rigorous-Software-Engineering/sherlock",
+              "sources": [
+                "Data Availability excerpt, p. 2"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695036",
@@ -567,6 +1069,15 @@
           ],
           "dois": [
             "10.5281/zenodo.11522277"
+          ],
+          "repositoryLinks": [
+            {
+              "url": "https://zenodo.org/doi/10.5281/zenodo.11522277",
+              "sources": [
+                "Data Availability excerpt, wrapped URL p. 11",
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            }
           ]
         },
         {
@@ -582,7 +1093,15 @@
               "body": "Our replication package\n2\nis publicly available."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/XR-Y/DroidCoder",
+              "sources": [
+                "Footnote 2 cited by selected section, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695065",
@@ -599,6 +1118,22 @@
           ],
           "dois": [
             "10.5281/zenodo.13294049"
+          ],
+          "repositoryLinks": [
+            {
+              "url": "https://zenodo.org/records/13305663",
+              "sources": [
+                "Reference [9] cited by selected section, p. 12",
+                "Reference [9] cited by selected section, PDF link p. 12"
+              ]
+            },
+            {
+              "url": "https://github.com/phamquiluan/RCAEval",
+              "sources": [
+                "Reference [10] cited by selected section, wrapped URL p. 12",
+                "Reference [10] cited by selected section, PDF link p. 12"
+              ]
+            }
           ]
         },
         {
@@ -614,7 +1149,16 @@
               "body": "We make PoorCodeSumEval, benchmark models, and code publicly\navailable at https://github.com/ythere-y/PoorCodeSumEval"
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/ythere-y/PoorCodeSumEval",
+              "sources": [
+                "Data Availability excerpt, p. 11",
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695075",
@@ -629,7 +1173,29 @@
               "body": "Our experimental data are publicly available,\nalong with the programs that produced and analyzed them. The\ncode to compute all the results can be found at https://github.\ncom/benedikt-schesch/AST-Merging-Evaluation and the computed\ndata can be found at https://zenodo.org/records/13366866. The\nnew merging tools are available at https://github.com/plume-lib/\nmerging."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://zenodo.org/records/13366866",
+              "sources": [
+                "Data Availability excerpt, p. 11",
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            },
+            {
+              "url": "https://github.com/plume-lib/merging",
+              "sources": [
+                "Data Availability excerpt, wrapped URL p. 11",
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            },
+            {
+              "url": "https://github.com/benedikt-schesch/AST-Merging-Evaluation",
+              "sources": [
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695470",
@@ -644,7 +1210,16 @@
               "body": "We released the implementation and all associated publicly available\ndata at https://github.com/java-bench/JavaBench."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/java-bench/JavaBench",
+              "sources": [
+                "Data Availability excerpt, p. 11",
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695474",
@@ -659,7 +1234,15 @@
               "body": "Both the C++ and Python implementations of Denum are publicly\navailable [3]."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/gaiusyu/Denum",
+              "sources": [
+                "Reference [3] cited by selected section, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695484",
@@ -674,7 +1257,17 @@
               "body": "The artifact of NpeTest is publicly available in Zenodo\n3\nand\nGitHub\n4\n. It includes all benchmarks, tools, and the experimental\nresults in Section 4, except the industrial case study."
             }
           ],
-          "dois": []
+          "dois": [
+            "10.5281/zenodo.13371822"
+          ],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/kupl/NPETestArtifact",
+              "sources": [
+                "Footnote 4 cited by selected section, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695511",
@@ -689,7 +1282,21 @@
               "body": "All the material needed to replicate our experiments is available on\nZenodo [ 8 ]. The latest version of DeepREST can be found in the\nRestTestGen GitHub repository [ 9 ], where it is implemented as a\ncustom testing strategy."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://zenodo.org/records/11525389",
+              "sources": [
+                "Reference [8] cited by selected section, p. 11"
+              ]
+            },
+            {
+              "url": "https://github.com/SeUniVr/RestTestGen",
+              "sources": [
+                "Reference [9] cited by selected section, wrapped URL p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695525",
@@ -704,7 +1311,15 @@
               "body": "Our artifact is available at the following URL:\nhttps://github.com/zbchen/JcgEks."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/zbchen/JcgEks",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695533",
@@ -719,7 +1334,15 @@
               "body": "To aid in future replication of our results, we\nmake a replication package publicly available.\n1"
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/software-rebels/Developer-Applied-Accelerations-in-Continuous-Integration",
+              "sources": [
+                "Footnote 1 cited by selected section, wrapped URL p. 2"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695545",
@@ -734,7 +1357,15 @@
               "body": "For open science, we make our tool and all experimental data pub-\nlicly available via the GitHub repository\n1\n."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/kupl/PyinderArtifact",
+              "sources": [
+                "Footnote 1 cited by selected section, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3695550",
@@ -749,7 +1380,8 @@
               "body": "An implementation of Calico , along with the evaluation data and\nscripts, is available as a Docker image\n5\n."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": []
         },
         {
           "id": "3691620.3695553",
@@ -764,7 +1396,16 @@
               "body": "Our replication package (including code, model, etc.) is publicly\navailable at https://github.com/duyali2000/VIM-PT."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/duyali2000/VIM-PT",
+              "sources": [
+                "Data Availability excerpt, p. 11",
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "3691620.3696020",
@@ -779,18 +1420,48 @@
               "body": "We have released the code and data at https://mr-adopt.github.io/."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://mr-adopt.github.io/",
+              "sources": [
+                "Data Availability excerpt, p. 11",
+                "Data Availability excerpt, PDF link p. 11"
+              ]
+            }
+          ]
         }
       ],
       "false_positives": [],
-      "annotations": []
+      "annotations": [
+        {
+          "id": "3691620.3695550",
+          "file": "2024/3691620.3695550.pdf",
+          "url": "https://doi.org/10.1145/3691620.3695550",
+          "repositoryLinks": [],
+          "annotation": {
+            "type": "artifact-link-outside-whitelist",
+            "count_as_artifact": true,
+            "artifact_type": "docker-image-and-data",
+            "location": {
+              "section": "Data Availability, footnote 5",
+              "page": 10
+            },
+            "urls": [
+              "https://hub.docker.com/r/calicosynth/calico"
+            ],
+            "note": "Footnote 5 supplies this Docker Hub image URL for the implementation, data, and scripts. Outside the automatic whitelist; reviewed as a manual With Artifact signal."
+          }
+        }
+      ]
     },
     "2025": {
       "total": 246,
       "checked": 246,
-      "with_statement": 32,
-      "with_statement_and_doi": 3,
-      "without_statement": 214,
+      "with_statement": 31,
+      "with_statement_and_doi": 7,
+      "with_replication_package": 31,
+      "without_statement": 215,
       "no_text": 0,
       "errors": 0,
       "papers": [
@@ -807,7 +1478,15 @@
               "body": "Due to confidentiality restrictions related to aerospace data\nand the ongoing integration of the tool into our industrial\npartner’s internal verification platform, the full source code\nand industrial dataset cannot be released at this stage. With\npartner’s approval, we plan to release a standalone prototype\nof R EQ 2LTL, together with portions of the aerospace dataset\nand an interactive front-end interface, once the integration\nwork is complete. In the meantime, a demonstration package\nof R EQ 2LTL, including a usage guide and video, is publicly\navailable at https://github.com/Meng-Nan-MZ/Req2LTL.git."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/Meng-Nan-MZ/Req2LTL.git",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334242",
@@ -822,7 +1501,15 @@
               "body": "All code, experimental setup, survey, results,\nand links to pull requests are available [17].\nIII. M OTIVATION\nThis section presents an illustrative example that highlights a\nhypothetical scenario leading to a smelly test, grounded in test-\nengineering behaviors observed in prior research [8]. We then\ndescribe a pilot study on an open-source project to empirically\nvalidate our hypothesis regarding the presence of this test\nsmell in real-world test-development practices. Additionally,\nwe discuss our manual refactoring of the identified smelly tests\nto gain preliminary insights into effective refactoring strategies.\nMotivating Example. Figure 1(a) presents an example of a\nsmelly unit test. A developer tasked with testing a banking\napplication begins by creating an initial test case — instantiating\nan Account object and verifying its name and balance via two\nassertions. To expedite coverage of additional scenarios, the\ndeveloper resorts to a common shortcut: copying and pasting\nexisting test code. Specifically, they repeatedly duplicate the\naccount creation and make minimal edits, i.e., updating argu-\nments in account instantiation, to validate multiple accounts.\nThey also replicate the original assertions, adjusting only the\nexpected values and the verified variable names.\nAlthough a developer’s intentions may be for such changes\nto be temporary, such incremental edits may often expand and\npersist due to project pressures and delayed refactoring efforts.\nConsequently, the test method grows increasingly complex,\nexhibiting a clear test smell: it intertwines semantically in-\ndependent test code by instantiating three separate Account\nobjects and verifying each with distinct groups of assertions.\nAlthough this scenario presents a hypothetical and simplified\ntest-engineering workflow, it closely reflects common testing\npractices familiar to many developers. Such “lazy” test devel-\nopment is not merely theoretical; Aniche et al. [8] observed"
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/spideruci/U2W",
+              "sources": [
+                "Reference [17] cited by selected section, wrapped URL p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "11334262",
@@ -837,7 +1524,15 @@
               "body": "Artifacts and datasets of P OLI C OND are available at https:\n//github.com/SEG-DENSE/PoliCond."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/SEG-DENSE/PoliCond",
+              "sources": [
+                "Data Availability excerpt, wrapped URL p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334266",
@@ -852,7 +1547,15 @@
               "body": "To facilitate future research and tool\ndevelopment, we publicly release the full set of categorized\nerrata reports from our study, the 31 ambiguity findings detected\nby RFCScope, and the prompt templates used in our analysis\nat: https://github.com/HIPREL-Group/RFCScope.\nII. B ACKGROUND\nA. Request for Comments (RFCs)\nRequest for Comments (RFCs) are technical documents that\nserve as the primary method for standardizing Internet protocols,\npublished by Internet Engineering Task Force (IETF) [ 1 ]. Each\nRFC is assigned a unique number (e.g., RFC 9460 [ 17 ]) and\nremains immutable once published."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/HIPREL-Group/RFCScope",
+              "sources": [
+                "Data Availability excerpt, p. 2"
+              ]
+            }
+          ]
         },
         {
           "id": "11334305",
@@ -867,7 +1570,15 @@
               "body": "Our current state field coverage implementation as well as\nthe scripts and data required to reproduce our experiments are\npublicly available in our replication package [5]."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://zenodo.org/records/17255287",
+              "sources": [
+                "Reference [5] cited by selected section, wrapped URL p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "11334320",
@@ -882,7 +1593,15 @@
               "body": "The evaluation dataset, experimental results, and framework\nimplementation details are available in our repository [8]."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/kairanskrr/FaultSeeker",
+              "sources": [
+                "Reference [8] cited by selected section, p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "11334324",
@@ -897,7 +1616,15 @@
               "body": "All code and data for this study are publicly available at\nhttps://github.com/ZJU-CTAG/SolContractEval."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/ZJU-CTAG/SolContractEval",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334353",
@@ -912,7 +1639,15 @@
               "body": "Our code and data are available at:\nhttps://github.com/sola-st/llm-agents-study"
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/sola-st/llm-agents-study",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334363",
@@ -929,7 +1664,8 @@
           ],
           "dois": [
             "10.5281/zenodo.15559653"
-          ]
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "11334368",
@@ -944,22 +1680,15 @@
               "body": "The implementation of SMTgazer , all adopted subjects,\nand detailed experimental results are publicly available at our\nrepository: https://github.com/Bazoka13/SMTgazer ."
             }
           ],
-          "dois": []
-        },
-        {
-          "id": "11334384",
-          "file": "2025/11334384.pdf",
-          "url": null,
-          "sections": [
+          "dois": [],
+          "repositoryLinks": [
             {
-              "id": "data-availability",
-              "label": "Data Availability",
-              "heading": "data availability.",
-              "page": 11,
-              "body": "C. System demonstration: applying ADPerf to test ADSs in\nsimulated environments\nMotivation. Prior studies [77], [78] illustrate that non-trivial\ngaps exist between testing individual modules alone and\ntesting the whole ADS (e.g., through a simulator). Hence, we\nset off to demonstrate the impact of increased latency of 3D\nobstacle detection latency detected by ADPerf on an ADS in\na simulated environment.\nMethod. We conduct system demonstrations on Autoware\nSS2 [61] using a compatible simulator (i.e., AWSIM V1.2.0\n[20]). We cannot experiment on Apollo due to the lack\nof a compatible simulator. AWSIM supports a very limited\ndriving scenario compared to nuScenes, which was used in\nthe other evaluations of this work. We experimented with\ndifferent scenarios (e.g., mutating obstacles) but found similar\noutcomes. In the paper, we focus on one representative demo\nas an example: In the original scenario (Figure 9), the ego\ncar needs to travel 60m, along the lane to its destination on\nthe adjacent lane, which means the ego car needs to plan a\nroute for lane changing at a proper time. Eight vehicles are\non the adjacent lanes moving in the same direction. The ego\ncar successfully arrived at the destination in 30 seconds.\nWe then applied ADPerf to generate new scenarios that\nstress the latency of 3D obstacle detection, and further impact\nthe whole ADS. Limited by space, we will describe one type\nof perturbation by ADPerf , which is “add obstacle”.\nResults. Under the ADPerf ’s generated scenarios (i.e., with\nfour non-overlapping vehicles on the adjacent lane), the ego\ncar stops indefinitely and fails to change the lane when it is\nsafe (the bottom figure in Figure 9).\nOn the surface, we found that an increased number of high-\nlatency (i.e., over 100ms) single-frame processing is observed:\nfrom 13.8% to 23% of all the frames. High-latency frames are\ndropped by a real-time AD system. Hence, this translates to a\nsharp increase in frame dropping. Even though the accuracy of\nthe obstacle detection is consistent between the original and\nADPerf ’s generated scenarios. The ADPerf ’s generated sce-\nnario stresses the latency of the obstacle detection, promotes\nmore frame dropping, and causes the ego car to “freeze.”\nRoot cause analysis. We further examine the full story be-\nhind the ego car’s erroneous behavior. We found that due to\nthe increased frame dropping, some obstacles of the dropped\nframes are deemed as disappeared by the tracking module.\nAn obstacle must be continuously (i.e., over one second) not\ndetected to be deemed as “disappeared”. That exact obstacle\nin the next frame will have a brand-new status for trajectory\nprediction, i.e., no history locations, which leads to a poor\npredicted trajectory. Significant discrepancy between a trajec-\ntory and the detected location will lead to frequent replanning,\nwhich is computationally expensive. Therefore, the ego car\nwill “freeze” once it begins frequent replanning.\nVII. T HREATS TO V ALIDITY\nExperiment reproducibility. As live performance measuring\ncan be fickled due to randomization of the algorithms pre-\nprocessing data for the detection models, for each PCD\nmodification, we evaluate it with the model five times to record\nthe combined latency and enhance reproducibility.\nScenes contain a large percentage of stopped cars. The\nscenes used to test trajectory prediction contain a low per-\ncentage of moving cars (18.5%), which skews the results by\nreducing the number of deviations and limiting the variability\nin the computed deviations. We plan to address this limitation\nin future studies."
+              "url": "https://github.com/Bazoka13/SMTgazer",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
             }
-          ],
-          "dois": []
+          ]
         },
         {
           "id": "11334399",
@@ -974,7 +1703,15 @@
               "body": "The replication package, including tools and data, is pub-\nlicly available in [23]."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/Michaelll123/WIRL",
+              "sources": [
+                "Reference [23] cited by selected section, wrapped URL p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "11334428",
@@ -989,7 +1726,21 @@
               "body": "The code, data and prompts are available on our website:\nhttps://sites.google.com/view/binstruct/home [26]."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://sites.google.com/view/binstruct/home",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            },
+            {
+              "url": "https://sites.google.com/view/binstruct/",
+              "sources": [
+                "Reference [26] cited by selected section, p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "11334451",
@@ -1006,7 +1757,8 @@
           ],
           "dois": [
             "10.5281/zenodo.17052142"
-          ]
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "11334459",
@@ -1021,7 +1773,8 @@
               "body": "Data supporting this paper’s evaluation is available at\ngithub.com/nicovank/Energy-Languages ."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": []
         },
         {
           "id": "11334486",
@@ -1036,7 +1789,15 @@
               "body": "For transparency and reproducibility, we share all study\nartifacts online\n7\n."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/se-sic/knowledgeTransferCopilot",
+              "sources": [
+                "Footnote 7 cited by selected section, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334495",
@@ -1051,7 +1812,15 @@
               "body": "The replication package is publicly available [24]"
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/NPE-Identification/NullPointerException",
+              "sources": [
+                "Reference [24] cited by selected section, wrapped URL p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "11334507",
@@ -1066,7 +1835,15 @@
               "body": "QuanBench used in this paper is publicly available in\nhttps://github.com/GuoXiaoYu1125/Quanbench."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/GuoXiaoYu1125/Quanbench",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334532",
@@ -1081,7 +1858,15 @@
               "body": "We have released the code of DroidPalette and the empirical\nstudy results on GitHub [56], and provided the dataset we used\n(i.e., 105 APK files) on Google Drive [57]."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/good-good-create/DroidPalette",
+              "sources": [
+                "Reference [56] cited by selected section, wrapped URL p. 13"
+              ]
+            }
+          ]
         },
         {
           "id": "11334536",
@@ -1098,7 +1883,8 @@
           ],
           "dois": [
             "10.5281/zenodo.13335352"
-          ]
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "11334546",
@@ -1113,7 +1899,15 @@
               "body": "The artifact (source code, benchmark, evaluation outputs,\nand documentation) is available at https://github.com/sola-\nst/rr-reduce."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/sola-st/rr-reduce",
+              "sources": [
+                "Data Availability excerpt, wrapped URL p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334573",
@@ -1128,7 +1922,10 @@
               "body": "Our measurements, as well as implementations of DM#,\nRMS, BSS, and RSS, are available in a replication package [ 22]."
             }
           ],
-          "dois": []
+          "dois": [
+            "10.5281/zenodo.17254335"
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "11334587",
@@ -1143,7 +1940,15 @@
               "body": "The source code of D EBUN and the package for replicating\nthe experimental results are available in the public repository:\nhttps://github.com/ku-plrg/debun-ase25."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/ku-plrg/debun-ase25",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334612",
@@ -1158,7 +1963,10 @@
               "body": "A full replication package containing the data and code\nfor the experiments presented in this paper, as well as the\nFig. 1. Common scenarios leading to history alterations in Git: (a) commit\namendment, (b) interactive “rebase”. Grayed out commits are no longer\nreachable after alteration. Arrows point from newer to older commits.\nG IT H ISTORIAN tool, is available from Zenodo and Software\nHeritage [31].\nII. B ACKGROUND\na) Git data model: The data model of Git, like most\nother DVCS [7], is a Merkle [25] direct acyclic graph (DAG),\nwhere nodes are used to represent commits and other types\nof source code artifacts. Each DAG node is identified by a\ncryptographic checksum computed recursively on its content\nand metadata which, for commit nodes, include the identifiers\nof previous commits. The full VCS history of a project hence\nforms a connected graph whose integrity can be verified\nefficiently by only considering the identifiers of outer “root”\nnodes: if they match a previous known state, then all previous\ncommits reachable from them have not been altered since.\nb) History alteration with Git: Figure 1 shows two\ncommon use cases of history rewrites in Git: (a) amending\nand (b) rebasing. The “amend” functionality allows developers\nto retroactively modify parts of commits that were already\nrecorded in the version history: commit metadata (e.g., times-\ntamp, message, author name or email, etc.) and/or commit\ncontent (e.g., adding or removing files). In Figure 1(a), the\nuser modifies commit 2 , producing the new commit 4 . After\nhistory alteration, due to how Merkle identifiers work, commit"
             }
           ],
-          "dois": []
+          "dois": [
+            "10.5281/zenodo.15544257"
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "11334630",
@@ -1173,7 +1981,15 @@
               "body": "Our code is available: https://github.com/ZJU-CTAG/FGIT."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/ZJU-CTAG/FGIT",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334651",
@@ -1188,7 +2004,15 @@
               "body": "The source code and prompt of iKnow’s modules can be\nfound in https://github.com/Jun-jie-Huang/iKnow. However,\ndue to privacy concerns, we do not plan to release the entire\nchatbot system and data."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/Jun-jie-Huang/iKnow",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334660",
@@ -1203,7 +2027,10 @@
               "body": "To foster replication, our data set, as well as\nour data collection and analysis scripts are available online.\n2\nII. S TUDY D ESIGN\nThis section provides our rationale for selecting Kubernetes\nas our main subject system (Section II-A), and describes the\nData and Environment Preparation (Section II-B) and Replay\nExecution (Section II-C) stages in our study design.\nA. Primary Subject System\nWe study the main project of the Kubernetes organization\n3\nbecause it offers a unique opportunity to investigate the"
             }
           ],
-          "dois": []
+          "dois": [
+            "10.5281/zenodo.15533609"
+          ],
+          "repositoryLinks": []
         },
         {
           "id": "11334673",
@@ -1218,7 +2045,15 @@
               "body": "Our code and experimental results are available at [12]"
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/Smart-Contract-Security/ACTaint",
+              "sources": [
+                "Reference [12] cited by selected section, wrapped URL p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "11334676",
@@ -1233,7 +2068,8 @@
               "body": "All T EPHRA source code and data are\npublicly available at https://ucsrl.de/research/tephra.\nII. O BSTACLES : A M ODEL\nTo measure a fuzzer’s ability to bypass obstacles, we\nmust first identify what constitutes an obstacle. For example,\nconsider again Listing 1 from ImageMagick . In this case,\nthe obstacle consists of two nested if statements with predi-\ncates between double variables that depend directly on fuzzer-\ncontrolled input. Intuitively, an obstacle is a condition that\nprevents a fuzzer from reaching new program states. However,\nwhat types of obstacles, i.e., conditions are there?\nWe aim to identify the semantic constructs that produce\nchallenging code and data patterns, and understand the re-\nlationship between program semantics and fuzzing obstacles.\nTo achieve this, we analyze over 50 open-source projects from\noss-fuzz and identify choke points where current fuzzers\nstruggle. We also conduct a bottom-up study of semantic\nconstructs in C and C++. Specifically, we manually examine\nthe C99 and C++11 specifications to identify language fea-\ntures that serve as building blocks for hard-to-reach program\nstates, such as, e.g., if , while , and exceptions. This analysis\nyields 14 high-level obstacle categories (cf. Table I), an\napplication-oriented definition of an obstacle that is essential\nfor T EPHRA ’s design, and a discussion that highlights the\nlimitations of capturing obstacles within a formal model.\nSimply put, an obstacle is a set of program conditions\nthat no input in the fuzzer’s current seed corpus satisfies,\npreventing the PUT from reaching some new program state:\n2734\nAuthorized licensed use limited to: UNIVERSITAETSBIBL STUTTGART. Downloaded on September 18,2026 at 19:56:10 UTC from IEEE Xplore. Restrictions apply.\nDefinition 1 (Obstacle): Let I = { i 1 , i 2 , ..., i m } be an initial\nset of concrete inputs (e.g., a seed corpus). We define the\nobstacle O w.r.t. I as O ( I ) = p 1 ∧ p 2 ∧ ... ∧ p n such that each\npredicate p j is false for every i ∈ I .\nBased on this definition, two key questions arise: 1) When\nis an obstacle O considered solved?, and 2) What forms do\nthe individual predicates p j take?\nWe consider an obstacle O solved when a fuzzer produces\nan input that satisfies all its predicates p j . Although multiple\ninputs may satisfy the obstacle, any single one is sufficient.\nInputs that satisfy only a subset of predicates do not count as\nsolutions.\nThe predicates p resemble path condition predicates from\nsymbolic execution. However, classic symbolic constraints are\ntoo fine-grained and impose practical limitations when used as\nan abstraction for fuzzing heuristics, as we explain below.\nA predicate p as used in classic symbolic execution cor-\nresponds to a control-flow branch. Furthermore, the program\nstate is defined w.r.t. the semantic model used by the symbolic\nexecutor. For machine code, this might be the set of registers\nand memory cells. For code in high-level programming lan-\nguage, such as C or C++, it may be the set of variables and\nthe call stack.\nUnfortunately, in practice, a predicate p may depend on\nmore than just the PUT ’s code. Real-world programs often\nrun as part of larger systems that influence their semantics.\nMoreover, a PUT may rely on inputs beyond what the fuzzer\nhas supplied. For example, a Linux user-space program might\nbehave differently depending on disk space, system time, or\nreceived POSIX signals.\nTo account for such effects, formal tools like the KLEE\nsymbolic executor often model the PUT ’s environment (e.g.,\ncalls to system libraries such as libc ). However, formal\nmodels cannot capture all aspects of complex systems, or\nmay produce formulas too complex for solvers to handle. This\nlimitation contradicts the core advantage of fuzzers: validating\nreal-world, complex software. Fuzzers often find bugs where\nsemantic models fail to reflect actual behavior.\nTherefore, we do not formally constrain the domain of pred-\nicates p , and our definition of obstacles remains intentionally\nhigh-level and broad. Instead, we focus on an application-\noriented classification of obstacle types. Table I summarizes\nthe results, derived from our analysis as described above.\nWe do not claim the list is exhaustive, but it reflects our\nbest effort. As shown in Section III and Section IV, T EPHRA ’s\ndesign remains flexible and can incorporate additional obstacle\ntypes. Our implementation, T EPHRA -C/C++, includes only\nthe first five categories, with the rest reserved for future work\n(Section IV). We base T EPHRA ’s design on the results of our\nobstacle analysis.\nIII. D ESIGN\nT EPHRA ’s objective is to evaluate whether a fuzzer can\nautomatically reach program states guarded by specific types\nof obstacles. To do so effectively, we identify four key require-\nments that such a methodology must meet:\nTABLE I: High-level obstacle predicate categories identified\nas part of our analysis.\nObstacle Category Examples\nControl flow if , while , for , switch\nInformation flow intertwined inputs, data dependencies\nCalling context procedure-based state machines, indirect calls\nProgramming-language type mismatches, exception handlers, iterators\nOne-way functions cryptographic checksums, encryption\nSelf-modifying code JIT compilers\nNondeterminism (pseudo/true)random numbers\nConcurrency, parallelism scheduler interleaving, race conditions\nTime time sinks (“hangs”), execution time, date\nSystem resources memory, disk usage, load average\nFile system file size or permission checks\nExecution environment environment variables, signals\nHardware inline assembly, hardware intrinsics, power"
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": []
         },
         {
           "id": "11334698",
@@ -1248,7 +2084,15 @@
               "body": "All experimental data, evaluation results, and tool imple-\nmentations are publicly available on our webpage [12] to\nsupport reproducibility and future research."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/kairanskrr/PoCShift",
+              "sources": [
+                "Reference [12] cited by selected section, p. 12"
+              ]
+            }
+          ]
         },
         {
           "id": "11334701",
@@ -1263,7 +2107,15 @@
               "body": "The source code and dataset of C RYPTBARA are available\nat https://github.com/choseogyeong/CRYPTBARA."
             }
           ],
-          "dois": []
+          "dois": [],
+          "repositoryLinks": [
+            {
+              "url": "https://github.com/choseogyeong/CRYPTBARA",
+              "sources": [
+                "Data Availability excerpt, p. 11"
+              ]
+            }
+          ]
         },
         {
           "id": "11334721",
@@ -1278,9 +2130,92 @@
               "body": "Our reproduction package [76],\nwhich includes all software and data that we used for our\nexperiments, and the set of example witnesses [13] to\ndemonstrate how the new format works, are available\non Zenodo. Interactive tables of the experimental\nresults are available at our supplementary web page:\nhttps://www.sosy-lab.org/research/non-termination-witnesses/.\n1979"
             }
           ],
-          "dois": []
+          "dois": [
+            "10.5281/zenodo.17264555",
+            "10.5281/zenodo.17237968"
+          ],
+          "repositoryLinks": []
         }
       ],
+      "false_positives": [
+        {
+          "id": "11334384",
+          "file": "2025/11334384.pdf",
+          "url": null,
+          "sections": [
+            {
+              "id": "data-availability",
+              "label": "Data Availability",
+              "heading": "data availability.",
+              "page": 11,
+              "body": "C. System demonstration: applying ADPerf to test ADSs in\nsimulated environments\nMotivation. Prior studies [77], [78] illustrate that non-trivial\ngaps exist between testing individual modules alone and\ntesting the whole ADS (e.g., through a simulator). Hence, we\nset off to demonstrate the impact of increased latency of 3D\nobstacle detection latency detected by ADPerf on an ADS in\na simulated environment.\nMethod. We conduct system demonstrations on Autoware\nSS2 [61] using a compatible simulator (i.e., AWSIM V1.2.0\n[20]). We cannot experiment on Apollo due to the lack\nof a compatible simulator. AWSIM supports a very limited\ndriving scenario compared to nuScenes, which was used in\nthe other evaluations of this work. We experimented with\ndifferent scenarios (e.g., mutating obstacles) but found similar\noutcomes. In the paper, we focus on one representative demo\nas an example: In the original scenario (Figure 9), the ego\ncar needs to travel 60m, along the lane to its destination on\nthe adjacent lane, which means the ego car needs to plan a\nroute for lane changing at a proper time. Eight vehicles are\non the adjacent lanes moving in the same direction. The ego\ncar successfully arrived at the destination in 30 seconds.\nWe then applied ADPerf to generate new scenarios that\nstress the latency of 3D obstacle detection, and further impact\nthe whole ADS. Limited by space, we will describe one type\nof perturbation by ADPerf , which is “add obstacle”.\nResults. Under the ADPerf ’s generated scenarios (i.e., with\nfour non-overlapping vehicles on the adjacent lane), the ego\ncar stops indefinitely and fails to change the lane when it is\nsafe (the bottom figure in Figure 9).\nOn the surface, we found that an increased number of high-\nlatency (i.e., over 100ms) single-frame processing is observed:\nfrom 13.8% to 23% of all the frames. High-latency frames are\ndropped by a real-time AD system. Hence, this translates to a\nsharp increase in frame dropping. Even though the accuracy of\nthe obstacle detection is consistent between the original and\nADPerf ’s generated scenarios. The ADPerf ’s generated sce-\nnario stresses the latency of the obstacle detection, promotes\nmore frame dropping, and causes the ego car to “freeze.”\nRoot cause analysis. We further examine the full story be-\nhind the ego car’s erroneous behavior. We found that due to\nthe increased frame dropping, some obstacles of the dropped\nframes are deemed as disappeared by the tracking module.\nAn obstacle must be continuously (i.e., over one second) not\ndetected to be deemed as “disappeared”. That exact obstacle\nin the next frame will have a brand-new status for trajectory\nprediction, i.e., no history locations, which leads to a poor\npredicted trajectory. Significant discrepancy between a trajec-\ntory and the detected location will lead to frequent replanning,\nwhich is computationally expensive. Therefore, the ego car\nwill “freeze” once it begins frequent replanning.\nVII. T HREATS TO V ALIDITY\nExperiment reproducibility. As live performance measuring\ncan be fickled due to randomization of the algorithms pre-\nprocessing data for the detection models, for each PCD\nmodification, we evaluate it with the model five times to record\nthe combined latency and enhance reproducibility.\nScenes contain a large percentage of stopped cars. The\nscenes used to test trajectory prediction contain a low per-\ncentage of moving cars (18.5%), which skews the results by\nreducing the number of deviations and limiting the variability\nin the computed deviations. We plan to address this limitation\nin future studies."
+            }
+          ],
+          "dois": [],
+          "repositoryLinks": [],
+          "false_positive": true,
+          "annotation": {
+            "type": "false-positive-das-heading",
+            "location": {
+              "section": "Body text on data availability for trajectory prediction",
+              "page": 11
+            },
+            "urls": [],
+            "note": "The checker mistakes the sentence-ending phrase 'data availability.' for a standalone Data Availability heading. The following text begins 'C. System demonstration: applying ADPerf to test ADSs in simulated environments', not a DAS. Reviewed as a false positive; exclude from DAS counts."
+          }
+        }
+      ],
+      "annotations": [
+        {
+          "id": "11334459",
+          "file": "2025/11334459.pdf",
+          "url": null,
+          "repositoryLinks": [],
+          "annotation": {
+            "type": "artifact-link-without-scheme",
+            "count_as_artifact": true,
+            "artifact_type": "study-data",
+            "location": {
+              "section": "Data-Availability Statement",
+              "page": 11
+            },
+            "urls": [
+              "https://github.com/nicovank/Energy-Languages"
+            ],
+            "note": "The DAS prints github.com/nicovank/Energy-Languages without a URL scheme. The HTTPS URL is manually normalized for display and counts toward With Artifact as reviewed evidence, not an automatically detected link."
+          }
+        },
+        {
+          "id": "11334676",
+          "file": "2025/11334676.pdf",
+          "url": null,
+          "repositoryLinks": [],
+          "annotation": {
+            "type": "artifact-link-outside-whitelist",
+            "count_as_artifact": true,
+            "artifact_type": "code-and-data",
+            "location": {
+              "section": "Data Availability",
+              "page": 2
+            },
+            "urls": [
+              "https://ucsrl.de/research/tephra"
+            ],
+            "note": "The DAS gives this institutional project URL for code and data. Outside the automatic whitelist; reviewed as a manual With Artifact signal."
+          }
+        }
+      ]
+    },
+    "unknown": {
+      "total": 29,
+      "checked": 29,
+      "with_statement": 0,
+      "with_statement_and_doi": 0,
+      "with_replication_package": 0,
+      "without_statement": 29,
+      "no_text": 0,
+      "errors": 0,
+      "papers": [],
       "false_positives": [],
       "annotations": []
     }

@@ -53,15 +53,15 @@ label { font-size:14px; }
 .availability { margin:0 0 36px; }
 .availability h2 { font-size:28px; margin:0; }
 .availability-heading { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:14px; }
-#metric-toggle, .paper-metric-actions button { margin:0; flex-shrink:0; font-size:12px; }
-.paper-metric-actions { display:flex; align-items:center; justify-content:flex-end; gap:10px; flex-wrap:wrap; }
+#metric-toggle, #nonstandard-toggle { margin:0; flex-shrink:0; font-size:12px; }
+#nonstandard-toggle[aria-pressed="true"] { background:var(--ink); color:var(--bg); }
 .availability > p { font-size:12px; margin:10px 0 0; }
 .table-scroll { overflow-x:auto; }
-#availability-table, #das-count-table { width:100%; min-width:760px; border-collapse:collapse; text-align:center; }
-#availability-table th, #availability-table td, #das-count-table th, #das-count-table td { border-top:1px solid var(--line); padding:11px 12px; }
-#availability-table thead th, #das-count-table thead th { font-size:12px; font-weight:500; color:var(--muted); }
-#availability-table th:first-child, #das-count-table th:first-child { position:sticky; left:0; z-index:1; background:var(--bg); text-align:left; }
-#availability-table tbody th, #das-count-table tbody th { font-size:13px; font-weight:600; }
+#availability-table { width:100%; min-width:760px; border-collapse:collapse; text-align:center; }
+#availability-table th, #availability-table td { border-top:1px solid var(--line); padding:11px 12px; }
+#availability-table thead th { font-size:12px; font-weight:500; color:var(--muted); }
+#availability-table th:first-child { position:sticky; left:0; z-index:1; background:var(--bg); text-align:left; }
+#availability-table tbody th { font-size:13px; font-weight:600; }
 .observed-das { margin-top:30px; }
 .observed-das h3 { margin:0; }
 .observed-das > p { margin:10px 0 0; font-size:12px; }
@@ -70,8 +70,24 @@ label { font-size:14px; }
 .availability-empty { color:var(--line); }
 .availability-empty-link { color:var(--muted); text-decoration:none; }
 .availability-empty-link:hover { color:var(--accent); text-decoration:none; }
-.das-count-button { border:0; border-radius:0; margin:0; padding:2px 4px; color:var(--accent); text-decoration:underline; text-underline-offset:4px; }
-.das-count-button:hover:not(:disabled) { background:transparent; color:var(--ink); }
+.das-bar[role="button"] { cursor:pointer; }
+.das-bar[role="button"]:focus-visible { outline:3px solid var(--ink); outline-offset:2px; }
+.das-chart-filters { display:flex; flex-wrap:wrap; gap:8px; }
+.das-chart-filters button { margin:0; padding:6px 14px; font-size:12px; }
+.das-chart-filters button[aria-pressed="true"] { background:var(--ink); color:var(--bg); }
+.das-chart-scroll { overflow-x:auto; margin:18px 0; border:1px solid var(--line); background:var(--panel); }
+.das-bar-chart { width:max-content; min-width:100%; padding:18px 12px; }
+.das-bar-chart svg { display:block; max-width:none; }
+.das-gridline { stroke:var(--line); stroke-width:1; }
+.das-axis-label, .das-value { fill:var(--ink); font:12px system-ui,sans-serif; }
+.das-value { font-size:10px; font-weight:600; }
+.das-bar-0 { fill:#6799b2; background:#6799b2; }
+.das-bar-1 { fill:#00506d; background:#00506d; }
+.das-bar-2 { fill:#397b20; background:#397b20; }
+.das-bar-3 { fill:#234bb2; background:#234bb2; }
+.das-chart-legend { display:flex; justify-content:center; gap:12px 22px; flex-wrap:wrap; font-size:12px; }
+.das-chart-legend span { display:inline-flex; align-items:center; gap:6px; }
+.das-swatch { display:inline-block; width:12px; height:12px; }
 #das-paper-details { margin-top:24px; border-top:1px solid var(--ink); }
 #das-paper-details h4 { font:400 24px/1.2 "Libre Caslon Display",Georgia,serif; margin:24px 0 8px; }
 .section-type-summary { margin:0 0 24px; color:var(--muted); font-size:13px; }

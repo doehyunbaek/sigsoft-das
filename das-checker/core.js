@@ -16,6 +16,17 @@ export const SECTION_TYPES = Object.freeze([
 ]);
 export const DEFAULT_SECTION_IDS = Object.freeze(SECTION_TYPES.map(section => section.id));
 
+// Allowed artifact-location hosts; a link is a proxy, not proof of an artifact.
+const ARTIFACT_HOSTS = [
+  'zenodo.org',
+  'figshare.com',
+  'github.com',
+  'gitlab.com',
+  'sites.google.com',
+  'github.io',
+  'anonymous.4open.science'
+];
+
 // IEEE PDFs often encode small-cap words as "D ATA A VAILABILITY". Collapse
 // those visual-word fragments only while matching headings; output retains the
 // exact text extracted from the PDF.
@@ -40,6 +51,11 @@ function dominantStyle(runs, start = 0, end = Infinity) {
   return [...weights.values()].sort((a, b) => b.weight - a.weight)[0] || null;
 }
 
+// TODO: Reject body-text sentence endings that look like headings. ASE 2025/11334384.pdf
+// has "... higher / data availability." in ordinary paragraph font; the next
+// line starts "C. System demonstration", not a Data Availability section.
+// Compare heading style/position with preceding body lines rather than relying
+// on an exact heading-text match alone.
 function visuallyDistinctHeading(lines, start, count, headingLength = Infinity) {
   // Synthetic/reused line inputs without typography retain text-only behavior.
   const heading = dominantStyle(lines[start]?.runs, 0, headingLength);
@@ -66,7 +82,7 @@ export function findStatements(lines, {sectionIDs = DEFAULT_SECTION_IDS} = {}) {
   const patterns = sections.map(section => section.pattern).join('|');
   const heading = new RegExp(`^${prefix}(${patterns})\\s*[:.]?$`, 'i');
   const inlineHeading = new RegExp(`^${prefix}(${patterns})\\s*[:.]\\s+(.+)$`, 'i');
-  const boundary = /^(?:(?:\d+(?:\.\d+)*|[IVX]+|[A-Z](?:\.\d+)*?)[.)]?\s+)?(?:references|bibliography|acknowledg(?:e)?ments?|appendi(?:x|ces)|conclusions?|discussion|funding|conflicts? of interest|competing interests|author contributions)\b|^(?:\d+(?:\.\d+)*|[A-Z](?:\.\d+)+)[.)]?\s+[A-Z]/i;
+  const boundary = /^(?:(?:\d+(?:\.\d+)*|[IVX]+|[A-Z](?:\.\d+)*?)[.)]?\s+)?(?:references|bibliography|acknowledg(?:e)?ments?|appendi(?:x|ces)|conclusions?|discussion|funding|conflicts? of interest|competing interests|author contributions)\b|^(?:\d{1,2}(?:\.\d+)*|[A-Z](?:\.\d+)+)[.)]?\s+[A-Z]/i;
   const statements = [];
   for (let i = 0; i < lines.length; i++) {
     let count = 0, section = null, inlineBody = '', extractedHeading = '';
@@ -105,11 +121,24 @@ export function findStatements(lines, {sectionIDs = DEFAULT_SECTION_IDS} = {}) {
   }
   return statements;
 }
-export function collectDOIs(lines, annotations, statements) {
-  const selected = new Map(), citations = new Set();
+function authorYearCitations(text) {
+  const found = new Set();
+  for (const match of normalize(text).matchAll(/\[\s*([A-ZÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ'’\-]+)\s+(?:et\s+al\s*\.?|and\s+[A-ZÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ'’\-]+)?\s*\.?\s*,?\s*((?:19|20)\d{2})([a-z](?:\s*,\s*[a-z])*)?\s*\]/gi)) {
+    const surname = match[1].toLowerCase(), year = match[2];
+    const suffixes = match[3] ? match[3].split(/\s*,\s*/) : [''];
+    for (const suffix of suffixes) found.add(`${surname}:${year}${suffix}`);
+  }
+  return found;
+}
+
+function selectedLines(lines, statements, annotations = []) {
+  const selected = new Map(), citations = new Set(), authorYears = new Set();
   for (const statement of statements) {
     for (let i = statement.start; i < statement.end; i++) selected.set(i, `${statement.sectionLabel || 'Selected section'} excerpt`);
-    for (const match of normalize(statement.text).matchAll(/\[([\d\s,;\-]+)\]/g)) {
+    // Truncated extracts can absorb the next section and its unrelated citations.
+    const citationText = statement.body.split(/\b(?:acknowledg(?:e)?ments?|related work|motivation|references)\b/i)[0];
+    for (const citation of authorYearCitations(citationText)) authorYears.add(citation);
+    for (const match of normalize(citationText).matchAll(/\[([\d\s,;\-]+)\]/g)) {
       for (const part of match[1].split(/[,;]/)) {
         const range = part.trim().match(/^(\d+)(?:\s*-\s*(\d+))?$/);
         if (!range) continue;
@@ -119,19 +148,154 @@ export function collectDOIs(lines, annotations, statements) {
       }
     }
   }
-  // Only resolve numbered entries after a References/Bibliography heading.
-  let bibliography = false, current = null;
+  // Resolve bare numeric markers only to numbered URL footnotes (or a linked
+  // footnote label), never to arbitrary URLs or numbered bibliography entries.
+  for (const statement of statements) {
+    const text = statement.body.split(/\b(?:acknowledg(?:e)?ments?|related work|motivation|references)\b|Proc\. ACM Softw\. Eng\./i)[0];
+    const markers = [...text.matchAll(/(?:^|[\s,.;])(\d{1,2})(?=\s*(?:[,.;]|$|and\b|as\b|for\b|in\b|is\b|II\b))/g)].map(match => Number(match[1]));
+    for (const marker of new Set(markers)) {
+      const candidates = lines.flatMap((line, index) => {
+        if (!new RegExp(`^${marker}\\s+`).test(line.text) ||
+          (line.runs?.length && (line.runs.length < 3 ||
+            line.runs[0].size >= line.runs.find(run => run.start > String(marker).length)?.size))) return [];
+        if (!new RegExp(`^${marker}\\s+(?:https?:\\/\\/|[^\\n]{1,45}?\\s+https?:\\/\\/)`, 'i').test(line.text) &&
+          !annotations.some(annotation => annotation.page === line.page && annotation.rect && line.boxes?.some(box =>
+            Math.min(box[2], annotation.rect[2]) > Math.max(box[0], annotation.rect[0]) &&
+            (box[1] + box[3]) / 2 >= annotation.rect[1] && (box[1] + box[3]) / 2 <= annotation.rect[3] &&
+            /^https?:\/\//i.test(annotation.url)))) return [];
+        return [{index, distance:Math.abs(line.page - statement.page)}];
+      });
+      const closest = Math.min(...candidates.map(candidate => candidate.distance));
+      const matches = candidates.filter(candidate => candidate.distance === closest);
+      if (matches.length !== 1) continue;
+      const {index} = matches[0], source = `Footnote ${marker} cited by selected section`;
+      selected.set(index, source);
+      // Permit wrapped URLs on the immediately following line of that footnote.
+      if (lines[index + 1]?.page === lines[index].page &&
+        !/^\s*(?:\d+\s+|\[\d+\])/.test(lines[index + 1].text) &&
+        /https?:\/\/[^\s]*[/-]\s*$/.test(lines[index].text)) selected.set(index + 1, source);
+    }
+  }
+  // Some two-column PDFs omit the References heading from extracted text.
+  // In that case, use a consecutive run of bracket-numbered entries after
+  // the DAS, rather than selecting isolated citation markers in the body.
+  const hasBibliographyHeading = lines.some(line => /^(?:\d+[.)]?\s+)?(?:references|bibliography)\s*$/i.test(normalize(line.text).trim()));
+  const fallbackStarts = !hasBibliographyHeading && citations.size ? lines.flatMap((line, index) => {
+    const match = normalize(line.text).trim().match(/^\[\s*(\d+)\s*\]\s+/);
+    return match ? [{index, number:Number(match[1])}] : [];
+  }) : [];
+  const firstReference = fallbackStarts.findIndex((entry, position) => entry.number === 1 &&
+    fallbackStarts.slice(position, position + 3).map(next => next.number).join(',') === '1,2,3' &&
+    entry.index >= Math.max(...statements.map(statement => statement.end)));
+  const fallbackReferences = firstReference < 0 ? Infinity : fallbackStarts[firstReference].index;
+  let bibliography = false, current = null, entryStyle = null;
+  const authorEntries = [], authorMatches = new Map();
   lines.forEach((line, index) => {
     const text = normalize(line.text).trim();
     if (/^(?:\d+[.)]?\s+)?(?:references|bibliography)\s*$/i.test(text)) {
-      bibliography = true; current = null; return;
+      bibliography = true; current = null; entryStyle = null; return;
     }
+    if (index >= fallbackReferences) bibliography = true;
     if (!bibliography) return;
     if (/^(?:[A-Z\d]+[.)]?\s+)?appendi(?:x|ces)\b/i.test(text)) { bibliography = false; current = null; return; }
-    const entry = text.match(/^\[\s*(\d+)\s*\]\s*/);
+    // Use one entry style per bibliography so a wrapped reference line beginning
+    // with a year (e.g., "2022.") cannot interrupt bracket-numbered entries.
+    const bracketed = text.match(/^\[\s*(\d+)\s*\]\s+/);
+    // Four-digit publication years in unnumbered ACM bibliographies are not
+    // dotted reference numbers (e.g., "2024. CodeXGLUE").
+    const dotted = text.match(/^(\d{1,3})\.\s+/);
+    if (!entryStyle && (bracketed || dotted)) entryStyle = bracketed ? 'bracketed' : 'dotted';
+    const entry = entryStyle === 'bracketed' ? bracketed : entryStyle === 'dotted' ? dotted : null;
     if (entry) current = Number(entry[1]);
     if (citations.has(current)) selected.set(index, `Reference [${current}] cited by selected section`);
+    // Unnumbered ACM-style references begin with a first author followed by
+    // a publication year. Preserve entry boundaries before resolving citations.
+    if (authorYears.size && !entryStyle) {
+      let ref = text.match(/^(.{4,180}?)\.\s+((?:19|20)\d{2})([a-z]?)\.\s+/i);
+      if (/^and\s+/i.test(text) && /,\s*$/.test(lines[index - 1]?.text.trim() || '')) ref = null;
+      // Long author lists can wrap before the final "and Author. YEAR."
+      // Only join an immediately following line on the same page.
+      if (!ref && !/^and\s+/i.test(text) && /,\s*$/.test(text) && lines[index + 1]?.page === line.page &&
+        /^and\s+.{3,100}\.\s+(?:19|20)\d{2}[a-z]?\.\s+/i.test(normalize(lines[index + 1].text).trim())) {
+        ref = `${text} ${normalize(lines[index + 1].text).trim()}`.match(/^(.{4,350}?)\.\s+((?:19|20)\d{2})([a-z]?)\.\s+/i);
+      }
+      if (ref) {
+        // The first author may be followed by "and" rather than a comma
+        // (e.g., "Xin Jin and Zhiqiang Lin" or "O. M. Carmel and G. Katz").
+        const firstAuthor = ref[1].split(/,|\s+and\s+/i)[0].trim();
+        const surname = firstAuthor.match(/([A-Za-zÀ-ÖØ-öø-ÿ'’\-]+)$/)?.[1]?.toLowerCase();
+        if (surname) {
+          const key = `${surname}:${ref[2]}${ref[3].toLowerCase()}`;
+          authorEntries.push({key, start:index, end:lines.length});
+          authorMatches.set(key, (authorMatches.get(key) || 0) + 1);
+          if (authorEntries.length > 1) authorEntries.at(-2).end = index;
+        }
+      }
+    }
   });
+  // Ambiguous surname/year matches are deliberately left unresolved.
+  for (const {key, start, end} of authorEntries) {
+    if (authorYears.has(key) && authorMatches.get(key) === 1) {
+      // A subsequent author can start on one line and put the year on the
+      // next; do not absorb that entry's DOI into the cited reference.
+      for (let i = start; i < Math.min(end, start + 3); i++) {
+        if (i > start && /,.*\.$/.test(lines[i].text.trim()) &&
+          /^(?:19|20)\d{2}[a-z]?\./i.test(lines[i + 1]?.text.trim() || '')) break;
+        selected.set(i, `Reference [${key}] cited by selected section`);
+      }
+    }
+  }
+  return selected;
+}
+
+function wrappedURLs(lines, selected) {
+  const urls = [];
+  for (const [index, source] of selected) {
+    const line = lines[index];
+    const next = lines[index + 1];
+    // Some PDFs break the scheme after its colon: "https:" / "//host/path".
+    // Require the scheme to end the line and the continuation to begin the
+    // next line in the same selected excerpt on the same page.
+    const splitScheme = line.text.match(/\b(https?):\s*$/i);
+    if (splitScheme && next?.page === line.page && selected.get(index + 1) === source) {
+      const continuation = next.text.trim().match(/^(\/\/[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?:[^\s<>"']*)?)/);
+      if (continuation) urls.push({url:`${splitScheme[1]}:${continuation[1].replace(/[.,;:]+$/g, '')}`,
+        fragment:`${splitScheme[1]}:`, index, source, page:line.page});
+    }
+    for (const match of line.text.matchAll(/https?:\/\/[^\s<>"']*/gi)) {
+      const fragment = match[0];
+      const continuation = next?.text.trim().match(/^([A-Za-z0-9._~!$&'*+,;=:@%/?#-]+)/);
+      // Only join adjacent lines in one selected excerpt, not the next entry.
+      if (/[/-]$/.test(fragment) && match.index + fragment.length === line.text.trimEnd().length &&
+        next?.page === line.page && selected.get(index + 1) === source && continuation &&
+        (/[0-9]/.test(continuation[1]) || next.text.trim() === continuation[1]) &&
+        !/^https?:\/\//i.test(continuation[1]) && !continuation[1].includes('://') &&
+        !/^\(?[A-Z][a-z]+\)?[.,;:]?$/.test(continuation[1])) {
+        urls.push({url:fragment + continuation[1].replace(/[.,;:]+$/g, ''), fragment, index, source, page:line.page});
+      }
+    }
+  }
+  return urls;
+}
+
+function linkedSelections(lines, annotations, selected, accept) {
+  const links = [];
+  for (const annotation of annotations) {
+    const matches = [...selected].filter(([index]) => {
+      const line = lines[index], rect = annotation.rect;
+      return line.page === annotation.page && rect && line.boxes?.some(box =>
+        Math.min(box[2], rect[2]) > Math.max(box[0], rect[0]) &&
+        (box[1] + box[3]) / 2 >= rect[1] && (box[1] + box[3]) / 2 <= rect[3]);
+    });
+    if (matches.length && accept(annotation.url)) {
+      for (const [, source] of matches) links.push({url:annotation.url, source:`${source}, PDF link p. ${annotation.page}`});
+    }
+  }
+  return links;
+}
+
+export function collectDOIs(lines, annotations, statements) {
+  const selected = selectedLines(lines, statements, annotations);
   const records = new Map();
   const add = (id, source) => {
     if (!records.has(id)) records.set(id, {id, sources:new Set()});
@@ -141,35 +305,75 @@ export function collectDOIs(lines, annotations, statements) {
     const line = lines[index];
     for (const id of doiIDs(line.text)) add(id, `${source}, p. ${line.page}`);
   }
-  for (const annotation of annotations) {
-    // Page-level proximity is not sufficient: require overlap with selected text.
-    const matches = [...selected].filter(([index]) => {
-      const line = lines[index], rect = annotation.rect;
-      return line.page === annotation.page && rect && line.boxes?.some(box =>
-        Math.min(box[2], rect[2]) > Math.max(box[0], rect[0]) &&
-        (box[1] + box[3]) / 2 >= rect[1] && (box[1] + box[3]) / 2 <= rect[3]);
-    });
-    if (!matches.length) continue;
+  for (const {url, source, page} of wrappedURLs(lines, selected)) {
+    for (const id of doiIDs(url)) add(id, `${source}, wrapped URL p. ${page}`);
+  }
+  for (const {url, source} of linkedSelections(lines, annotations, selected, value => {
     try {
-      const url = new URL(annotation.url);
-      if (!['http:', 'https:'].includes(url.protocol) || !['doi.org', 'dx.doi.org', 'www.doi.org'].includes(url.hostname.toLowerCase())) continue;
-      for (const id of doiIDs(decodeURIComponent(url.pathname))) {
-        for (const [, source] of matches) add(id, `${source}, PDF link p. ${annotation.page}`);
-      }
-    } catch { /* Ignore malformed or non-DOI links. */ }
+      const parsed = new URL(value);
+      return ['http:', 'https:'].includes(parsed.protocol) && ['doi.org', 'dx.doi.org', 'www.doi.org'].includes(parsed.hostname.toLowerCase());
+    } catch { return false; }
+  })) {
+    try {
+      for (const id of doiIDs(decodeURIComponent(new URL(url).pathname))) add(id, source);
+    } catch { /* Ignore malformed DOI links. */ }
   }
   // PDF line wrapping can leave a valid-looking DOI prefix on one line while
   // an annotation or joined reference supplies the complete identifier.
   const values = [...records.values()];
   return values.filter(record => !values.some(other =>
-    other !== record && other.id.length > record.id.length && other.id.startsWith(record.id) && /[._;()/:+\-]/.test(other.id[record.id.length])));
+    other !== record && other.id.length > record.id.length && other.id.startsWith(record.id) &&
+    (/[._;()/:+\-]/.test(other.id[record.id.length]) ||
+      /^10\.5281\/zenodo\.\d+$/.test(record.id) && /^10\.5281\/zenodo\.\d+$/.test(other.id) &&
+      [...record.sources].some(source => source.startsWith('Reference ') &&
+        [...other.sources].some(otherSource => otherSource.startsWith(source.split(' cited by selected section')[0]))))));
+}
+
+// Only artifact-location hosts on this whitelist are reported; these are not DOI records.
+function repositoryURL(value) {
+  try {
+    const url = new URL(value);
+    if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password || url.port) return null;
+    const host = url.hostname.toLowerCase();
+    if (!ARTIFACT_HOSTS.some(domain => host === domain || host.endsWith(`.${domain}`))) return null;
+    if (((host === 'zenodo.org' || host.endsWith('.zenodo.org')) && /^\/(?:record|records)\/?$/i.test(url.pathname)) ||
+      ((host === 'figshare.com' || host.endsWith('.figshare.com')) && /^\/s\/?$/i.test(url.pathname))) return null;
+    return url.href;
+  } catch { return null; }
+}
+
+export function collectRepositoryLinks(lines, annotations, statements) {
+  const selected = selectedLines(lines, statements, annotations), records = new Map();
+  const add = (url, source) => {
+    if (!records.has(url)) records.set(url, {url, sources:new Set()});
+    records.get(url).sources.add(source);
+  };
+  const wrapped = wrappedURLs(lines, selected);
+  for (const [index, source] of selected) {
+    const line = lines[index];
+    for (const match of line.text.matchAll(/https?:\/\/[^\s<>"']*/gi)) {
+      const fragment = match[0];
+      if (wrapped.some(item => item.index === index && item.fragment === fragment && repositoryURL(item.url))) continue;
+      const url = repositoryURL(fragment.replace(/[.,;:]+$/g, ''));
+      if (url) add(url, `${source}, p. ${line.page}`);
+    }
+  }
+  for (const {url, source, page} of wrapped) {
+    const parsed = repositoryURL(url);
+    if (parsed) add(parsed, `${source}, wrapped URL p. ${page}`);
+  }
+  for (const {url, source} of linkedSelections(lines, annotations, selected, value => !!repositoryURL(value))) {
+    add(repositoryURL(url), source);
+  }
+  return [...records.values()].map(record => ({...record, sources:[...record.sources]}));
 }
 
 export function analyzeExtractedPDF(extracted, {sectionIDs = DEFAULT_SECTION_IDS} = {}) {
   const {pages, lines, annotations = []} = extracted;
   const statements = findStatements(lines, {sectionIDs});
   const dois = collectDOIs(lines, annotations, statements).map(record => ({...record, sources:[...record.sources]}));
-  return {pages, hasText:lines.length > 0, statements, dois};
+  const repositoryLinks = collectRepositoryLinks(lines, annotations, statements);
+  return {pages, hasText:lines.length > 0, statements, dois, repositoryLinks};
 }
 
 export async function extractPDF(data, {pdfjs, onProgress = () => {}} = {}) {

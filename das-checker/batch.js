@@ -64,7 +64,7 @@ async function save() {
   const years = {};
   for (const [file, record] of Object.entries(results)) {
     const year = record.year || 'unknown';
-    const summary = years[year] ||= {total:0, checked:0, with_statement:0, with_statement_and_doi:0, without_statement:0, no_text:0, errors:0, papers:[], false_positives:[], annotations:[]};
+    const summary = years[year] ||= {total:0, checked:0, with_statement:0, with_statement_and_doi:0, with_replication_package:0, without_statement:0, no_text:0, errors:0, papers:[], false_positives:[], annotations:[]};
     summary.total++;
     if (record.status === 'checked') {
       summary.checked++;
@@ -74,19 +74,21 @@ async function save() {
         file,
         url:/^\d+(?:\.\d+)?$/.test(paperId) && (conference === 'fse' || paperId.includes('.')) ? `https://doi.org/10.1145/${paperId}` : null,
         sections:record.sections,
-        dois:record.doiIDs || []
+        dois:record.doiIDs || [],
+        repositoryLinks:record.repositoryLinks || []
       };
       const annotation = manualAnnotations.get(file);
-      if (annotation) summary.annotations.push({...paper, sections:undefined, dois:undefined, annotation});
+      if (annotation && annotation.type !== 'false-positive-das-heading') summary.annotations.push({...paper, sections:undefined, dois:undefined, annotation});
       if (record.falsePositiveSections?.length) {
         summary.false_positives.push({...paper, sections:record.falsePositiveSections, dois:[], false_positive:true});
       }
-      if (record.statements > 0 && falsePositivePapers.has(file)) {
-        summary.false_positives.push({...paper, false_positive:true});
+      if (record.statements > 0 && (falsePositivePapers.has(file) || annotation?.type === 'false-positive-das-heading')) {
+        summary.false_positives.push({...paper, false_positive:true, ...(annotation?.type === 'false-positive-das-heading' ? {annotation} : {})});
         summary.without_statement++;
       } else if (record.statements > 0) {
         summary.with_statement++;
         if (record.dois > 0) summary.with_statement_and_doi++;
+        if (record.dois > 0 || paper.repositoryLinks.length || annotation?.count_as_artifact === true && annotation.urls?.length) summary.with_replication_package++;
         summary.papers.push(paper);
       } else summary.without_statement++;
     } else if (record.status === 'no_text') summary.no_text++;
@@ -138,7 +140,8 @@ async function worker() {
         pages:analysis.pages,
         sections,
         falsePositiveSections:sectionRecords.filter(isExcluded),
-        doiIDs:analysis.dois.map(record => record.id)
+        doiIDs:analysis.dois.map(record => record.id),
+        repositoryLinks:analysis.repositoryLinks
       };
     } catch (error) {
       results[relative] = {year, status:'error', statements:0, dois:0, error:error.message};

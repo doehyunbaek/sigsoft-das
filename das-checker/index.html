@@ -17,7 +17,7 @@
 <main>
 <nav class="theme-bar" aria-label="Site navigation"><a class="theme-brand" href="../index.html">Research Paper CFPs<span>•</span></a><button id="theme-toggle" type="button" aria-label="Switch color theme">Dark mode ☾</button></nav>
 <h1>Data-Availability Statement checker</h1>
-<p>Choose a paper PDF to look for artifact-availability sections, extract DOI links, and test their HTTP responses.</p>
+<p>Choose a paper PDF to look for artifact-availability sections, extract DOI and artifact-location links, and test DOI HTTP responses.</p>
 <p class="notice">The PDF is processed only in your browser, never uploaded. PDF.js loads from a CDN. If link checks are enabled, DOI requests go to doi.org, redirected repositories, and DataCite (for descriptive metadata), revealing those identifiers and your IP address. No proxy or server is used.</p>
 <form id="check-form" class="card">
 <label for="pdf-url">PDF URL<input id="pdf-url" type="url" placeholder="https://arxiv.org/pdf/2602.10046" style="display:block;width:100%;font:inherit;padding:8px;margin-top:8px"></label>
@@ -31,6 +31,7 @@
 <p id="error" role="alert" hidden></p>
 <section id="results" hidden>
 <div class="card"><h2>Artifact section detection <span id="das-progress"></span></h2><p id="das-result" hidden></p><div id="statements"></div></div>
+<div class="card"><h2>Artifact-location links</h2><p id="repository-summary"></p><ul id="repository-links"></ul></div>
 <div class="card"><h2>DOI link check <span id="doi-progress"></span></h2><p id="doi-summary" hidden></p><ul id="dois"></ul></div>
 <div class="card"><h2>DOI HTTP check <span id="http-progress"></span></h2><p id="http-summary" role="status" hidden></p><ul id="http-results"></ul></div>
 </section>

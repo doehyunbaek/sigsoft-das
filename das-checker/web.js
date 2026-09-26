@@ -114,6 +114,7 @@ $('check-form').addEventListener('submit', async event => {
   $('results').hidden = true;
   $('statements').replaceChildren();
   $('dois').replaceChildren();
+  $('repository-links').replaceChildren();
   $('http-results').replaceChildren();
   $('das-progress').textContent = '⏳';
   $('doi-progress').textContent = '⏳';
@@ -165,7 +166,7 @@ $('check-form').addEventListener('submit', async event => {
     const analysis = await analyzePDF(data, {pdfjs, sectionIDs, onProgress:({page, total}) => {
       $('status').textContent = `Reading page ${page} of ${total}…`;
     }});
-    const {statements, dois:records} = analysis;
+    const {statements, dois:records, repositoryLinks} = analysis;
     $('das-progress').textContent = statements.length ? '✅' : '⚠️';
     $('das-result').textContent = !analysis.hasText ? 'No extractable text found. This may be a scanned PDF; run OCR and try again. Section presence cannot be determined.' : statements.length ? `${statements.length} candidate artifact section heading(s) detected. Confirm the excerpts and section boundaries below.` : 'No allowed section heading found in extracted text. This is not proof that a statement is absent; inspect the PDF manually.';
     $('das-result').hidden = statements.length > 0;
@@ -174,9 +175,19 @@ $('check-form').addEventListener('submit', async event => {
       section.append(node('h3', `${statement.sectionLabel} (page ${statement.page})`), node('pre', statement.body || 'No statement text could be extracted.'));
       $('statements').append(section);
     }
+    $('repository-summary').textContent = `${repositoryLinks.length} artifact-location URL(s) found in selected sections, resolved references, or footnotes. Links and their contents are not verified.`;
+    for (const record of repositoryLinks) {
+      const item = document.createElement('li');
+      const link = node('a', record.url);
+      link.href = record.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      item.append(link);
+      $('repository-links').append(item);
+    }
     $('doi-progress').textContent = records.length ? '✅' : '⚠️';
     $('doi-summary').hidden = records.length > 0;
-    $('doi-summary').textContent = `${records.length} unique artifact-section-linked DOI(s) extracted. ${!records.length ? 'No DOI found in a candidate section or its numbered references. Review manually; author–year citations, other identifiers, or a no-artifacts statement may apply.' : 'Includes only selected sections and their cited numbered references. Confirm these identify specific artifact versions.'}`;
+    $('doi-summary').textContent = `${records.length} unique artifact-section-linked DOI(s) extracted. ${!records.length ? 'No DOI found in a candidate section or its resolved references. Review manually; unresolved citations, other identifiers, or a no-artifacts statement may apply.' : 'Includes only selected sections and their resolved references. Confirm these identify specific artifact versions.'}`;
     const jobs = [];
     for (const [index, record] of records.entries()) {
       const item = document.createElement('li');

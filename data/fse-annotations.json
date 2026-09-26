@@ -1,4 +1,65 @@
 {
+  "2013/2491411.2491415.pdf": {
+    "type": "artifact-link-outside-whitelist",
+    "count_as_artifact": true,
+    "artifact_type": "study-data",
+    "location": {"section": "Data Availability", "page": 7},
+    "urls": ["http://sailhome.cs.queensu.ca/replication/representativeness/"],
+    "note": "The DAS gives this institutional replication URL. Outside the automatic whitelist; reviewed as a manual With Artifact signal."
+  },
+  "2020/3368089.3409762.pdf": {
+    "type": "artifact-link-outside-whitelist",
+    "count_as_artifact": true,
+    "artifact_type": "data-and-scripts",
+    "location": {"section": "Data Availability", "page": 7},
+    "urls": ["https://cutt.ly/pttgE1I"],
+    "note": "The DAS provides this shortened URL for data and analysis scripts. Its destination was not verified; cutt.ly is outside the automatic whitelist, but this reviewed link counts toward With Artifact."
+  },
+  "2023/3611643.3616333.pdf": {
+    "type": "artifact-link-outside-whitelist",
+    "count_as_artifact": true,
+    "artifact_type": "code-and-data",
+    "location": {
+      "section": "Data Availability",
+      "page": 11
+    },
+    "urls": [
+      "https://reliability-object-detection.netlify.app/"
+    ],
+    "note": "The word 'here' in the DAS is a PDF hyperlink to this paper-specific site. netlify.app is outside the automatic whitelist; this reviewed link counts toward With Artifact."
+  },
+  "2023/3611643.3616362.pdf": {
+    "type": "artifact-link-outside-whitelist",
+    "count_as_artifact": true,
+    "artifact_type": "replication-package",
+    "location": {"section": "Data Availability, reference [27]", "page": 11},
+    "urls": ["https://mbagherz.bitbucket.io/lab-correct-software/data/muAkka/"],
+    "note": "The DAS cites reference [27], which supplies this Bitbucket Pages URL. Outside the automatic whitelist; reviewed as a manual With Artifact signal."
+  },
+  "2025/3729349.pdf": {
+    "type": "artifact-link-outside-whitelist",
+    "count_as_artifact": true,
+    "artifact_type": "replication-package",
+    "location": {"section": "Data Availability, Imtiaz et al. 2024 reference", "page": 20},
+    "urls": ["https://huggingface.co/datasets/Anonymous007/IRepair/tree/main"],
+    "note": "The DAS cites Imtiaz et al. (2024), whose reference supplies this Hugging Face dataset URL. Outside the automatic whitelist; reviewed as a manual With Artifact signal."
+  },
+  "2026/3797067.pdf": {
+    "type": "artifact-link-outside-whitelist",
+    "count_as_artifact": true,
+    "artifact_type": "code-and-data",
+    "location": {"section": "Data Availability, reference [2]", "page": 20},
+    "urls": ["https://bitbucket.org/anonymous_code/code_embedding"],
+    "note": "The DAS cites reference [2], which supplies this Bitbucket URL. Outside the automatic whitelist; reviewed as a manual With Artifact signal."
+  },
+  "2026/3797120.pdf": {
+    "type": "artifact-link-outside-whitelist",
+    "count_as_artifact": true,
+    "artifact_type": "study-data",
+    "location": {"section": "Data Availability", "page": 19},
+    "urls": ["https://huggingface.co/datasets/wuog/CertiCoder"],
+    "note": "The DAS gives this Hugging Face dataset URL; the code is described as a future release. Outside the automatic whitelist; reviewed as a manual With Artifact signal for the dataset only."
+  },
   "2020/3368089.3409679.pdf": {
     "type": "artifact-url-outside-allowed-heading",
     "artifact_type": "framework",
