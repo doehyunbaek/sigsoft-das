@@ -20,10 +20,10 @@
 <section class="availability" aria-labelledby="availability-title">
 <div class="availability-heading"><h2 id="availability-title">Call for Papers - Data availability mentioned</h2><button id="metric-toggle" type="button">Show DOI mentions</button></div>
 <div class="table-scroll"><table id="availability-table"></table></div>
-<p id="availability-note" class="muted">A check means the research CFP mentions data availability; it does not assess the strength of the policy.</p>
+<p id="availability-note" class="muted" hidden></p>
 <div class="observed-das">
 <div class="availability-heading"><h3>Paper counts by edition</h3><button id="nonstandard-toggle" type="button" aria-pressed="false">Include non-standard listings</button></div>
-<div class="das-chart-filters" role="group" aria-label="Chart conference"><button id="chart-all-toggle" type="button" aria-pressed="true">All</button><button id="chart-fse-toggle" type="button" aria-pressed="false">FSE</button><button id="chart-ase-toggle" type="button" aria-pressed="false">ASE</button></div>
+<div class="das-chart-filters" role="group" aria-label="Chart conference"><button id="chart-all-toggle" type="button" aria-pressed="true">All</button><button id="chart-icse-toggle" type="button" aria-pressed="false">ICSE</button><button id="chart-fse-toggle" type="button" aria-pressed="false">FSE</button><button id="chart-ase-toggle" type="button" aria-pressed="false">ASE</button></div>
 <div class="das-chart-scroll"><div id="das-bar-chart" class="das-bar-chart" role="group" aria-label="Accepted, DAS, artifact-link, and DOI paper counts by conference and year"></div></div>
 <p class="muted">“Accepted” counts checked PDFs in the local corpus. “With Artifact” is a proxy: a detected DAS with a DOI or an automatically detected link on an allowed host, or a reviewed manual artifact-location link (which may use another host). Links and artifact contents are not verified. Click a bar to inspect papers. Non-standard listings affect only “With DAS”.</p>
 <p id="paper-metric-note" class="muted">Loading section types…</p>
@@ -92,24 +92,29 @@ function archiveURL(record) {
   const sectionSuffix = callURL.startsWith(String(record.url)) ? callURL.slice(String(record.url).length) : '';
   return snapshot ? snapshot + sectionSuffix : null;
 }
+const dataAvailabilityStartYears = {ase:2026, fse:2023};
 function mentionsDataAvailability(record) {
-  // FSE first prescribed a named Data Availability section in 2023.
-  // Earlier CFPs encouraged open artifacts but are not classified as DAS CFPs.
-  if (record.series === 'fse' && Number(record.year) < 2023) return false;
+  if (record.series === 'icse') return false;
+  const startYear = dataAvailabilityStartYears[record.series];
+  if (startYear && Number(record.year) < startYear) return false;
   const value = record.text.replace(/\s+/g, ' ');
   return /\bdata[ -]availability\b/i.test(value)
     || /\b(?:data|datasets?)(?:\s+\S+){0,10}\s+availab\w*/i.test(value);
 }
+const doiStartYears = {ase:2026};
 function mentionsDOI(record) {
+  const startYear = doiStartYears[record.series];
+  if (startYear && Number(record.year) < startYear) return false;
   return /\bDOIs?\b|digital object identifier/i.test(record.text);
 }
 function renderAvailability() {
   const isDOI = matrixMetric === 'doi';
   $('availability-title').textContent = isDOI ? 'Call for Papers - DOI mentioned' : 'Call for Papers - Data availability mentioned';
   $('metric-toggle').textContent = isDOI ? 'Show data availability' : 'Show DOI mentions';
+  $('availability-note').hidden = !isDOI;
   $('availability-note').textContent = isDOI
     ? 'A check means the research CFP mentions a DOI or digital object identifier.'
-    : 'A check means the research CFP mentions data availability; it does not assess the strength of the policy.';
+    : '';
   const years = [...new Set(records.map(record => record.year))].filter(Boolean).sort((a,b)=>Number(b)-Number(a));
   const table = $('availability-table');
   const head = element('thead');
@@ -181,7 +186,7 @@ function renderDASPapers(conference, year) {
   selectedDASConference = conference;
   selectedDASYear = year;
   const output = $('das-paper-details');
-  const conferences = conference === 'all' ? ['fse','ase'] : [conference];
+  const conferences = conference === 'all' ? ['icse','fse','ase'] : [conference];
   const papers = conferences.flatMap(name => displayedPapers(dasSummaries[name]?.years?.[year]).map(paper => ({...paper, conference:name})));
   const falsePositives = paperMatrixMetric !== 'data' ? [] : conferences.flatMap(name =>
     (dasSummaries[name]?.years?.[year]?.false_positives || []).map(paper => ({...paper, conference:name})));
@@ -266,15 +271,18 @@ function renderDASCounts(data) {
     );
     $('paper-metric-note').textContent = sectionTypeSummary(allPapers);
   }
-  const years = [...new Set(records.map(record => record.year))].filter(Boolean).sort((a,b)=>Number(b)-Number(a));
+  const years = [...new Set([
+    ...records.map(record => record.year),
+    ...Object.values(dasSummaries).flatMap(summary => Object.keys(summary?.years || {}))
+  ])].filter(year => /^(?:19|20)\d{2}$/.test(year) && Number(year) >= 2018).sort((a,b)=>Number(b)-Number(a));
   renderDASChart(years);
   if (selectedDASYear && selectedDASConference) renderDASPapers(selectedDASConference, selectedDASYear);
 }
 function renderDASChart(years) {
   const chart = $('das-bar-chart');
   chart.replaceChildren();
-  for (const filter of ['all','fse','ase']) $(`chart-${filter}-toggle`).setAttribute('aria-pressed', String(chartConference === filter));
-  const conferences = chartConference === 'all' ? ['fse','ase'] : [chartConference];
+  for (const filter of ['all','icse','fse','ase']) $(`chart-${filter}-toggle`).setAttribute('aria-pressed', String(chartConference === filter));
+  const conferences = chartConference === 'all' ? ['icse','fse','ase'] : [chartConference];
   const editions = years.map(year => {
     const results = conferences.map(conference => dasSummaries[conference]?.years?.[year]).filter(result => result?.checked);
     if (!results.length) return null;
@@ -430,7 +438,7 @@ for (const id of ['series','year']) $(id).addEventListener('change',()=>{updateT
 $('track').addEventListener('change',applyFilters);
 $('metric-toggle').addEventListener('click',()=>{ matrixMetric = matrixMetric === 'data' ? 'doi' : 'data'; renderAvailability(); });
 $('nonstandard-toggle').addEventListener('click',()=>{ includeNonstandard = !includeNonstandard; renderDASCounts(); });
-for (const filter of ['all','fse','ase']) $(`chart-${filter}-toggle`).addEventListener('click',()=>{
+for (const filter of ['all','icse','fse','ase']) $(`chart-${filter}-toggle`).addEventListener('click',()=>{
   chartConference = filter;
   selectedDASYear = null;
   $('das-paper-details').hidden = true;
@@ -441,13 +449,14 @@ $('reset').addEventListener('click',()=>{ $('search').value=''; $('series').valu
 for (const [id,delta] of [['previous',-1],['next',1]]) $(id).addEventListener('click',()=>{currentPage+=delta;render();$('count').scrollIntoView({block:'start'});});
 (async()=>{
   try {
-    const [callsResponse,fseResponse,aseResponse] = await Promise.all([
-      fetch('data/calls.json'), fetch('data/fse.json'), fetch('data/ase.json')
+    const [callsResponse,icseResponse,fseResponse,aseResponse] = await Promise.all([
+      fetch('data/calls.json'), fetch('data/icse.json'), fetch('data/fse.json'), fetch('data/ase.json')
     ]);
     if (!callsResponse.ok) throw new Error(`CFP data returned HTTP ${callsResponse.status}`);
     const data = await callsResponse.json();
     load(data);
     const summaries = {};
+    if (icseResponse.ok) summaries.icse = await icseResponse.json();
     if (fseResponse.ok) summaries.fse = await fseResponse.json();
     if (aseResponse.ok) summaries.ase = await aseResponse.json();
     renderDASCounts(summaries);

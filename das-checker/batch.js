@@ -12,7 +12,7 @@ const gzipAsync = promisify(gzip), gunzipAsync = promisify(gunzip);
 const root = path.resolve(process.argv[2] || '');
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const conference = path.basename(root).toLowerCase();
-if (!['fse', 'ase'].includes(conference)) throw new Error(`Unsupported conference corpus: ${conference}`);
+if (!['icse', 'fse', 'ase'].includes(conference)) throw new Error(`Unsupported conference corpus: ${conference}`);
 const conferenceName = conference.toUpperCase();
 const output = path.resolve(process.argv[3] || path.join(projectRoot, `.cache/${conference}-das-counts.json`));
 // Retain the existing FSE cache layout; isolate other corpora to prevent path collisions.
@@ -53,6 +53,8 @@ async function walk(directory) {
 const files = (await walk(root)).filter(file => {
   const relative = path.relative(root, file);
   const year = relative.split(path.sep).find(part => /^(?:19|20)\d{2}$/.test(part));
+  // ICSE's fm/ directory contains proceedings front matter, not research papers.
+  if (conference === 'icse' && !/^(?:19|20)\d{2}$/.test(relative.split(path.sep)[0])) return false;
   return !minimumYear || Number(year) >= minimumYear;
 });
 await mkdir(extractionCache, {recursive:true});
@@ -72,7 +74,9 @@ async function save() {
       const paper = {
         id:paperId,
         file,
-        url:/^\d+(?:\.\d+)?$/.test(paperId) && (conference === 'fse' || paperId.includes('.')) ? `https://doi.org/10.1145/${paperId}` : null,
+        url:conference === 'icse' && /^icse\d+\.\d{4}\.\d+$/i.test(paperId)
+          ? `https://doi.org/10.1109/${paperId}`
+          : /^\d+(?:\.\d+)?$/.test(paperId) && (conference === 'fse' || paperId.includes('.')) ? `https://doi.org/10.1145/${paperId}` : null,
         sections:record.sections,
         dois:record.doiIDs || [],
         repositoryLinks:record.repositoryLinks || []
