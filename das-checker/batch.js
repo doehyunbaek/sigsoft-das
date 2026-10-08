@@ -70,11 +70,13 @@ async function save() {
     summary.total++;
     if (record.status === 'checked') {
       summary.checked++;
-      const paperId = path.basename(file, path.extname(file));
+      const sourceId = path.basename(file, path.extname(file));
+      const filenameDOI = sourceId.startsWith('doi-') ? decodeURIComponent(sourceId.slice(4)) : null;
+      const paperId = filenameDOI ? filenameDOI.split('/').pop() : sourceId;
       const paper = {
         id:paperId,
         file,
-        url:conference === 'icse' && /^icse\d+\.\d{4}\.\d+$/i.test(paperId)
+        url:filenameDOI ? `https://doi.org/${filenameDOI}` : conference === 'icse' && /^icse\d+\.\d{4}\.\d+$/i.test(paperId)
           ? `https://doi.org/10.1109/${paperId}`
           : /^\d+(?:\.\d+)?$/.test(paperId) && (conference === 'fse' || paperId.includes('.')) ? `https://doi.org/10.1145/${paperId}` : null,
         sections:record.sections,
